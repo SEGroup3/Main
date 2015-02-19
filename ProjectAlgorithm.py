@@ -8,74 +8,78 @@ import re
 #the idea is that the data is stored in a table with
 #**All of this may not be needed once the database is actually implemented**
 def findTotal(): 
-    data=[] 
-    cur.execute("SELECT * FROM qresults")
     
-    data = eachRow.strip().split('|')
+    data=[]
     total = 0
-    StudentID = re.findall(r'C/d{7}',data) 
+    for row in cur.execute("SELECT * FROM qresults"):
+        data.append(row)
+        print (data)
+    #TODO: figure out how to iterate through list with re.findall
+    #StudentID = re.findall(r'C/d{7}',data)
+    for item in data:
+        #if type(item) is str:
+        #    StudentID = re.findall(r'C/d{7}',item)
+        #    print(StudentID)
+        StudentID = "C0506344"
     
 #simple answer-based algorithm to assign an overall score to the questionnaire results
 #can be made more complex to assess the answer to each question individually if necessary
 #answers 1-4 will be made more specific (probably as ints) as we know what they will be
 
-    for item in list:
-        if item is not int: #skip over the names and student number
-            continue
-        if item == "answer1":
-            total = total +4
-        elif item == "answer2":
-            total = total +3
-        elif item == "answer3":
-            total = total +2
-        elif item == "answer4":
-            total = total +1
-        return total, StudentID
+    for line in data:
+        for item in line:
+            if item == 4:
+                total = total +4
+            if item == 3:
+                total = total +3
+            if item == 2:
+                total = total +2
+            if item == 1:
+                total = total +1         
+        print (total)
+    findBelbin(total, StudentID)
     
 #use the total to place the candidate into one of Belbin's roles
 #values are placeholder only for now
     
+def write_Belbin(total,StudentID,belbin):
+    cur.execute("""INSERT INTO BELBIN (STUDENTID, RESULT, BELBINROLE)
+    VALUES (?,?,?)""",(StudentID, total, belbin))
+    db.commit()
+    for row in cur.execute("SELECT * FROM BELBIN"):
+        print(row)
+
 def findBelbin(total,StudentID): 
     if total >= 0 and total <= 10:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Plant')
-        db.commit()
+        belbin = 'Plant'
+        write_Belbin(total,StudentID,belbin)
     if total >= 11 and total <= 20:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Monitor Evaluator')
-        db.commit()
+        belbin = 'Monitor Evaluator'
+        write_Belbin(total,StudentID,belbin)
     if total >= 21 and total <= 30:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Co-ordinator')
-        db.commit()
+        belbin = 'Co-ordinator'
+        write_Belbin(total,StudentID,belbin)
     if total >= 31 and total <= 40:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Resource Investigator')
-        db.commit()
+        belbin = 'Resource Investigator'
+        write_Belbin(total,StudentID,belbin)
     if total >= 41 and total <= 50:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Implementer')
-        db.commit
+        belbin = 'Implementer'
+        write_Belbin(total,StudentID,belbin)
     if total >= 51 and total <= 60:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Completer Finisher')
-        db.commit
+        belbin = 'Completer Finisher'
+        write_Belbin(total,StudentID,belbin)
     if total >= 61 and total <= 70:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Teamworker')
-        db.commit
+        belbin = 'Teamworker'
+        write_Belbin(total,StudentID,belbin)
     if total >= 71 and total <= 80:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Shaper')
-        db.commit
+        belbin = 'Shaper'
+        write_Belbin(total,StudentID,belbin)
     if total >= 81 and total <= 90:
-        cur.execute("INSERT INTO Belbin (StudentId, TestResult, BelbinRole")
-        VALUES (StudentID, total, 'Specialist')
-        db.commit
+        belbin = 'Specialist'
+        write_Belbin(total,StudentID,belbin)
     return
 
 def main():
-
 
 #SAMPLE CODE FOR CREATION OF DATABASE TO STORE TEST RESULTS
 
@@ -93,11 +97,11 @@ def main():
     (STUDENTID, FIRST, LAST, EMAIL, A1, A2, A3, A4, A5,
     A6, A7, A8, A9, A10)
     VALUES
-    ('C0506344', 'Sam', 'Rogers', 'rogerssr@cf.ac.uk', 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1)
+    ('C0506344', 'Sam', 'Rogers', 'rogerssr@cf.ac.uk', 2, 4, 4, 1, 1,
+    1, 1, 4, 2, 1)
     """)
     print("Data entered successfully")
-    db.commit()
+    db.commit() 
 
 #create a new table to contain Belbin's roles
     cur.execute("DROP TABLE IF EXISTS BELBIN") 
@@ -109,7 +113,6 @@ def main():
     db.commit()
 
     findTotal()
-    findBelbin(total, StudentID)
     db.close()
 
 #start of program
