@@ -7,76 +7,70 @@ import re
 #function to pull each data string from the database and assess
 #the idea is that the data is stored in a table with
 #**All of this may not be needed once the database is actually implemented**
-def findTotal(): 
+def find_total(): 
     
     data=[]
     total = 0
     for row in cur.execute("SELECT * FROM qresults"):
         data.append(row)
-        print (data)
-    #TODO: figure out how to iterate through list with re.findall
-    #StudentID = re.findall(r'C/d{7}',data)
-    for item in data:
-        #if type(item) is str:
-        #    StudentID = re.findall(r'C/d{7}',item)
-        #    print(StudentID)
-        StudentID = "C0506344"
-    
+
 #simple answer-based algorithm to assign an overall score to the questionnaire results
 #can be made more complex to assess the answer to each question individually if necessary
 #answers 1-4 will be made more specific (probably as ints) as we know what they will be
 
     for line in data:
         for item in line:
-            if item == 4:
-                total = total +4
-            if item == 3:
-                total = total +3
-            if item == 2:
-                total = total +2
-            if item == 1:
-                total = total +1         
-        print (total)
-    findBelbin(total, StudentID)
+            if type(item) is str and re.match(r'C\d{7}',item):
+                StudentID = item
+
+            elif type(item) is int and item < 5:
+                total += item
+
+    find_belbin(total, StudentID)
     
 #use the total to place the candidate into one of Belbin's roles
 #values are placeholder only for now
     
-def write_Belbin(total,StudentID,belbin):
+def write_belbin(total,StudentID,belbin):
     cur.execute("""INSERT INTO BELBIN (STUDENTID, RESULT, BELBINROLE)
     VALUES (?,?,?)""",(StudentID, total, belbin))
     db.commit()
     for row in cur.execute("SELECT * FROM BELBIN"):
         print(row)
 
-def findBelbin(total,StudentID): 
+def find_belbin(total,StudentID): 
     if total >= 0 and total <= 10:
         belbin = 'Plant'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 11 and total <= 20:
+
+    elif total >= 11 and total <= 20:
         belbin = 'Monitor Evaluator'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 21 and total <= 30:
+
+    elif total >= 21 and total <= 30:
         belbin = 'Co-ordinator'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 31 and total <= 40:
+
+    elif total >= 31 and total <= 40:
         belbin = 'Resource Investigator'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 41 and total <= 50:
+
+    elif total >= 41 and total <= 50:
         belbin = 'Implementer'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 51 and total <= 60:
+
+    elif total >= 51 and total <= 60:
         belbin = 'Completer Finisher'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 61 and total <= 70:
+
+    elif total >= 61 and total <= 70:
         belbin = 'Teamworker'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 71 and total <= 80:
+
+    elif total >= 71 and total <= 80:
         belbin = 'Shaper'
-        write_Belbin(total,StudentID,belbin)
-    if total >= 81 and total <= 90:
+
+    elif total >= 81 and total <= 90:
         belbin = 'Specialist'
-        write_Belbin(total,StudentID,belbin)
+
+    else:
+        belbin = 'Unknown'
+
+    write_belbin(total,StudentID,belbin)
+    
     return
 
 def main():
@@ -112,13 +106,14 @@ def main():
      )""")
     db.commit()
 
-    findTotal()
+    find_total()
     db.close()
 
-#start of program
-db = sqlite3.connect('example.db') 
-cur = db.cursor()
-main()
+if __name__ == "__main__":
+    #start of program
+    db = sqlite3.connect('example.db') 
+    cur = db.cursor()
+    main()
 
 #determine group makeup
 #two classes - student with attributes: studentNumber, belbinRole, belbinSubRole 

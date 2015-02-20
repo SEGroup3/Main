@@ -51,7 +51,7 @@ if __name__ == "__main__":
     # Delete before submission
 
 	aStudent = Student("Liam", 1, "email")
-	aStudent2 = Student("Test", 2, "email", "grade", "role")
+	aStudent2 = Student("Test", 2, "email", 70, "role")
 
 	aStudent.getStudentInfo()
 	aStudent2.getStudentInfo()

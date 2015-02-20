@@ -1,7 +1,7 @@
 '''
 This module defines behaviour of group objects. It differs from the class diagram in a
 couple of ways. Firstly, add_student and remove_student methods have been added.
-Secondly, group size is accessed as an attribute (self.size) and not through a method
+Secondly, group size is accessed as an attribute (self.size) and NOT through a method
 (getGroupSize()).
 '''
 
@@ -25,7 +25,7 @@ class Group():
 		for item in self.contents:
 			if item.number == target:
 				self.contents.remove(item)
-				break
+				return
 
 		print("Student not found.")
 		'''
@@ -90,18 +90,14 @@ if __name__ == "__main__":
 	test_group2 = Group(2)
 
 	test_group.get_members()
+	print("Group size is:", test_group.size)
 	test_group.get_group_results()
 	test_group.remove_student(student1)
 	test_group.get_members()
+	print("Group size is:", test_group.size)
 	print()
 
 	test_group2.get_members()
+	print("Group size is:", test_group2.size)
 	test_group2.get_group_results()
 	test_group2.remove_student(student1)
-
-
-
-
-
-
-
