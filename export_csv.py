@@ -40,7 +40,7 @@ def convert_to_CSV(list_of_groups, more = False):
 		for item in list_of_groups:
 			try:
 				output += '{}, '.format(item.contents[row].name)
-				# Digging up the student.name attribute.
+				# Digs up the student.name attribute.
 
 				if more:
 					# Digs up the remaining attributes.
@@ -75,7 +75,6 @@ if __name__ == "__main__":
 	student3 = students.Student("Vera", 3, "email", 70, "Plant")
 	student4 = students.Student("Callum", 4, "email", 72)
 	student5 = students.Student("Andrew", 5, "email", 79)
-
 	student6 = students.Student("Random", 6, "email")
 
 	test_group = groups.Group(1)

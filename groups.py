@@ -66,10 +66,10 @@ class Group():
 
 		print("Average grade for Group {} is {}.".format(self.number, avg_grade))
 
+
 	def save_group(self):
 		# To-do
 		pass
-
 
 if __name__ == "__main__":
 	# Test code
