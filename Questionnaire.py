@@ -94,26 +94,29 @@ class Questionnaire (Frame):
         number = self.get_numb.get()
         email = self.get_email.get()
 
-        messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+        tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
         self.clearResponse()
         student = Student(firstname, surname, number, email)
-        getStudentInfo()
-   # def clear_response (self):
-	#self.GetName.delete(0,END)
-	#self.R1Q1.set(0)
-	#self.R2Q1.set(0)
+        student.getStudentInfo()
 
-    #def storeResponse(self):
-	#Store the questionnaire results
-	#index = self.GetName.curselection()[0]
-	#strProg = str(self.GetName.get(index))
-	#strMsg = ""
+
+
+    def clearResponse(self):
+        self.GetName.delete(0,END)
+        self.R1Q1.set(0)
+        self.R2Q1.set(0)
+
+    def storeResponse(self):
+        # Store the questionnaire results
+        index = self.GetName.curselection()[0]
+        strProg = str(self.GetName.get(index))
+        strMsg = ""
+	
+        if strProg == "":
+               strMsg = "Please Enter a Name."
 		
-	#if strProg == "":
-       #     strMsg = "Please Enter a Name."
-		
-	#if (self.varQ1.get() ==0):
-       #     strMsg = strMsg + "You need to answer experience question."
+        if (self.varQ1.get() ==0):
+               strMsg = strMsg + "You need to answer experience question."
 
     
      
