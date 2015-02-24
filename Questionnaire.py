@@ -1,43 +1,52 @@
 from tkinter import *
+import Student
 class Questionnaire (Frame):
     #GUI Setup
     def __init__(self, master):
         # Initialise Questionnaire Class
 
-        Frame.__init__(self, master)
-        super(Application, self
-        self.grid()
-        self.create_prog_select()
-        self.create_team_Exp_Quest ()
-        self.create_button
         
+        super(Questionnaire, self).__init__(master)
+        self.grid()
+       # self.create_widgets()
+        self.create_student_info()
+        self.create_team_Exp_Quest()
+        self.create_button()
+
+  #  def create_widgets(self):
+        
+        #create instruction label
+        #self.inst_lbl = 
     def create_student_info(self):
-        #create widgets to get student info
+        '''create button, text, and entry widgets'''
+        #pack sides
         self.pack(pady = 30, padx = 30)
+        #Get firstname
+        self.ask_firstname = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
+        self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
-        AskName = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
-        AskName.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
+        self.get_firstname = Entry(self)
+        self.get_firstname.grid(row=2, column = 4, columnspan=1, sticky=NE)
 
-        GetName = Entry(self)
-        GetName.grid(row=2, column = 4, columnspan=1, sticky=NE)
+        self.ask_surname = Label(self, text='Surname:', font = ('MS', 8, 'bold'))
+        self.ask_surname.grid(row=3, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
-        AskName2 = Label(self, text='Surname:', font = ('MS', 8, 'bold'))
-        AskName2.grid(row=3, column = 1, columnspan=1, rowspan =2, sticky = NW)
+        self.get_surname = Entry(self)
+        self.get_surname.grid(row=3, column = 4, columnspan=1, sticky=NE)
 
-        GetName2 = Entry(self)
-        GetName2.grid(row=3, column = 4, columnspan=1, sticky=NE)
+        self.ask_numb = Label(self, text='Student Number:', font = ('MS', 8, 'bold'))
+        self.ask_numb.grid(row=4, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
-        AskNumb = Label(self, text='Student Number:', font = ('MS', 8, 'bold'))
-        AskNumb.grid(row=4, column = 1, columnspan=1, rowspan =2, sticky = NW)
+        self.get_numb = Entry(self)
+        self.get_numb.grid(row=4, column = 4, columnspan=1, sticky=NE)
 
-        GetNumb = Entry(self)
-        GetNumb.grid(row=4, column = 4, columnspan=1, sticky=NE)
+        self.ask_email = Label(self, text='Email:', font = ('MS', 8, 'bold'))
+        self.ask_email.grid(row=5, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
-        AskEmail = Label(self, text='Email:', font = ('MS', 8, 'bold'))
-        AskEmail.grid(row=5, column = 1, columnspan=1, rowspan =2, sticky = NW)
+        self.get_email = Entry(self)
+        self.get_email.grid(row=5, column = 4, columnspan=1, sticky=NE)
 
-        GetEmail = Entry(self)
-        GetEmail.grid(row=5, column = 4, columnspan=1, sticky=NE)
+        
 
         '''self.listProg = Listbox(self, height= 3)
         scroll = Scrollbar(self, command= self.listProg.yview)
@@ -75,13 +84,17 @@ class Questionnaire (Frame):
         R2Q1.grid(row=8, column=5)
 
     def create_button (self):   
-        Confirm = Button(self, text= 'Submit', font=('MS', 8, 'bold'))
-        Confirm['command'] = self.storeResponse
-        Confirm.grid(row = 10, column= 3, sticky = S)
-
-    def storeResponse (self):
-        index = 
+        self.submit_bttn = Button(self, text= 'Submit', command = self.storeResponse, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
         
+        
+    def storeResponse (self):
+        firstname= self.get_firstname.get()
+        surname= self.get_surname.get()
+        number = self.get_numb.get()
+        email = self.get_email.get()
+
+        student = Student(firstname, surname, number, email)
+        getStudentInfo()
    # def clear_response (self):
 	#self.GetName.delete(0,END)
 	#self.R1Q1.set(0)
