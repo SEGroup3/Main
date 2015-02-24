@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox
 import Student
 class Questionnaire (Frame):
     #GUI Setup
@@ -21,7 +22,7 @@ class Questionnaire (Frame):
         '''create button, text, and entry widgets'''
         #pack sides
         self.pack(pady = 30, padx = 30)
-        #Get firstname
+        #Get info
         self.ask_firstname = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
         self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
@@ -93,6 +94,8 @@ class Questionnaire (Frame):
         number = self.get_numb.get()
         email = self.get_email.get()
 
+        messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+        self.clearResponse()
         student = Student(firstname, surname, number, email)
         getStudentInfo()
    # def clear_response (self):
