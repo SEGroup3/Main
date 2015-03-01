@@ -20,4 +20,4 @@ class Edit_Questionnaire (Frame):
     btn.pack(side = RIGHT)
     entry.pack(side = LEFT)
     frame.pack()
-    w.mainloop()
+    window.mainloop()

@@ -39,8 +39,8 @@ def convert_to_CSV(list_of_groups, more = False):
 		output += '\n'
 		for item in list_of_groups:
 			try:
-				output += '{}, '.format(item.contents[row].name)
-				# Digs up the student.name attribute.
+				output += '{}, '.format(item.contents[row].firstname + ' ' + item.contents[row].surname)
+				# Digs up the student.name attributes.
 
 				if more:
 					# Digs up the remaining attributes.
@@ -70,12 +70,12 @@ def convert_to_CSV(list_of_groups, more = False):
 
 if __name__ == "__main__":
 
-	student1 = students.Student("Liam", 1, "email")
-	student2 = students.Student("Sam", 2, "email", 75, "Co-ordinator")
-	student3 = students.Student("Vera", 3, "email", 70, "Plant")
-	student4 = students.Student("Callum", 4, "email", 72)
-	student5 = students.Student("Andrew", 5, "email", 79)
-	student6 = students.Student("Random", 6, "email")
+	student1 = students.Student("Liam", "H", 1, "email")
+	student2 = students.Student("Sam", "R", 2, "email", 75, "Co-ordinator")
+	student3 = students.Student("Vera", "Y", 3, "email", 70, "Plant")
+	student4 = students.Student("Callum", "X", 4, "email", 72)
+	student5 = students.Student("Andrew", "Y", 5, "email", 79)
+	student6 = students.Student("Random", "Z", 6, "email")
 
 	test_group = groups.Group(1)
 	test_group.add_student(student1)
