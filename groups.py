@@ -59,12 +59,13 @@ class Group():
 
 		if total_grades == 0:
 			print("No grade information for Group {}.".format(self.number))
-			return
+			return False
 
 		students_with_grades = self.size - ignore
 		avg_grade = total_grades / students_with_grades
 
 		print("Average grade for Group {} is {}.".format(self.number, avg_grade))
+		return avg_grade
 
 
 	def save_group(self):
