@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
-import Student
+import students
 class Questionnaire (Frame):
     #GUI Setup
     def __init__(self, master):
@@ -89,34 +89,47 @@ class Questionnaire (Frame):
         
         
     def storeResponse (self):
-        firstname= self.get_firstname.get()
-        surname= self.get_surname.get()
-        number = self.get_numb.get()
-        email = self.get_email.get()
-
-        tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
-        self.clearResponse()
-        student = Student(firstname, surname, number, email)
-        student.getStudentInfo()
-
-
+        strMsg = ""
+        while (self.get_firstname.get()).isalpha():
+            firstname= self.get_firstname.get()
+        else: strMsg = "Please Add First Name \n"
+        while (self.get_surname.get()).isalpha():
+            surname= self.get_surname.get()
+        else: strMsg = strMsg + "Please Add Surname \n"
+        while (self.get_numb.get()).isdigit():
+            number = self.get_numb.get()
+        else: strMsg = strMsg + "Please Add Number \n"
+        while self.get_email.get() != "":
+            email = self.get_email.get()
+        else: strMsg = strMsg + "Please Add Email \n"
+        if (self.varQ1.get() ==0):
+            strMsg = strMsg + "Please Answer Experience Question \n"
+           
+        if strMsg == "":
+            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+            self.clearResponse()
+            student = Student(firstname, surname, number, email)
+            student.getStudentInfo()
+        else:
+            tkinter.messagebox.showinfo("Please Fix the Following Errors", strMsg)
+             
 
     def clearResponse(self):
         self.GetName.delete(0,END)
         self.R1Q1.set(0)
         self.R2Q1.set(0)
 
-    def storeResponse(self):
+    #def storeResponse(self):
         # Store the questionnaire results
-        index = self.GetName.curselection()[0]
-        strProg = str(self.GetName.get(index))
-        strMsg = ""
+        #index = self.GetName.curselection()[0]
+        #strProg = str(self.GetName.get(index))
+        #strMsg = ""
 	
-        if strProg == "":
-               strMsg = "Please Enter a Name."
+       # if strProg == "":
+       #        strMsg = "Please Enter a Name."
 		
-        if (self.varQ1.get() ==0):
-               strMsg = strMsg + "You need to answer experience question."
+       # if (self.varQ1.get() ==0):
+       #        strMsg = strMsg + "You need to answer experience question."
 
     
      
