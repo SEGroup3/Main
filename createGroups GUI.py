@@ -21,6 +21,7 @@ class createGroups(Frame):
 
     def header(self):
 
+        self.pack(pady = 20, padx = 20)
         lblHeader = Label(self, text = "Select Parameters: ", font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
 
