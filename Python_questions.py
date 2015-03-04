@@ -5,6 +5,29 @@ import tkinter.messagebox as tk
 import shelve
 from Response import Response
 
+class results_viewer(Frame):
+    def __init__(self,master):        
+        Frame.__init__(self,master)
+        self.grid()
+        self.header()
+        self.exit_button()
+
+    def header(self):
+        self.pack(pady = 20, padx = 20)
+        lblHeader = Label(self, text = "Table of Results", font=('MS', 10, 'bold'))
+        lblHeader.grid(row =0, column = 0, columnspan = 2, sticky = NW)
+
+    def close_window(self):
+        self.root.destroy()
+        
+    def exit_button(self):
+        #a button to quit the results viewer
+        butSubmit = Button(self, text = 'Quit', font = ('MS', 8, 'bold'))
+        butSubmit['command']=self.close_window
+        butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
+
+ 
+
 class prog_questions (Frame):
 
     def __init__(self,master):
@@ -20,6 +43,7 @@ class prog_questions (Frame):
         self.q5()
         self.submit_Button()
         self.clear_Button()
+        self.view_Button()
 
     def header(self):
         
@@ -151,13 +175,18 @@ class prog_questions (Frame):
         #a button to allow the user to submit answers
         butSubmit = Button(self, text = 'Submit', font = ('MS', 8, 'bold'))
         butSubmit['command']=self.store_Response
-        butSubmit.grid(row = 99, column = 1, columnspan = 2, sticky = N)
+        butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
 
     def clear_Button(self):
         #a button to clear the form
         butClear = Button(self, text = 'Clear All', font = ('MS',8, 'bold'))
         butClear['command']=self.clear_All
-        butClear.grid(row = 99, column = 0, columnspan = 2, sticky = N)
+        butClear.grid(row = 99, column = 0, columnspan = 21, sticky = N)
+
+    def view_Button(self):
+        butView = Button(self, text = 'Show Data (Test)', font = ('MS', 8, 'bold'))
+        butView['command']=self.print_data
+        butView.grid(row = 99, column = 2, columnspan = 1, sticky = N)
 
     def clear_All(self):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
@@ -172,20 +201,35 @@ class prog_questions (Frame):
             return
         
     def store_Response(self):
+        #store the response using shelving
+        
         db = shelve.open('responsedb')
         responseCount = len(db)
         Ans = Response(str(responseCount+1),self.q1answer.get(1.0, END),self.q2answer.get(1.0,END),
                            self.q3answer.get(1.0, END), self.q4answer.get(1.0,END),self.q5answer.get(1.0,END)
                            )
         db[Ans.respNo] = Ans
+        butSubmit['command']=tk.showinfo("Programming Questions", "Your answers have been saved.")
         db.close
-        
-    
+        #TODO//jump to next part of program here
+
+    def print_data(self):
+        pass
+#        root = Tk()
+#        root.title("Results Viewer")
+#        app = prog_questions(root)
+#        root.mainloop()
+#        db = shelve.open('responsedb')
+        #display the results
+#        db.close
+
 #Main
 root = Tk()
 root.title("Programming Questions")
 app = prog_questions(root)
 root.mainloop()
+
+
 
                     
                     
