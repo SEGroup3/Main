@@ -90,16 +90,17 @@ class Questionnaire (Frame):
         
     def storeResponse (self):
         strMsg = ""
-        while (self.get_firstname.get()).isalpha():
+        if self.get_firstname.get().isalpha():
             firstname= self.get_firstname.get()
         else: strMsg = "Please Add First Name \n"
-        while (self.get_surname.get()).isalpha():
+        if self.get_surname.get().isalpha():
             surname= self.get_surname.get()
         else: strMsg = strMsg + "Please Add Surname \n"
-        while (self.get_numb.get()).isdigit():
+        
+        if self.get_numb.get().lower().strip('c').isdigit():
             number = self.get_numb.get()
         else: strMsg = strMsg + "Please Add Number \n"
-        while self.get_email.get() != "":
+        if self.get_email.get() != "":
             email = self.get_email.get()
         else: strMsg = strMsg + "Please Add Email \n"
         if (self.varQ1.get() ==0):
