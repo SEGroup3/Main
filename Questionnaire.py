@@ -13,13 +13,13 @@ class Questionnaire (Frame):
         
         super(Questionnaire, self).__init__(master)
         self.grid()
-       # self.create_widgets()
+       
         self.create_student_info()
         self.create_team_Exp_Quest()
         self.create_button()
         self.startup()
 
-  #  def create_widgets(self):
+
     def startup(self):
         if os.path.isfile('stu_dict.pkl'):
             with open("stu_dict.pkl", "rb") as f:
@@ -31,7 +31,7 @@ class Questionnaire (Frame):
     def create_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
-        self.pack(pady = 30, padx = 30)
+        self.pack(pady = 40, padx = 40)
         #Get info
         self.ask_firstname = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
         self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
@@ -96,51 +96,32 @@ class Questionnaire (Frame):
 
     def create_button (self,):   
         self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
-        
-        
-<<<<<<< HEAD
+
     def store_response(self):
         str_msg = ""
-        while (self.get_firstname.get()).isalpha():
-            firstname= self.get_firstname.get()
-            print ("helloa")
-        else: str_msg = "Please Add First Name \n"
-        while (self.get_surname.get()).isalpha():
-            surname= self.get_surname.get()
-        else: str_msg = str_msg + "Please Add Surname \n"
-        while (self.get_numb.get()).isdigit():
-            number = self.get_numb.get()
-        else: str_msg = str(str_msg) + "Please Add Number \n"
-        while self.get_email.get() != " ":
-=======
-    def storeResponse (self):
-        strMsg = ""
         if self.get_firstname.get().isalpha():
             firstname= self.get_firstname.get()
-        else: strMsg = "Please Add First Name \n"
+        else: str_msg = "Please Add First Name \n"
         if self.get_surname.get().isalpha():
             surname= self.get_surname.get()
-        else: strMsg = strMsg + "Please Add Surname \n"
-        
+        else: str_msg = str_msg + "Please Add Surname \n"
         if self.get_numb.get().lower().strip('c').isdigit():
             number = self.get_numb.get()
-        else: strMsg = strMsg + "Please Add Number \n"
+        else: str_msg = str_msg + "Please Add Number \n"
         if self.get_email.get() != "":
->>>>>>> origin/master
             email = self.get_email.get()
         else: str_msg = str_msg + "Please Add Email \n"
         if (self.varQ1.get() ==0):
             str_msg = str_msg + "Please Answer Experience Question \n"
-           
+          
         if str_msg == "":
-            tkinter.messagebox.showinfo("Yeah", str_msg) 
-            '''tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
             student = Student(firstname, surname, number, email)
             print(student)
             stu_dict.append(student)
             with open("stu_dict.pkl","wb") as out:
                 pickle.dump(stu_dict, out) #save file     
-            print (stu_dict)'''
+            print (stu_dict)
             self.clear_response
         else:
             tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
