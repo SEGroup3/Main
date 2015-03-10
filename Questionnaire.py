@@ -1,6 +1,10 @@
 from tkinter import *
 import tkinter.messagebox
 import students
+import pickle # to save scoreboard and wordsets
+import glob #to allow me to find the text files and import them 
+import os,sys # to allow it to use the os directory to find files
+
 class Questionnaire (Frame):
     #GUI Setup
     def __init__(self, master):
@@ -13,11 +17,17 @@ class Questionnaire (Frame):
         self.create_student_info()
         self.create_team_Exp_Quest()
         self.create_button()
+        self.startup()
 
   #  def create_widgets(self):
-        
-        #create instruction label
-        #self.inst_lbl = 
+    def startup(self):
+        if os.path.isfile('stu_dict.pkl'):
+            with open("stu_dict.pkl", "rb") as f:
+                stu_dict = pickle.load(f) #load high scores file or create it if new
+        else:
+            stu_dict = dict()
+           
+
     def create_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
@@ -84,53 +94,51 @@ class Questionnaire (Frame):
         R2Q1 = Radiobutton(self, variable=self.varQ1, value=3)
         R2Q1.grid(row=8, column=5)
 
-    def create_button (self):   
-        self.submit_bttn = Button(self, text= 'Submit', command = self.storeResponse, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
+    def create_button (self,):   
+        self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
         
         
-    def storeResponse (self):
-        strMsg = ""
+    def store_response(self):
+        str_msg = ""
         while (self.get_firstname.get()).isalpha():
             firstname= self.get_firstname.get()
-        else: strMsg = "Please Add First Name \n"
+            print ("helloa")
+        else: str_msg = "Please Add First Name \n"
         while (self.get_surname.get()).isalpha():
             surname= self.get_surname.get()
-        else: strMsg = strMsg + "Please Add Surname \n"
+        else: str_msg = str_msg + "Please Add Surname \n"
         while (self.get_numb.get()).isdigit():
             number = self.get_numb.get()
-        else: strMsg = strMsg + "Please Add Number \n"
-        while self.get_email.get() != "":
+        else: str_msg = str(str_msg) + "Please Add Number \n"
+        while self.get_email.get() != " ":
             email = self.get_email.get()
-        else: strMsg = strMsg + "Please Add Email \n"
+        else: str_msg = str_msg + "Please Add Email \n"
         if (self.varQ1.get() ==0):
-            strMsg = strMsg + "Please Answer Experience Question \n"
+            str_msg = str_msg + "Please Answer Experience Question \n"
            
-        if strMsg == "":
-            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
-            self.clearResponse()
+        if str_msg == "":
+            tkinter.messagebox.showinfo("Yeah", str_msg) 
+            '''tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
             student = Student(firstname, surname, number, email)
-            student.getStudentInfo()
+            print(student)
+            stu_dict.append(student)
+            with open("stu_dict.pkl","wb") as out:
+                pickle.dump(stu_dict, out) #save file     
+            print (stu_dict)'''
+            self.clear_response
         else:
-            tkinter.messagebox.showinfo("Please Fix the Following Errors", strMsg)
-             
-
-    def clearResponse(self):
-        self.GetName.delete(0,END)
+            tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
+      
+        
+    def clear_response(self):
+        self.get_firstname.delete(0,END)
+        self.get_surname.delete(0,END)
+        self.get_numb.delete(0,END)
+        self.get_email.delete(0,END)
         self.R1Q1.set(0)
         self.R2Q1.set(0)
 
-    #def storeResponse(self):
-        # Store the questionnaire results
-        #index = self.GetName.curselection()[0]
-        #strProg = str(self.GetName.get(index))
-        #strMsg = ""
-	
-       # if strProg == "":
-       #        strMsg = "Please Enter a Name."
-		
-       # if (self.varQ1.get() ==0):
-       #        strMsg = strMsg + "You need to answer experience question."
-
+  
     
      
 #main
