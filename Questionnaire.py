@@ -98,6 +98,7 @@ class Questionnaire (Frame):
         self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
         
         
+<<<<<<< HEAD
     def store_response(self):
         str_msg = ""
         while (self.get_firstname.get()).isalpha():
@@ -111,6 +112,21 @@ class Questionnaire (Frame):
             number = self.get_numb.get()
         else: str_msg = str(str_msg) + "Please Add Number \n"
         while self.get_email.get() != " ":
+=======
+    def storeResponse (self):
+        strMsg = ""
+        if self.get_firstname.get().isalpha():
+            firstname= self.get_firstname.get()
+        else: strMsg = "Please Add First Name \n"
+        if self.get_surname.get().isalpha():
+            surname= self.get_surname.get()
+        else: strMsg = strMsg + "Please Add Surname \n"
+        
+        if self.get_numb.get().lower().strip('c').isdigit():
+            number = self.get_numb.get()
+        else: strMsg = strMsg + "Please Add Number \n"
+        if self.get_email.get() != "":
+>>>>>>> origin/master
             email = self.get_email.get()
         else: str_msg = str_msg + "Please Add Email \n"
         if (self.varQ1.get() ==0):
