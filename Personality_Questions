@@ -1,43 +1,26 @@
 from tkinter import *
 
+#Font size and style
+FONT= ("Verdana", 12)
+
 #The Frame Title
 master = Tk()
 master.title("Edit Questionnaires")
-   
+label = Label(master, text= 'Personality Questions',font= FONT)
+label.grid(row =1,column=0)
+
 class Personality():
 #the 1st Question
    def Question1():
       print("Forceful: %s lively: %s Modest: %s Tactful: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
       
 #Whats is inside the 1st question
-   Label(master, text="Forceful").grid(column=0,row=1)
-   Label(master, text="lively").grid(column=2,row=1)
-   Label(master, text="Modest").grid(column=4,row=1)
-   Label(master, text="Tactful").grid(column=6,row=1)
+   Label(master, text="Forceful").grid(column=0,row=2)
+   Label(master, text="lively").grid(column=2,row=2)
+   Label(master, text="Modest").grid(column=4,row=2)
+   Label(master, text="Tactful").grid(column=6,row=2)
 
 #1st question Entry
-   e1 = Entry(master)
-   e2 = Entry(master)
-   e3 = Entry(master)
-   e4 = Entry(master)
-
-#where the entry box is placed
-   e1.grid(row=1, column=1)
-   e2.grid(row=1, column=3)
-   e3.grid(row=1, column=5)
-   e4.grid(row=1, column=7)
-
-#Question 2
-   def Question2():
-      print("Aggressive: %s Emotional: %sAccommodating : %s Consistent: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
-
-#Whats is inside the 2nd question
-   Label(master, text="Aggressive").grid(column=0,row=2)
-   Label(master, text="Emotional").grid(column=2,row=2)
-   Label(master, text="Accommodating").grid(column=4,row=2)
-   Label(master, text="Consistent").grid(column=6,row=2)
-
-#2nd question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -49,17 +32,17 @@ class Personality():
    e3.grid(row=2, column=5)
    e4.grid(row=2, column=7)
 
-#Question 3
-   def Question3():
-      print("Direct: %s Animated: %sAgreeable : %s Accurate: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 2
+   def Question2():
+      print("Aggressive: %s Emotional: %sAccommodating : %s Consistent: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 3rd question
-   Label(master, text="Direct").grid(column=0,row=3)
-   Label(master, text="Animated").grid(column=2,row=3)
-   Label(master, text="Agreeable").grid(column=4,row=3)
-   Label(master, text="Accurate").grid(column=6,row=3)
+#Whats is inside the 2nd question
+   Label(master, text="Aggressive").grid(column=0,row=3)
+   Label(master, text="Emotional").grid(column=2,row=3)
+   Label(master, text="Accommodating").grid(column=4,row=3)
+   Label(master, text="Consistent").grid(column=6,row=3)
 
-#3nd question Entry
+#2nd question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -71,17 +54,17 @@ class Personality():
    e3.grid(row=3, column=5)
    e4.grid(row=3, column=7)
 
-#Question 4
-   def Question4():
-      print("Tough: %s People-oriented: %s Gentle : %s Perfectionist: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 3
+   def Question3():
+      print("Direct: %s Animated: %sAgreeable : %s Accurate: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 4th question
-   Label(master, text="Tough").grid(column=0,row=4)
-   Label(master, text="People-oriented").grid(column=2,row=4)
-   Label(master, text="Gentle").grid(column=4,row=4)
-   Label(master, text="Perfectionist").grid(column=6,row=4)
+#Whats is inside the 3rd question
+   Label(master, text="Direct").grid(column=0,row=4)
+   Label(master, text="Animated").grid(column=2,row=4)
+   Label(master, text="Agreeable").grid(column=4,row=4)
+   Label(master, text="Accurate").grid(column=6,row=4)
 
-#4th question Entry
+#3nd question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -93,17 +76,17 @@ class Personality():
    e3.grid(row=4, column=5)
    e4.grid(row=4, column=7)
 
-#Question 5
-   def Question5():
-      print("Daring: %s\n Impulsive: %s Kind : %s Cautious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 4
+   def Question4():
+      print("Tough: %s People-oriented: %s Gentle : %s Perfectionist: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 5th question
-   Label(master, text="Daring").grid(column=0,row=5)
-   Label(master, text="Impulsive").grid(column=2,row=5)
-   Label(master, text="Kind").grid(column=4,row=5)
-   Label(master, text="Cautious").grid(column=6,row=5)
+#Whats is inside the 4th question
+   Label(master, text="Tough").grid(column=0,row=5)
+   Label(master, text="People-oriented").grid(column=2,row=5)
+   Label(master, text="Gentle").grid(column=4,row=5)
+   Label(master, text="Perfectionist").grid(column=6,row=5)
 
-#5th question Entry
+#4th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -115,17 +98,17 @@ class Personality():
    e3.grid(row=5, column=5)
    e4.grid(row=5, column=7)
 
-#Question 6
-   def Question6():
-      print("Competitive: %s Expressive: %s Supportive : %s Precise: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 5
+   def Question5():
+      print("Daring: %s\n Impulsive: %s Kind : %s Cautious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 6th question
-   Label(master, text="Competitive").grid(column=0,row=6)
-   Label(master, text="Expressive").grid(column=2,row=6)
-   Label(master, text="Supportive").grid(column=4,row=6)
-   Label(master, text="Precise").grid(column=6,row=6)
+#Whats is inside the 5th question
+   Label(master, text="Daring").grid(column=0,row=6)
+   Label(master, text="Impulsive").grid(column=2,row=6)
+   Label(master, text="Kind").grid(column=4,row=6)
+   Label(master, text="Cautious").grid(column=6,row=6)
 
-#6th question Entry
+#5th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -137,17 +120,17 @@ class Personality():
    e3.grid(row=6, column=5)
    e4.grid(row=6, column=7)
 
-#Question 7
-   def Question7():
-      print("Risk Taker: %s Talkative: %s Gentle : %s Factual: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 6
+   def Question6():
+      print("Competitive: %s Expressive: %s Supportive : %s Precise: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 7th question
-   Label(master, text="Risk Taker").grid(column=0,row=7)
-   Label(master, text="Talkative").grid(column=2,row=7)
-   Label(master, text="Gentle").grid(column=4,row=7)
-   Label(master, text="Factual").grid(column=6,row=7)
+#Whats is inside the 6th question
+   Label(master, text="Competitive").grid(column=0,row=7)
+   Label(master, text="Expressive").grid(column=2,row=7)
+   Label(master, text="Supportive").grid(column=4,row=7)
+   Label(master, text="Precise").grid(column=6,row=7)
 
-#7th question Entry
+#6th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -159,17 +142,17 @@ class Personality():
    e3.grid(row=7, column=5)
    e4.grid(row=7, column=7)
 
-#Question 8
-   def Question8():
-      print("Argumentative: %s Fun-Loving: %s Patient : %s Logical: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 7
+   def Question7():
+      print("Risk Taker: %s Talkative: %s Gentle : %s Factual: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 8th question
-   Label(master, text="Argumentative").grid(column=0,row=8)
-   Label(master, text="Fun-Loving").grid(column=2,row=8)
-   Label(master, text="Patient").grid(column=4,row=8)
-   Label(master, text="Logical").grid(column=6,row=8)
+#Whats is inside the 7th question
+   Label(master, text="Risk Taker").grid(column=0,row=8)
+   Label(master, text="Talkative").grid(column=2,row=8)
+   Label(master, text="Gentle").grid(column=4,row=8)
+   Label(master, text="Factual").grid(column=6,row=8)
 
-#8th question Entry
+#7th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -181,17 +164,17 @@ class Personality():
    e3.grid(row=8, column=5)
    e4.grid(row=8, column=7)
 
-#Question 9
-   def Question9():
-      print("Bold: %s Spontaneous: %s Stable : %s Organized: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 8
+   def Question8():
+      print("Argumentative: %s Fun-Loving: %s Patient : %s Logical: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 9th question
-   Label(master, text="Bold").grid(column=0,row=9)
-   Label(master, text="Spontaneous").grid(column=2,row=9)
-   Label(master, text="Stable").grid(column=4,row=9)
-   Label(master, text="Organized").grid(column=6,row=9)
+#Whats is inside the 8th question
+   Label(master, text="Argumentative").grid(column=0,row=9)
+   Label(master, text="Fun-Loving").grid(column=2,row=9)
+   Label(master, text="Patient").grid(column=4,row=9)
+   Label(master, text="Logical").grid(column=6,row=9)
 
-#9th question Entry
+#8th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -203,17 +186,17 @@ class Personality():
    e3.grid(row=9, column=5)
    e4.grid(row=9, column=7)
 
-#Question 10
-   def Question10():
-      print("Take Charge: %s Optimistic: %s Peaceful : %s Conscientious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 9
+   def Question9():
+      print("Bold: %s Spontaneous: %s Stable : %s Organized: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#Whats is inside the 10th question
-   Label(master, text="Take Charge").grid(column=0,row=10)
-   Label(master, text="Optimistic").grid(column=2,row=10)
-   Label(master, text="Peaceful").grid(column=4,row=10)
-   Label(master, text="Conscientious").grid(column=6,row=10)
+#Whats is inside the 9th question
+   Label(master, text="Bold").grid(column=0,row=10)
+   Label(master, text="Spontaneous").grid(column=2,row=10)
+   Label(master, text="Stable").grid(column=4,row=10)
+   Label(master, text="Organized").grid(column=6,row=10)
 
-#10th question Entry
+#9th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -225,16 +208,17 @@ class Personality():
    e3.grid(row=10, column=5)
    e4.grid(row=10, column=7)
 
-#Question 11
-   def Question11():
-      print("Candid: %s Cheerful: %s Loyal : %s Serious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
-#Whats is inside the 11th question
-   Label(master, text="Candid").grid(column=0,row=11)
-   Label(master, text="Cheerful").grid(column=2,row=11)
-   Label(master, text="Loyal").grid(column=4,row=11)
-   Label(master, text="Serious").grid(column=6,row=11)
+#Question 10
+   def Question10():
+      print("Take Charge: %s Optimistic: %s Peaceful : %s Conscientious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
 
-#11th question Entry
+#Whats is inside the 10th question
+   Label(master, text="Take Charge").grid(column=0,row=11)
+   Label(master, text="Optimistic").grid(column=2,row=11)
+   Label(master, text="Peaceful").grid(column=4,row=11)
+   Label(master, text="Conscientious").grid(column=6,row=11)
+
+#10th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -246,17 +230,16 @@ class Personality():
    e3.grid(row=11, column=5)
    e4.grid(row=11, column=7)
 
-#Question 12
-   def Question12():
-      print("Independent: %s Enthusiastic: %s Good Listener : %s High Standards: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Question 11
+   def Question11():
+      print("Candid: %s Cheerful: %s Loyal : %s Serious: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+#Whats is inside the 11th question
+   Label(master, text="Candid").grid(column=0,row=12)
+   Label(master, text="Cheerful").grid(column=2,row=12)
+   Label(master, text="Loyal").grid(column=4,row=12)
+   Label(master, text="Serious").grid(column=6,row=12)
 
-#Whats is inside the 12th question
-   Label(master, text="Independent").grid(column=0,row=12)
-   Label(master, text="Enthusiastic").grid(column=2,row=12)
-   Label(master, text="Good Listener").grid(column=4,row=12)
-   Label(master, text="High Standards").grid(column=6,row=12)
-
-#12th question Entry
+#11th question Entry
    e1 = Entry(master)
    e2 = Entry(master)
    e3 = Entry(master)
@@ -268,34 +251,56 @@ class Personality():
    e3.grid(row=12, column=5)
    e4.grid(row=12, column=7)
 
+#Question 12
+   def Question12():
+      print("Independent: %s Enthusiastic: %s Good Listener : %s High Standards: %s "% (e1.get(), e2.get(), e3.get(),e4.get()))
+
+#Whats is inside the 12th question
+   Label(master, text="Independent").grid(column=0,row=13)
+   Label(master, text="Enthusiastic").grid(column=2,row=13)
+   Label(master, text="Good Listener").grid(column=4,row=13)
+   Label(master, text="High Standards").grid(column=6,row=13)
+
+#12th question Entry
+   e1 = Entry(master)
+   e2 = Entry(master)
+   e3 = Entry(master)
+   e4 = Entry(master)
+
+#where the entry box is placed
+   e1.grid(row=13, column=1)
+   e2.grid(row=13, column=3)
+   e3.grid(row=13, column=5)
+   e4.grid(row=13, column=7)
+
 #the Buttons and where it is located in the GUI
+   
    Button(master, text='Quit',
-          command=master.quit).grid(row=21, column=0, sticky=W, pady=13)
+          command=master.quit).grid(row=21, column=0, sticky=W, pady=14)
    Button(master, text='Save Q1',
-          command=Question1).grid(row=1, column=9, sticky=W, pady=13)
+          command=Question1).grid(row=2, column=9, sticky=W, pady=14)
    Button(master, text='Save Q2',
-          command=Question2).grid(row=2, column=9, sticky=W, pady=13)
+          command=Question2).grid(row=3, column=9, sticky=W, pady=14)
    Button(master, text='Save Q3',
-          command=Question3).grid(row=3, column=9, sticky=W, pady=13)
+          command=Question3).grid(row=4, column=9, sticky=W, pady=14)
    Button(master, text='Save Q4',
-          command=Question4).grid(row=4, column=9, sticky=W, pady=13)
+          command=Question4).grid(row=5, column=9, sticky=W, pady=14)
    Button(master, text='Save Q5',
-          command=Question5).grid(row=5, column=9, sticky=W, pady=13)
+          command=Question5).grid(row=6, column=9, sticky=W, pady=14)
    Button(master, text='Save Q6',
-          command=Question6).grid(row=6, column=9, sticky=W, pady=13)
+          command=Question6).grid(row=7, column=9, sticky=W, pady=14)
    Button(master, text='Save Q7',
-          command=Question7).grid(row=7, column=9, sticky=W, pady=13)
+          command=Question7).grid(row=8, column=9, sticky=W, pady=14)
    Button(master, text='Save Q8',
-          command=Question8).grid(row=8, column=9, sticky=W, pady=13)
+          command=Question8).grid(row=9, column=9, sticky=W, pady=14)
    Button(master, text='Save Q9',
-          command=Question9).grid(row=9, column=9, sticky=W, pady=13)
+          command=Question9).grid(row=10, column=9, sticky=W, pady=14)
    Button(master, text='Save Q10',
-          command=Question10).grid(row=10, column=9, sticky=W, pady=13)
+          command=Question10).grid(row=11, column=9, sticky=W, pady=14)
    Button(master, text='Save Q11',
-          command=Question11).grid(row=11, column=9, sticky=W, pady=13)
+          command=Question11).grid(row=12, column=9, sticky=W, pady=14)
    Button(master, text='Save Q12',
-          command=Question12).grid(row=12, column=9, sticky=W, pady=13)
+          command=Question12).grid(row=13, column=9, sticky=W, pady=14)
 
 
 mainloop( )
-
