@@ -1,9 +1,9 @@
 from tkinter import *
 import tkinter.messagebox
 from students import *
-import pickle # to save scoreboard and wordsets
-import glob #to allow me to find the text files and import them 
-import os,sys # to allow it to use the os directory to find files
+import pickle # to save 
+import glob #allow you to find the text files and import them 
+import os,sys # allow you to use the os directory to find files
 
 class Questionnaire (Frame):
     #GUI Setup
@@ -16,7 +16,7 @@ class Questionnaire (Frame):
         self.grid()
        
         self.create_student_info()
-        self.create_team_Exp_Quest()
+        self.create_team_exp_quest()
         self.create_button()
         self.stu_dict = self.startup()
 
@@ -24,7 +24,7 @@ class Questionnaire (Frame):
     def startup(self):
         if os.path.isfile('stu_dict.pkl'):
             with open("stu_dict.pkl", "rb") as f:
-                stu_dict = pickle.load(f) #load high scores file or create it if new
+                stu_dict = pickle.load(f) #load 
                 return stu_dict
         else:
             stu_dict = dict()
@@ -74,7 +74,7 @@ class Questionnaire (Frame):
 
         self.listProg.selection_set(END)'''
 
-    def create_team_Exp_Quest (self):
+    def create_team_exp_quest (self):
         # Create widgets to ask Team Expereince Questions
         qu1 = '1. Do you feel you have prior\n computing experience?'
         ExpHead = Label(self, text= 'Prior Computing Expereince:', font=('MS', 8, 'bold'))
