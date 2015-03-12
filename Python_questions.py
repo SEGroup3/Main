@@ -224,10 +224,11 @@ class prog_questions (Frame):
 #        db.close
 
 #Main
-root = Tk()
-root.title("Programming Questions")
-app = prog_questions(root)
-root.mainloop()
+if __name__ == '__main__':
+    root = Tk()
+    root.title("Programming Questions")
+    app = prog_questions(root)
+    root.mainloop()
 
 
 

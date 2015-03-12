@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
-import students
+from students import *
 import pickle # to save scoreboard and wordsets
 import glob #to allow me to find the text files and import them 
 import os,sys # to allow it to use the os directory to find files
@@ -12,20 +12,23 @@ class Questionnaire (Frame):
 
         
         super(Questionnaire, self).__init__(master)
+        self.master = master
         self.grid()
        
         self.create_student_info()
         self.create_team_Exp_Quest()
         self.create_button()
-        self.startup()
+        self.stu_dict = self.startup()
 
 
     def startup(self):
         if os.path.isfile('stu_dict.pkl'):
             with open("stu_dict.pkl", "rb") as f:
                 stu_dict = pickle.load(f) #load high scores file or create it if new
+                return stu_dict
         else:
             stu_dict = dict()
+            return stu_dict
            
 
     def create_student_info(self):
@@ -115,14 +118,17 @@ class Questionnaire (Frame):
             str_msg = str_msg + "Please Answer Experience Question \n"
           
         if str_msg == "":
-            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted", command = self.master.destroy())
             student = Student(firstname, surname, number, email)
             print(student)
-            stu_dict.append(student)
+            self.stu_dict[number] = student
             with open("stu_dict.pkl","wb") as out:
-                pickle.dump(stu_dict, out) #save file     
-            print (stu_dict)
-            self.clear_response
+                pickle.dump(self.stu_dict, out) #save file     
+            for item in self.stu_dict:
+                print (self.stu_dict[item])
+            self.master.destroy()    
+
+            #self.clear_response
         else:
             tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
       
@@ -139,7 +145,8 @@ class Questionnaire (Frame):
     
      
 #main
-root = Tk()
-root.title("Teamwork Questionnaire")
-app = Questionnaire(root)
-root.mainloop()
+if __name__ == '__main__':
+    root = Tk()
+    root.title("Teamwork Questionnaire")
+    app = Questionnaire(root)
+    root.mainloop()
