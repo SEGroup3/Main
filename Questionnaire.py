@@ -126,7 +126,8 @@ class Questionnaire (Frame):
                 pickle.dump(self.stu_dict, out) #save file     
             for item in self.stu_dict:
                 print (self.stu_dict[item])
-            self.master.destroy()    
+            
+            #self.destroy()    
 
             #self.clear_response
         else:
