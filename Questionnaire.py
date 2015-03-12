@@ -118,7 +118,7 @@ class Questionnaire (Frame):
             str_msg = str_msg + "Please Answer Experience Question \n"
           
         if str_msg == "":
-            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted", command = self.master.destroy())
+            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
             student = Student(firstname, surname, number, email)
             print(student)
             self.stu_dict[number] = student
@@ -127,7 +127,7 @@ class Questionnaire (Frame):
             for item in self.stu_dict:
                 print (self.stu_dict[item])
             
-            #self.destroy()    
+            self.master.destroy()    
 
             #self.clear_response
         else:
