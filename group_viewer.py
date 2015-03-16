@@ -1,6 +1,8 @@
 from tkinter import *
 import students
 import groups
+from export_csv import convert_to_CSV
+from auto_test import *
 
 class More_Information():
 		
@@ -68,24 +70,33 @@ class group_viewer(Frame):
 
                 Frame.__init__(self, master)
                 self.master = master
+                self.group_list = group_list
                 self.grid()
                 
-				# Create a frame to store group listboxes
+		# Create a frame to store group listboxes
                 self.group_frame = Frame(self.master)
                 self.group_frame.grid(row = 1, column = 0)
                 
-				# Saves position inside group_frame
+		# Saves position inside group_frame
                 self.position = 0
                 
                 for group in group_list:
                         self.display_group(group)
                         self.position += 1
 
+                self.save_button()
+                
                 self.header()
+
+        def save_button(self):
+
+                save_button = Button(self.master, text = "Save Groups", command = self.save_groups)
+                save_button.grid(row = 2, column = 0, sticky = "W")
+                
 
         def header(self):
 				
-				# This code is supposed to create a centred Header frame.
+		# This code is supposed to create a centred Header frame.
                 
                 header_frame = Frame(self.master)
                 header = Label(header_frame, text = "Group Viewer", font = ('MS', 20, 'bold'), justify = "right")
@@ -98,7 +109,7 @@ class group_viewer(Frame):
 
         def display_group(self, group):
 
-				# Positions a listbox, scrollbar, and more info button for a group
+		# Positions a listbox, scrollbar, and more info button for a group
 
                 list_frame = Frame(self.group_frame)
                 list_frame.grid(row = 1,column = self.position, padx = 3)
@@ -118,6 +129,33 @@ class group_viewer(Frame):
 
                 more_info = Button(list_frame, text = "More Info >>", command = lambda: self.create_more_info(group))
                 more_info.grid(row=2, column = 0)
+
+        def save_groups(self):
+
+##                file_window = Tk()
+##                file_dialogue = filedialog.SaveFileDialog(file_window)
+## 
+##                filename = file_dialogue.asksaveasfile()
+                filename = filedialog.asksaveasfile()
+
+                
+                output = convert_to_CSV(self.group_list)
+                with filename as csvfile:
+                        csvfile.write(output)
+
+                confirm_window = Tk()
+                confirm_window.title("Success!")
+
+                confirmation_frame = Frame(confirm_window)
+                confirmation_frame.grid()
+
+                success = Label(confirmation_frame, text = "Groups saved.")
+                success.grid(row = 0, column = 0)
+
+                ok_confirm = Button(confirmation_frame, text = "OK", command = confirm_window.destroy)
+                ok_confirm.grid(row = 1, column = 0)
+
+                confirm_window.mainloop()
               
                     
 
@@ -127,11 +165,9 @@ if __name__ == "__main__":
 
         student_list = [students.Student("Liam", "Hamill", 1, "email", grades = 75, role = "Plant")] * 50
         
-        test_group = groups.Group(1)
-        for item in student_list:
-                test_group.add_student(item)
+        test_groups = list_of_groups(5)
 
-        window = group_viewer(root, [test_group]*5)
+        window = group_viewer(root, test_groups)
 
 
         window.mainloop()
