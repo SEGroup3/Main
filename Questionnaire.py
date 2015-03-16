@@ -15,8 +15,8 @@ class Questionnaire (Frame):
         self.master = master
         self.grid()
        
-        self.create_student_info()
-        self.create_team_exp_quest()
+        self.get_student_info()
+        self.get_team_exp_quest()
         self.create_button()
         self.stu_dict = self.startup()
 
@@ -31,7 +31,7 @@ class Questionnaire (Frame):
             return stu_dict
            
 
-    def create_student_info(self):
+    def get_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
         self.pack(pady = 40, padx = 40)
@@ -74,7 +74,7 @@ class Questionnaire (Frame):
 
         self.listProg.selection_set(END)'''
 
-    def create_team_exp_quest (self):
+    def get_team_exp_quest (self):
         # Create widgets to ask Team Expereince Questions
         qu1 = '1. Do you feel you have prior\n computing experience?'
         ExpHead = Label(self, text= 'Prior Computing Expereince:', font=('MS', 8, 'bold'))
