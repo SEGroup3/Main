@@ -1,4 +1,4 @@
-#the GUI to ask students programming questions, assess and save the results
+#the GUI to ask students Python questions, assess and save the results
 
 from tkinter import *
 import tkinter.messagebox as tk
@@ -11,14 +11,26 @@ class results_viewer(Frame):
         self.grid()
         self.header()
         self.exit_button()
+        self.print_button()
 
     def header(self):
         self.pack(pady = 20, padx = 20)
         lblHeader = Label(self, text = "Table of Results", font=('MS', 10, 'bold'))
         lblHeader.grid(row =0, column = 0, columnspan = 2, sticky = NW)
 
+    def print_button(self):
+        butPrint = Button(self, text = "Print", font = ('MS', 8, 'bold'))
+        butPrint['command']=self.print_results
+        butPrint.grid(row=99, column = 0, columnspan= 1, sticky = N)
+
+    def print_results(self):
+        db = shelve.open('responsedb')
+        for line in db:
+            print (line, end = ",")
+        db.close        
+
     def close_window(self):
-        self.root.destroy()
+        self.master.destroy()
         
     def exit_button(self):
         #a button to quit the results viewer
@@ -26,7 +38,6 @@ class results_viewer(Frame):
         butSubmit['command']=self.close_window
         butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
 
- 
 
 class prog_questions (Frame):
 
@@ -44,11 +55,12 @@ class prog_questions (Frame):
         self.submit_Button()
         self.clear_Button()
         self.view_Button()
+        self.master = master
 
     def header(self):
         
         self.pack(pady = 20, padx = 20)
-        lblHeader = Label(self, text = "Programming Questions: ", font = ('MS', 10, 'bold'))
+        lblHeader = Label(self, text = "Python Programming Questions: ", font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
 
     def q_header(self):
@@ -202,31 +214,28 @@ class prog_questions (Frame):
         
     def store_Response(self):
         #store the response using shelving
-        
         db = shelve.open('responsedb')
         responseCount = len(db)
         Ans = Response(str(responseCount+1),self.q1answer.get(1.0, END),self.q2answer.get(1.0,END),
                            self.q3answer.get(1.0, END), self.q4answer.get(1.0,END),self.q5answer.get(1.0,END)
                            )
         db[Ans.respNo] = Ans
-        butSubmit['command']=tk.showinfo("Programming Questions", "Your answers have been saved.")
         db.close
+        tk.showinfo("Programming Questions", "Your answers have been saved.")
+        self.master.destroy()
         #TODO//jump to next part of program here
 
     def print_data(self):
-        pass
-#        root = Tk()
-#        root.title("Results Viewer")
-#        app = prog_questions(root)
-#        root.mainloop()
-#        db = shelve.open('responsedb')
-        #display the results
-#        db.close
+        window = Tk()
+        window.title("Results Viewer")
+        app = results_viewer(window)
+        window.mainloop()
+
 
 #Main
 if __name__ == '__main__':
     root = Tk()
-    root.title("Programming Questions")
+    root.title("Python Programming Questions")
     app = prog_questions(root)
     root.mainloop()
 

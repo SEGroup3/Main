@@ -22,6 +22,10 @@ class java_questions(Frame):
         self.header()
         self.q_header()
         self.q1()
+        self.q2()
+        self.q3()
+        self.q4()
+        #self.q5()
         self.submit_Button()
         self.clear_Button()
 
@@ -34,7 +38,7 @@ class java_questions(Frame):
 
     def q_header(self):
         #the first line of questions
-        line1 = Label(self, text = "Review the following Java code and answer the questions in the text boxes shown.",
+        line1 = Label(self, text = "Review the following Java code and choose the correct answer from the options shown.",
                       font = ("MS", 8))
         line1.grid(row = 2, column = 0, sticky = W)
         line2 = Label(self, text = "When you are finished, click Submit and your answers will be saved.", font = ('MS', 8))
@@ -55,7 +59,7 @@ class java_questions(Frame):
         butClear.grid(row = 99, column = 0, columnspan = 2, sticky = N)
 
     def q1(self):
-        line1 = Label(self, text = "Which statement is true for the class java.util.ArrayList?",
+        line1 = Label(self, text = "Question 1: Which statement is true for the class java.util.ArrayList?",
                       font = ('MS', 8))
         line1.grid(row = 5, column = 0, columnspan = 2, sticky = W)
 
@@ -86,26 +90,153 @@ class java_questions(Frame):
         R4Q1 = Radiobutton(self, variable = self.varQ1, value=1)
         R4Q1.grid(row= 7, column = 3)
 
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row = 8, column = 0)
+
 
     def q2(self):
-        pass
+        line1 = Label(self,text = "Question 2: If you want your condition to depend upon two conditions BOTH being true,", font = ('MS', 8))
+        line1.grid(row =9, column = 0, sticky = W)
+        line2 = Label(self,text = "which is the correct notation to put between the two Boolean statements?", font = ('MS', 8))
+        line2.grid(row =10, column = 0, sticky = W)
 
+        self.varQ2 = IntVar()
+
+        A1Q2 = Label(self, text = "A. !=",font = ('MS', 8))
+        A1Q2.grid(row=11, column = 0, columnspan = 1, sticky = W) 
+        R1Q2 = Radiobutton(self, variable = self.varQ2, value=4)
+        R1Q2.grid(row= 11, column = 1)
+
+        A1Q2 = Label(self, text = "B. ||",font = ('MS', 8))
+        A1Q2.grid(row=11, column = 2, columnspan = 1, sticky = W) 
+        R1Q2 = Radiobutton(self, variable = self.varQ2, value=3)
+        R1Q2.grid(row= 11, column = 3)
+
+        A3Q2 = Label(self, text = "C. &&",font = ('MS', 8))
+        A3Q2.grid(row = 12, column = 0, columnspan = 1, sticky = W)
+        R3Q2 = Radiobutton(self, variable = self.varQ2, value=2)
+        R3Q2.grid(row= 12, column = 1)
+
+        A4Q2 = Label(self, text = "D. and if",font = ('MS',8))
+        A4Q2.grid(row=12, column = 2, columnspan = 1, sticky = W)
+        R4Q2 = Radiobutton(self, variable = self.varQ2, value=1)
+        R4Q2.grid(row= 12, column = 3)
+
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row = 13, column = 0)
+        
     def q3(self):
-        pass
+
+        line1 = Label(self, text = "Question 3: What will be the output of the following program?",
+                      font = ('MS', 8))
+        line1.grid(row = 14, column = 0, sticky = W)
+        
+        photo = PhotoImage(file="q3.gif")
+        w = Label(self, image=photo)
+        w.image = photo #binding widget to tkinter object
+        w.grid(row = 15, column = 0, columnspan = 4, sticky = W)
+
+        self.varQ3 = IntVar()
+
+        A1Q3 = Label(self, text = "A. 'odd' will always be displayed. ",font = ('MS', 8))
+        A1Q3.grid(row=16, column = 0, columnspan = 1, sticky = W) 
+        R1Q3 = Radiobutton(self, variable = self.varQ3, value=4)
+        R1Q3.grid(row= 16, column = 1)
+
+        A1Q3 = Label(self, text = "B. NullPointerException at runtime.",font = ('MS', 8))
+        A1Q3.grid(row=16, column = 2, columnspan = 1, sticky = W) 
+        R1Q3 = Radiobutton(self, variable = self.varQ3, value=3)
+        R1Q3.grid(row= 16, column = 3)
+
+        A3Q3 = Label(self, text = "C. 'even' will always be displayed.",font = ('MS', 8))
+        A3Q3.grid(row = 17, column = 0, columnspan = 1, sticky = W)
+        R3Q3 = Radiobutton(self, variable = self.varQ3, value=2)
+        R3Q3.grid(row= 17, column = 1)
+
+        A4Q3 = Label(self, text = "D. '1' will always be displayed. ",font = ('MS',8))
+        A4Q3.grid(row=17, column = 2, columnspan = 1, sticky = W)
+        R4Q3 = Radiobutton(self, variable = self.varQ3, value=1)
+        R4Q3.grid(row= 17, column = 3)
+
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row = 18, column = 0)
 
     def q4(self):
-        pass
+        line1 = Label(self, text = "Question 4: What will be the output of the following program?",
+                      font = ('MS', 8))
+        line1.grid(row = 19, column = 0, sticky = W)
+        
+        photo = PhotoImage(file="q4.gif")
+        w = Label(self, image=photo)
+        w.image = photo #binding widget to tkinter object
+        w.grid(row = 20, column = 0, columnspan = 4, sticky = W)
+
+        self.varQ4 = IntVar()
+
+        A1Q4 = Label(self, text = "A. 1 and 2",font = ('MS', 8))
+        A1Q4.grid(row=21, column = 0, columnspan = 1, sticky = W) 
+        R1Q4 = Radiobutton(self, variable = self.varQ4, value=4)
+        R1Q4.grid(row= 21, column = 1)
+
+        A1Q4 = Label(self, text = "B. 2 and 3",font = ('MS', 8))
+        A1Q4.grid(row=21, column = 2, columnspan = 1, sticky = W) 
+        R1Q4 = Radiobutton(self, variable = self.varQ4, value=3)
+        R1Q4.grid(row= 21, column = 3)
+
+        A3Q4 = Label(self, text = "C. 3 and 4",font = ('MS', 8))
+        A3Q4.grid(row = 22, column = 0, columnspan = 1, sticky = W)
+        R3Q4 = Radiobutton(self, variable = self.varQ4, value=2)
+        R3Q4.grid(row= 22, column = 1)
+
+        A4Q4 = Label(self, text = "D. 1 and 4",font = ('MS',8))
+        A4Q4.grid(row=22, column = 2, columnspan = 1, sticky = W)
+        R4Q4 = Radiobutton(self, variable = self.varQ4, value=1)
+        R4Q4.grid(row= 22, column = 3)
+        
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row = 23, column = 0)
 
     def q5(self):
-        pass
+        line1 = Label(self, text = "Question 5: What will be the output of the following program?",
+                      font = ('MS', 8))
+        line1.grid(row = 24, column = 0, sticky = W)
+        
+        photo = PhotoImage(file="q5.gif")
+        w = Label(self, image=photo)
+        w.image = photo #binding widget to tkinter object
+        w.grid(row = 25, column = 0, columnspan = 4, sticky = W)
+
+        self.varQ5 = IntVar()
+
+        A1Q4 = Label(self, text = "A. Zero",font = ('MS', 8))
+        A1Q4.grid(row=26, column = 0, columnspan = 1, sticky = W) 
+        R1Q4 = Radiobutton(self, variable = self.varQ5, value=4)
+        R1Q4.grid(row= 26, column = 1)
+
+        A1Q4 = Label(self, text = "B. Twelve",font = ('MS', 8))
+        A1Q4.grid(row=26, column = 2, columnspan = 1, sticky = W) 
+        R1Q4 = Radiobutton(self, variable = self.varQ5, value=3)
+        R1Q4.grid(row= 26, column = 3)
+
+        A3Q4 = Label(self, text = "C. Default",font = ('MS', 8))
+        A3Q4.grid(row = 27, column = 0, columnspan = 1, sticky = W)
+        R3Q4 = Radiobutton(self, variable = self.varQ5, value=2)
+        R3Q4.grid(row= 27, column = 1)
+
+        A4Q4 = Label(self, text = "D. Compilation fails",font = ('MS',8))
+        A4Q4.grid(row=27, column = 2, columnspan = 1, sticky = W)
+        R4Q4 = Radiobutton(self, variable = self.varQ5, value=1)
+        R4Q4.grid(row= 27, column = 3)
+
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row = 28, column = 0)
 
     def store_Response(self):
         #store the response using shelving
-        #q2-5 commented out until they are implemented above
         db = shelve.open('javaresponsedb')
         responseCount = len(db)
         Ans = java_responses(str(responseCount+1),
-                       self.varQ1.get(), #self.varQ2.get(), self.varQ3.get(), self.varQ4.get(),
+                       self.varQ1.get(), self.varQ2.get(), self.varQ3.get(),self.varQ4.get(),
                        #self.varQ5.get()
                        )
         db[Ans.respNo] = Ans
@@ -118,9 +249,9 @@ class java_questions(Frame):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
         if response == 'yes':
             self.varQ1.set(0)
-            #self.varQ2.set(0)
-            #self.varQ3.set(0)
-            #self.varQ4.set(0)
+            self.varQ2.set(0)
+            self.varQ3.set(0)
+            self.varQ4.set(0)
             #self.varQ5.set(0)
             tk.showinfo("Programming Questions", "All answers cleared.")
         else:
