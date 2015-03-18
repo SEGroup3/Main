@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
+import operator
 from students import *
 
 class Personality (Frame):
@@ -55,31 +56,7 @@ class Personality (Frame):
         self.space1.grid(row= 9, column = 0, sticky = W)
 
         r1_total = int(self.r1q1_opt.get())+ int(self.r1q2_opt.get())+ int(self.r1q3_opt.get()) + int(self.r1q4_opt.get())
-       
-
-        #Line2
-        self.r2q1 = Label (self, text = 'Aggressive', font=('MS', 8, 'bold'))
-        self.r2q1.grid (row = 10, column = 0)
-        self.r2q1_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r2q1_opt.grid (row= 10, column = 1)
-        
-        self.r2q2 = Label (self, text = 'Emotional', font=('MS', 8, 'bold'))
-        self.r2q2.grid (row = 10, column = 2)
-        self.r2q2_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r2q2_opt.grid (row= 10, column = 3, columnspan = 1, sticky = W)
-
-        self.r2q3 = Label (self, text = 'Accomodating', font=('MS', 8, 'bold'))
-        self.r2q3.grid (row = 10, column = 4)
-        self.r2q3_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r2q3_opt.grid (row= 10, column = 5, columnspan = 1)
-
-        self.r2q4 = Label (self, text = 'Consistent', font=('MS', 8, 'bold'))
-        self.r2q4.grid (row = 10 , column = 6)
-        self.r2q4_opt = Spinbox(self, from_=1, to= 4, width = 4)
-        self.r2q4_opt.grid (row= 10, column = 7, columnspan = 1)
-        self.spacer()
-        self.space1.grid(row= 11, column = 0, sticky = W)
-        r2_total = int(self.r2q1_opt.get())+ int(self.r2q2_opt.get())+ int(self.r2q3_opt.get())+ int(self.r2q4_opt.get())
+        print (r1_total)
 
         #Line3
         self.r3q1 = Label (self, text = 'Direct', font=('MS', 8, 'bold'))
@@ -233,32 +210,7 @@ class Personality (Frame):
         self.space1.grid(row= 23, column = 0, sticky = W)
         r8_total = int(self.r8q1_opt.get())+ int(self.r8q2_opt.get())+ int(self.r8q3_opt.get())+ int(self.r8q4_opt.get())
 
-         #Line9
-        self.r9q1 = Label (self, text = 'Take Charge', font=('MS', 8, 'bold'))
-        self.r9q1.grid (row = 24, column = 0)
-        self.r9q1_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r9q1_opt.grid (row= 24, column = 1)
-        
-        self.r9q2 = Label (self, text = 'Optimistic', font=('MS', 8, 'bold'))
-        self.r9q2.grid (row = 24, column = 2)
-        self.r9q2_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r9q2_opt.grid (row= 24, column = 3, columnspan = 1, sticky = W)
-
-        self.r9q3 = Label (self, text = 'Peaceful', font=('MS', 8, 'bold'))
-        self.r9q3.grid (row = 24, column = 4)
-        self.r9q3_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r9q3_opt.grid (row= 24, column = 5, columnspan = 1)
-
-        self.r9q4 = Label (self, text = 'Conscientious', font=('MS', 8, 'bold'))
-        self.r9q4.grid (row = 24 , column = 6)
-        self.r9q4_opt = Spinbox(self, from_=1, to= 4, width = 4)
-        self.r9q4_opt.grid (row= 14, column = 7, columnspan = 1)
-
-        self.spacer()
-        self.space1.grid(row= 25, column = 0, sticky = W)
-        r9_total = int(self.r9q1_opt.get())+ int(self.r9q2_opt.get())+ int(self.r9q3_opt.get())+ int(self.r9q4_opt.get())
-
-         #Line10
+                 #Line10
         self.r10q1 = Label (self, text = 'Candid', font=('MS', 8, 'bold'))
         self.r10q1.grid (row = 26, column = 0)
         self.r10q1_opt = Spinbox(self, from_=1, to= 4, width = 3)
@@ -312,7 +264,7 @@ class Personality (Frame):
         self.r12q1 = Label (self, text = 'Risk Taker', font=('MS', 8, 'bold'))
         self.r12q1.grid (row = 30, column = 0)
         self.r12q1_opt = Spinbox(self, from_=1, to= 4, width = 3)
-        self.r2q1_opt.grid (row= 30, column = 1)
+        self.r12q1_opt.grid (row= 30, column = 1)
         
         self.r12q2 = Label (self, text = 'Talkative', font=('MS', 8, 'bold'))
         self.r12q2.grid (row = 30, column = 2)
@@ -333,15 +285,90 @@ class Personality (Frame):
         self.space1.grid(row= 31, column = 0, sticky = W)
         r12_total = int(self.r12q1_opt.get())+ int(self.r12q2_opt.get())+ int(self.r12q3_opt.get())+ int(self.r12q4_opt.get())
 
+#Line2
+        self.r2q1 = Label (self, text = 'Aggressive', font=('MS', 8, 'bold'))
+        self.r2q1.grid (row = 32, column = 0)
+        self.r2q1_opt = Spinbox (self, from_ =1, to = 4, width = 3)
+        self.r2q1_opt.grid (row= 32, column = 1)
+        
+        self.r2q2 = Label (self, text = 'Emotional', font=('MS', 8, 'bold'))
+        self.r2q2.grid (row = 32, column = 2)
+        self.r2q2_opt = Spinbox (self, from_ =1, to = 4, width = 3)
+        self.r2q2_opt.grid (row= 32, column = 3, columnspan = 1, sticky = W)
+        
+
+        self.r2q3 = Label (self, text = 'Accomodating', font=('MS', 8, 'bold'))
+        self.r2q3.grid (row = 32, column = 4)
+        self.r2q3_opt = Spinbox(self, from_=1, to= 4, width = 3)
+        self.r2q3_opt.grid (row= 32, column = 5, columnspan = 1)
+
+        self.r2q4 = Label (self, text = 'Consistent', font=('MS', 8, 'bold'))
+        self.r2q4.grid (row = 32 , column = 6)
+        self.r2q4_opt = Spinbox(self, from_=1, to= 4, width = 4)
+        self.r2q4_opt.grid (row= 32, column = 7, columnspan = 1)
+        self.spacer()
+        self.space1.grid(row= 33, column = 0, sticky = W)
+        r2_total = int(self.r2q1_opt.get())+ int(self.r2q2_opt.get())+ int(self.r2q3_opt.get())+ int(self.r2q4_opt.get())
+
+ #Line9
+        self.r9q1 = Label (self, text = 'Take Charge', font=('MS', 8, 'bold'))
+        self.r9q1.grid (row = 34, column = 0)
+        self.r9q1_opt = Spinbox(self, from_=1, to= 4, width = 3)
+        self.r9q1_opt.grid (row= 34, column = 1)
+        
+        self.r9q2 = Label (self, text = 'Optimistic', font=('MS', 8, 'bold'))
+        self.r9q2.grid (row = 34, column = 2)
+        self.r9q2_opt = Spinbox(self, from_=1, to= 4, width = 3)
+        self.r9q2_opt.grid (row= 34, column = 3, columnspan = 1, sticky = W)
+
+        self.r9q3 = Label (self, text = 'Peaceful', font=('MS', 8, 'bold'))
+        self.r9q3.grid (row = 34, column = 4)
+        self.r9q3_opt = Spinbox(self, from_=1, to= 4, width = 3)
+        self.r9q3_opt.grid (row= 34, column = 5, columnspan = 1)
+
+        self.r9q4 = Label (self, text = 'Conscientious', font=('MS', 8, 'bold'))
+        self.r9q4.grid (row = 34 , column = 6)
+        self.r9q4_opt = Spinbox(self, from_=1, to= 4, width = 4)
+        self.r9q4_opt.grid (row= 34, column = 7, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 35, column = 0, sticky = W)
+        r9_total = int(self.r9q1_opt.get())+ int(self.r9q2_opt.get())+ int(self.r9q3_opt.get())+ int(self.r9q4_opt.get())
+
+
     def subper_button (self,):
-        self.submit_bttn = Button(self, text= 'Submit', command = self.store_resp, font=('MS', 8, 'bold')).grid(row = 33, column = 3, sticky = S)
+        self.submit_bttn = Button(self, text= 'Submit', command = self.store_resp, font=('MS', 8, 'bold')).grid(row = 37, column = 3, sticky = S)
 
     def store_resp (self):
-        str_msg- ""
-        if r1_total != 10:
+        str_msg= ""
+        """if r1_total != 10:
             str_msg = "Please make sure different values selected in Row 1 \n"
-
-
+        elif r3_total != 10:
+            str_msg = "Please make sure different values selected in Row 1 \n"
+"""
+        if str_msg == "":
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Personality Questionnaire Submitted")
+           person = {"leader_score": 0, "teamws_score":0,"coordin_score":0,"finisher_score":0}
+           person ["leader_score"] = int(self.r1q1_opt.get()) + int(self.r2q1_opt.get())+ int(self.r3q1_opt.get())+ int(self.r4q1_opt.get()) + int(self.r5q1_opt.get()) + int(self.r6q1_opt.get()) + int(self.r7q1_opt.get()) + int(self.r8q1_opt.get()) + int(self.r9q1_opt.get()) + int(self.r10q1_opt.get()) + int(self.r11q1_opt.get()) + int(self.r12q1_opt.get())
+           print ( person ["leader_score"])
+           person ["teamws_score"] =  int(self.r1q2_opt.get()) + int(self.r2q2_opt.get())+ int(self.r3q2_opt.get())+ int(self.r4q2_opt.get()) + int(self.r5q2_opt.get()) + int(self.r6q2_opt.get()) + int(self.r7q2_opt.get()) + int(self.r8q2_opt.get()) + int(self.r9q2_opt.get()) + int(self.r10q2_opt.get()) + int(self.r11q2_opt.get()) + int(self.r12q2_opt.get())
+           print ( person ["teamws_score"])
+           person ["coordin_score"]= int(self.r1q3_opt.get()) + int(self.r2q3_opt.get())+ int(self.r3q3_opt.get())+ int(self.r4q3_opt.get()) + int(self.r5q3_opt.get()) + int(self.r6q3_opt.get()) + int(self.r7q3_opt.get()) + int(self.r8q3_opt.get()) + int(self.r9q3_opt.get()) + int(self.r10q3_opt.get()) + int(self.r11q3_opt.get()) + int(self.r12q3_opt.get())
+           print ( person ["coordin_score"])
+           person ["finisher_score"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
+           print ( person ["finisher_score"])
+           print (highestscore(person))
+           self.master.destroy()    
+            #self.clear_response
+        else:
+            tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
+      
+def highestscore(d):
+     """ a) create a list of the dict's keys and values; 
+         b) return the key with the max value"""  
+     v=list(d.values())
+     k=list(d.keys())
+     return k[v.index(max(v))]
 
 
 
