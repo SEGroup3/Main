@@ -17,6 +17,7 @@ class Personality (Frame):
     def spacer (self):
         self.space1 = Label(self, text = '    ', font=('MS', 8, 'bold'))
     def get_personality(self):
+        self.str_msg= ""
         # Provide Instructions
         self.pack(pady= 30, padx = 30)
         self.inst = Label(self, text = 'Instructions:\n\n', font=('MS', 8, 'bold'))
@@ -55,9 +56,9 @@ class Personality (Frame):
         self.spacer()
         self.space1.grid(row= 9, column = 0, sticky = W)
 
-        r1_total = int(self.r1q1_opt.get())+ int(self.r1q2_opt.get())+ int(self.r1q3_opt.get()) + int(self.r1q4_opt.get())
-        print (r1_total)
+         
 
+            
         #Line3
         self.r3q1 = Label (self, text = 'Direct', font=('MS', 8, 'bold'))
         self.r3q1.grid (row = 12, column = 0)
@@ -81,8 +82,8 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 13, column = 0, sticky = W)
-        r3_total = int(self.r3q1_opt.get())+ int(self.r3q2_opt.get())+ int(self.r3q3_opt.get())+ int(self.r3q4_opt.get())
-
+        
+        
         #Line4
         self.r4q1 = Label (self, text = 'Tough', font=('MS', 8, 'bold'))
         self.r4q1.grid (row = 14, column = 0)
@@ -106,8 +107,8 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 15, column = 0, sticky = W)
-        r4_total = int(self.r4q1_opt.get())+ int(self.r4q2_opt.get())+ int(self.r4q3_opt.get())+ int(self.r4q4_opt.get())
-
+        
+        
 
         #Line5
         self.r5q1 = Label (self, text = 'Daring', font=('MS', 8, 'bold'))
@@ -132,8 +133,8 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 17, column = 0, sticky = W)
-        r5_total = int(self.r5q1_opt.get())+ int(self.r5q2_opt.get())+ int(self.r5q3_opt.get())+ int(self.r5q4_opt.get())
-
+        
+       
 
         #Line6
         self.r6q1 = Label (self, text = 'Competitive', font=('MS', 8, 'bold'))
@@ -158,8 +159,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 19, column = 0, sticky = W)
-        r6_total = int(self.r6q1_opt.get())+ int(self.r6q2_opt.get())+ int(self.r6q3_opt.get())+ int(self.r6q4_opt.get())
-
+        
         #Line7
         self.r7q1 = Label (self, text = 'Argumentative', font=('MS', 8, 'bold'))
         self.r7q1.grid (row = 20, column = 0)
@@ -183,8 +183,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 21, column = 0, sticky = W)
-        r7_total = int(self.r7q1_opt.get())+ int(self.r7q2_opt.get())+ int(self.r7q3_opt.get())+ int(self.r7q4_opt.get())
-
+        
         #Line8
         self.r8q1 = Label (self, text = 'Bold', font=('MS', 8, 'bold'))
         self.r8q1.grid (row = 22, column = 0)
@@ -208,8 +207,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 23, column = 0, sticky = W)
-        r8_total = int(self.r8q1_opt.get())+ int(self.r8q2_opt.get())+ int(self.r8q3_opt.get())+ int(self.r8q4_opt.get())
-
+        
                  #Line10
         self.r10q1 = Label (self, text = 'Candid', font=('MS', 8, 'bold'))
         self.r10q1.grid (row = 26, column = 0)
@@ -233,8 +231,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 27, column = 0, sticky = W)
-        r10_total = int(self.r10q1_opt.get())+ int(self.r10q2_opt.get())+ int(self.r10q3_opt.get())+ int(self.r10q4_opt.get())
-
+        
          #Line11
         self.r11q1 = Label (self, text = 'Independent', font=('MS', 8, 'bold'))
         self.r11q1.grid (row = 28, column = 0)
@@ -258,8 +255,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 29, column = 0, sticky = W)
-        r11_total = int(self.r11q1_opt.get())+ int(self.r11q2_opt.get())+ int(self.r11q3_opt.get())+ int(self.r11q4_opt.get())
-
+        
          #Line12
         self.r12q1 = Label (self, text = 'Risk Taker', font=('MS', 8, 'bold'))
         self.r12q1.grid (row = 30, column = 0)
@@ -283,8 +279,7 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 31, column = 0, sticky = W)
-        r12_total = int(self.r12q1_opt.get())+ int(self.r12q2_opt.get())+ int(self.r12q3_opt.get())+ int(self.r12q4_opt.get())
-
+       
 #Line2
         self.r2q1 = Label (self, text = 'Aggressive', font=('MS', 8, 'bold'))
         self.r2q1.grid (row = 32, column = 0)
@@ -308,7 +303,6 @@ class Personality (Frame):
         self.r2q4_opt.grid (row= 32, column = 7, columnspan = 1)
         self.spacer()
         self.space1.grid(row= 33, column = 0, sticky = W)
-        r2_total = int(self.r2q1_opt.get())+ int(self.r2q2_opt.get())+ int(self.r2q3_opt.get())+ int(self.r2q4_opt.get())
 
  #Line9
         self.r9q1 = Label (self, text = 'Take Charge', font=('MS', 8, 'bold'))
@@ -333,42 +327,73 @@ class Personality (Frame):
 
         self.spacer()
         self.space1.grid(row= 35, column = 0, sticky = W)
-        r9_total = int(self.r9q1_opt.get())+ int(self.r9q2_opt.get())+ int(self.r9q3_opt.get())+ int(self.r9q4_opt.get())
-
+  
 
     def subper_button (self,):
         self.submit_bttn = Button(self, text= 'Submit', command = self.store_resp, font=('MS', 8, 'bold')).grid(row = 37, column = 3, sticky = S)
 
     def store_resp (self):
-        str_msg= ""
-        """if r1_total != 10:
-            str_msg = "Please make sure different values selected in Row 1 \n"
-        elif r3_total != 10:
-            str_msg = "Please make sure different values selected in Row 1 \n"
-"""
-        if str_msg == "":
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Personality Questionnaire Submitted")
+        self.str_msg = ""
+        self.r1_total = int(self.r1q1_opt.get())+ int(self.r1q2_opt.get())+ int(self.r1q3_opt.get()) + int(self.r1q4_opt.get())
+        if self.r1_total != 10:
+            self.str_msg = "Please make sure each number is only selected once in Row 1 \n"
+        self.r3_total = int(self.r3q1_opt.get())+ int(self.r3q2_opt.get())+ int(self.r3q3_opt.get())+ int(self.r3q4_opt.get())
+        if self.r3_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 2 \n"
+        self.r4_total = int(self.r4q1_opt.get())+ int(self.r4q2_opt.get())+ int(self.r4q3_opt.get())+ int(self.r4q4_opt.get())
+        if self.r4_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 3 \n"
+        self.r5_total = int(self.r5q1_opt.get())+ int(self.r5q2_opt.get())+ int(self.r5q3_opt.get())+ int(self.r5q4_opt.get())    
+        if self.r5_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 4 \n"
+        self.r6_total = int(self.r6q1_opt.get())+ int(self.r6q2_opt.get())+ int(self.r6q3_opt.get())+ int(self.r6q4_opt.get())
+        if self.r6_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 5 \n"
+        self.r7_total = int(self.r7q1_opt.get())+ int(self.r7q2_opt.get())+ int(self.r7q3_opt.get())+ int(self.r7q4_opt.get())
+        if self.r7_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 6 \n"
+        self.r8_total = int(self.r8q1_opt.get())+ int(self.r8q2_opt.get())+ int(self.r8q3_opt.get())+ int(self.r8q4_opt.get())
+        if self.r8_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 7 \n"
+        self.r10_total = int(self.r10q1_opt.get())+ int(self.r10q2_opt.get())+ int(self.r10q3_opt.get())+ int(self.r10q4_opt.get())
+        if self.r10_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 8 \n"
+        self.r11_total = int(self.r11q1_opt.get())+ int(self.r11q2_opt.get())+ int(self.r11q3_opt.get())+ int(self.r11q4_opt.get())
+        if self.r11_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 9 \n"
+        self.r12_total = int(self.r12q1_opt.get())+ int(self.r12q2_opt.get())+ int(self.r12q3_opt.get())+ int(self.r12q4_opt.get())
+        if self.r12_total != 10:
+            self.str_msg = self.str_msg +"Please make sure each number is only selected once in Row 10 \n"
+        self.r2_total = int(self.r2q1_opt.get())+ int(self.r2q2_opt.get())+ int(self.r2q3_opt.get())+ int(self.r2q4_opt.get())
+        if self.r2_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 11 \n"
+        self.r9_total = int(self.r9q1_opt.get())+ int(self.r9q2_opt.get())+ int(self.r9q3_opt.get())+ int(self.r9q4_opt.get())
+        if self.r9_total != 10:
+            self.str_msg = self.str_msg + "Please make sure each number is only selected once in Row 12 \n"
+        if self.str_msg == "":
+           
            person = {"leader_score": 0, "teamws_score":0,"coordin_score":0,"finisher_score":0}
-           person ["leader_score"] = int(self.r1q1_opt.get()) + int(self.r2q1_opt.get())+ int(self.r3q1_opt.get())+ int(self.r4q1_opt.get()) + int(self.r5q1_opt.get()) + int(self.r6q1_opt.get()) + int(self.r7q1_opt.get()) + int(self.r8q1_opt.get()) + int(self.r9q1_opt.get()) + int(self.r10q1_opt.get()) + int(self.r11q1_opt.get()) + int(self.r12q1_opt.get())
-           print ( person ["leader_score"])
-           person ["teamws_score"] =  int(self.r1q2_opt.get()) + int(self.r2q2_opt.get())+ int(self.r3q2_opt.get())+ int(self.r4q2_opt.get()) + int(self.r5q2_opt.get()) + int(self.r6q2_opt.get()) + int(self.r7q2_opt.get()) + int(self.r8q2_opt.get()) + int(self.r9q2_opt.get()) + int(self.r10q2_opt.get()) + int(self.r11q2_opt.get()) + int(self.r12q2_opt.get())
-           print ( person ["teamws_score"])
-           person ["coordin_score"]= int(self.r1q3_opt.get()) + int(self.r2q3_opt.get())+ int(self.r3q3_opt.get())+ int(self.r4q3_opt.get()) + int(self.r5q3_opt.get()) + int(self.r6q3_opt.get()) + int(self.r7q3_opt.get()) + int(self.r8q3_opt.get()) + int(self.r9q3_opt.get()) + int(self.r10q3_opt.get()) + int(self.r11q3_opt.get()) + int(self.r12q3_opt.get())
-           print ( person ["coordin_score"])
-           person ["finisher_score"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
-           print ( person ["finisher_score"])
-           print (highestscore(person))
+           person ["leader"] = int(self.r1q1_opt.get()) + int(self.r2q1_opt.get())+ int(self.r3q1_opt.get())+ int(self.r4q1_opt.get()) + int(self.r5q1_opt.get()) + int(self.r6q1_opt.get()) + int(self.r7q1_opt.get()) + int(self.r8q1_opt.get()) + int(self.r9q1_opt.get()) + int(self.r10q1_opt.get()) + int(self.r11q1_opt.get()) + int(self.r12q1_opt.get())
+           print ( person ["leader"])
+           person ["teamworker"] =  int(self.r1q2_opt.get()) + int(self.r2q2_opt.get())+ int(self.r3q2_opt.get())+ int(self.r4q2_opt.get()) + int(self.r5q2_opt.get()) + int(self.r6q2_opt.get()) + int(self.r7q2_opt.get()) + int(self.r8q2_opt.get()) + int(self.r9q2_opt.get()) + int(self.r10q2_opt.get()) + int(self.r11q2_opt.get()) + int(self.r12q2_opt.get())
+           print ( person ["teamworker"])
+           person ["coordinator"]= int(self.r1q3_opt.get()) + int(self.r2q3_opt.get())+ int(self.r3q3_opt.get())+ int(self.r4q3_opt.get()) + int(self.r5q3_opt.get()) + int(self.r6q3_opt.get()) + int(self.r7q3_opt.get()) + int(self.r8q3_opt.get()) + int(self.r9q3_opt.get()) + int(self.r10q3_opt.get()) + int(self.r11q3_opt.get()) + int(self.r12q3_opt.get())
+           print ( person ["coordinator"])
+           person ["finisher"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
+           print ( person ["finisher"])
+
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Personality Questionnaire Submitted. Your personality best fits the " + highest_val(person)+ " type"")
            self.master.destroy()    
             #self.clear_response
         else:
-            tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
-      
-def highestscore(d):
+            tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
+            self.str_msg == ""
+def highest_val(personality):
      """ a) create a list of the dict's keys and values; 
          b) return the key with the max value"""  
-     v=list(d.values())
-     k=list(d.keys())
-     return k[v.index(max(v))]
+     values=list(personality.values())
+     keys=list(personality.keys())
+     return keys[values.index(max(values))]
 
 
 
