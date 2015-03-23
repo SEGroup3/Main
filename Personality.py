@@ -382,7 +382,7 @@ class Personality (Frame):
            person ["finisher"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
            print ( person ["finisher"])
 
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Personality Questionnaire Submitted. Your personality best fits the " + highest_val(person)+ " type"")
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + highest_val(person)+ " type. Personality Questionnaire Submitted. ")
            self.master.destroy()    
             #self.clear_response
         else:
