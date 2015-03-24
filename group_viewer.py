@@ -21,7 +21,11 @@ class More_Information():
                 self.names.yview(*args)
                 self.belbin.yview(*args)
                 self.grades.yview(*args)
-                
+
+        def mouse_wheel(self, event):
+                self.names.yview("scroll", event.delta,"units")
+                self.belbin.yview("scroll", event.delta,"units")
+                self.grades.yview("scroll", event.delta,"units")
                 
         def display_group_details(self, window_frame):
 
@@ -63,6 +67,10 @@ class More_Information():
                 self.belbin.config(yscrollcommand=scrollbar.set)
                 self.grades.config(yscrollcommand=scrollbar.set)
 
+                self.names.bind("<MouseWheel>", self.mouse_wheel)
+                self.belbin.bind("<MouseWheel>", self.mouse_wheel)
+                self.grades.bind("<MouseWheel>", self.mouse_wheel)
+
 
 class group_viewer(Frame):
 
@@ -99,7 +107,7 @@ class group_viewer(Frame):
 		# This code is supposed to create a centred Header frame.
                 
                 header_frame = Frame(self.master)
-                header = Label(header_frame, text = "Group Viewer", font = ('MS', 20, 'bold'), justify = "right")
+                header = Label(header_frame, text = "Group Viewer", font = ('MS', 20, 'bold'), justify = "right", anchor = CENTER)
                 header_frame.grid(row = 0, column = 0, sticky = "NSWE")
                 header.grid(sticky = "NSWE")
 
@@ -132,16 +140,18 @@ class group_viewer(Frame):
 
         def save_groups(self):
 
-##                file_window = Tk()
-##                file_dialogue = filedialog.SaveFileDialog(file_window)
-## 
-##                filename = file_dialogue.asksaveasfile()
-                filename = filedialog.asksaveasfile()
-
+                try:
+                        filename = filedialog.asksaveasfile(defaultextension = ".csv", filetypes = [("CSV", ".csv")])
                 
-                output = convert_to_CSV(self.group_list)
-                with filename as csvfile:
-                        csvfile.write(output)
+                        output = convert_to_CSV(self.group_list)
+                        with filename as csvfile:
+                                csvfile.write(output)
+
+                except AttributeError:
+
+                        #If no file name is provided, return
+                        
+                        return
 
                 confirm_window = Tk()
                 confirm_window.title("Success!")
@@ -149,10 +159,10 @@ class group_viewer(Frame):
                 confirmation_frame = Frame(confirm_window)
                 confirmation_frame.grid()
 
-                success = Label(confirmation_frame, text = "Groups saved.")
+                success = Label(confirmation_frame, text = "Groups saved.", anchor = CENTER)
                 success.grid(row = 0, column = 0)
 
-                ok_confirm = Button(confirmation_frame, text = "OK", command = confirm_window.destroy)
+                ok_confirm = Button(confirmation_frame, text = "OK", command = confirm_window.destroy, anchor = CENTER)
                 ok_confirm.grid(row = 1, column = 0)
 
                 confirm_window.mainloop()
@@ -162,12 +172,8 @@ class group_viewer(Frame):
 if __name__ == "__main__":
         root = Tk()
         root.title("Group Viewer")
-
-        student_list = [students.Student("Liam", "Hamill", 1, "email", grades = 75, role = "Plant")] * 50
         
         test_groups = list_of_groups(5)
-
         window = group_viewer(root, test_groups)
-
 
         window.mainloop()
