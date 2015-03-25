@@ -1,0 +1,153 @@
+from tkinter import *
+#As an example on for the field
+Question1 ='Forceful', 'lively', 'Modest', 'Tactful'
+Question2 ='Aggressive', 'Emotional', 'Accommodating', 'Consistent'
+Question3 ='Direct','Animated', 'Agreeable', 'Accurate'
+Question4 ='Tough' ,'People-oriented' ,'Gentle', 'Perfectionist'
+Question5 ='Daring','Impulsive', 'Kind', 'Cautious '
+Question6 ='Competitive', 'Expressive', 'Supportive', 'Precise'
+Question7 ='Risk Taker', 'Talkative', 'Gentle', 'Factual'
+Question8 ='Argumentative', 'Fun-Loving', 'Patient', 'Logical'
+Question9 ='Bold', 'Spontaneous', 'Stable', 'Organized'
+Question10 ='Take Charge', 'Optimistic', 'Peaceful', 'Conscientious'
+Question11 ='Candid', 'Cheerful', 'Loyal', 'Serious'
+Question12 ='Independent', 'Enthusiastic', 'Good Listener', 'High Standards'
+
+
+#to fetch the information from the entry and replace the field
+def fetch(entries):
+   for entry in entries:
+      field = entry[0]
+      text  = entry[1].get()
+      field = "{}:".format(text)
+      print (text)
+      
+
+#how the questionnaire looks like
+def makeform(root, Question1, Question2,Question3, Question4,
+             Question5, Question6, Question7, Question8, Question9,
+             Question10, Question11, Question12 ):
+   entries = []
+   for field in Question1:
+      main = Frame(root)
+      root.title('Question for edit')
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question2:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question3:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question4:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question5:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question6:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question7:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question8:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question9:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question10:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question11:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question12:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+   return entries
+
+#the main body and how it is bind to call the functions
+if __name__ == '__main__':
+   root = Tk()
+   entry = makeform(root, Question1, Question2, Question3, Question4,
+                    Question5, Question6, Question7, Question8, Question9,
+                    Question10, Question11, Question12)
+   root.bind('<Return>', (lambda event, e=entry: fetch(e)))   
+   b1 = Button(root, text='Show/Save',
+          command=(lambda e=entry: fetch(e)))
+   b1.pack(side=LEFT, padx=5, pady=5)
+   b2 = Button(root, text='Quit', command=root.quit)
+   b2.pack(side=LEFT, padx=5, pady=5)
+   root.mainloop()
