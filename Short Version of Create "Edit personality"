@@ -1,0 +1,48 @@
+from tkinter import *
+#As an example on for the field
+Question1 ='Forceful', 'lively', 'Modest', 'Tactful'
+Question2 ='Aggressive', 'Emotional', 'Accommodating', 'Consistent'
+
+#to fetch the information from the entry and replace the field
+def fetch(entries):
+   for entry in entries:
+      field = entry[0]
+      text  = entry[1].get()
+      field = "{}:".format(text)
+      print (text)
+      
+
+#how the questionnaire looks like
+def makeform(root, Question1, Question2 ):
+   entries = []
+   for field in Question1:
+      main = Frame(root)
+      root.title('Question for edit')
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+
+   for field in Question2:
+      main = Frame(root)
+      label = Label(main, width=15, text=field, anchor='w')
+      entry = Entry(main)
+      main.pack(side=TOP, fill=X, padx=5, pady=5)
+      label.pack(side=LEFT)
+      entry.pack(side=RIGHT, expand=YES, fill=X)
+      entries.append((entries, entry))
+   return entries
+
+#the main body and how it is bind to call the functions
+if __name__ == '__main__':
+   root = Tk()
+   entry = makeform(root, Question1, Question2)
+   root.bind('<Return>', (lambda event, e=entry: fetch(e)))   
+   b1 = Button(root, text='Show/Save',
+          command=(lambda e=entry: fetch(e)))
+   b1.pack(side=LEFT, padx=5, pady=5)
+   b2 = Button(root, text='Quit', command=root.quit)
+   b2.pack(side=LEFT, padx=5, pady=5)
+   root.mainloop()
