@@ -72,7 +72,7 @@ class More_Information():
                 self.grades.bind("<MouseWheel>", self.mouse_wheel)
 
 
-class group_viewer(Frame):
+class Group_Viewer(Frame):
 
         def __init__(self, master, group_list):
 
@@ -174,6 +174,6 @@ if __name__ == "__main__":
         root.title("Group Viewer")
         
         test_groups = list_of_groups(5)
-        window = group_viewer(root, test_groups)
+        window = Group_Viewer(root, test_groups)
 
         window.mainloop()

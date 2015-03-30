@@ -2,103 +2,92 @@
 This module defines behaviour of group objects. It differs from the class diagram in a
 couple of ways. Firstly, add_student and remove_student methods have been added.
 Secondly, group size is accessed as an attribute (self.size) and NOT through a method
-(getGroupSize()).
+(get_group_size()).
 '''
 
 import students
+import auto_test
 
 class Group():
 
-	def __init__(self, number):
-		self.number = number
-		self.contents = []
-		self.size = 0
+        def __init__(self, number):
+                self.number = number
+                self.contents = []
+                return
 
-	def add_student(self, student):
-		self.contents.append(student)
-		self.size += 1
+        def get_group_size(self):
 
-	def remove_student(self, student):
-		'''
-		We might have to rewrite this to remove people based on their unique student number.
-		e.g.:
-		for item in self.contents:
-			if item.number == target:
-				self.contents.remove(item)
-				return
+                return len(self.contents)
 
-		print("Student not found.")
-		'''
+        def add_student(self, student):
+                
+                self.contents.append(student)
+                return
 
-		if student in self.contents:
-			self.contents.remove(student)
-			print("{} has been removed successfully.".format(student.name))
-			self.size -= 1
-		
-		else:
-			print("Student not found.")
+        def remove_student(self, student):
 
-	def get_members(self):
-		if len(self.contents) == 0:
-			print("Group {} has no members.".format(self.number))
-			return
+                if student in self.contents:
+                        self.contents.remove(student)
 
-		print("The members of Group {} are:".format(self.number))
-		for item in self.contents:
-			print(item)
+                return
 
-	def get_group_results(self):
-		total_grades = 0 # Total grades of group
-		ignore = 0 # Number of students with no grade saved
+        def get_members(self):
+                
+                if len(self.contents) == 0:
+                        print("Group {} has no members.".format(self.number))
+                        return
 
-		for item in self.contents:
-			if item.grades:
-				total_grades += item.grades
-			else:
-				ignore += 1
+                print("The members of Group {} are:".format(self.number))
+                for item in self.contents:
+                        print(item)
+                return
 
-		if total_grades == 0:
-			print("No grade information for Group {}.".format(self.number))
-			return False
+        def get_group_results(self):
+                
+                total_grades = 0 # Total grades of group
+                ignore = 0 # Number of students with no grade saved
 
-		students_with_grades = self.size - ignore
-		avg_grade = total_grades / students_with_grades
+                for item in self.contents:
+                        if item.grades:
+                                total_grades += item.grades
+                        else:
+                                ignore += 1
 
-		print("Average grade for Group {} is {}.".format(self.number, avg_grade))
-		return avg_grade
+                if total_grades == 0:
+                        print("No grade information for Group {}.".format(self.number))
+                        return False
 
+                students_with_grades = self.get_group_size() - ignore
+                avg_grade = total_grades / students_with_grades
 
-	def save_group(self):
-		# To-do
-		pass
+                print("Average grade for Group {} is {}.".format(self.number, avg_grade))
+                return avg_grade
 
 if __name__ == "__main__":
-	# Test code
+        
+        # Test code
 
-	student1 = students.Student("Liam", 1, "email")
-	student2 = students.Student("Sam", 2, "email", 75, "Co-ordinator")
-	student3 = students.Student("Vera", 3, "email", 70, "Plant")
-	student4 = students.Student("Callum", 4, "email", 72)
-	student5 = students.Student("Andrew", 5, "email", 79)
+        test_group = auto_test.list_of_groups(1)[0]
 
-	test_group = Group(1)
-	test_group.add_student(student1)
-	test_group.add_student(student2)
-	test_group.add_student(student3)
-	test_group.add_student(student4)
-	test_group.add_student(student5)
+        test_group.get_members()
+        print("Group size is:")
+        print(test_group.get_group_size())
+        test_group.get_group_results()
+        print()
 
-	test_group2 = Group(2)
-
-	test_group.get_members()
-	print("Group size is:", test_group.size)
-	test_group.get_group_results()
-	test_group.remove_student(student1)
-	test_group.get_members()
-	print("Group size is:", test_group.size)
-	print()
-
-	test_group2.get_members()
-	print("Group size is:", test_group2.size)
-	test_group2.get_group_results()
-	test_group2.remove_student(student1)
+        test_student = auto_test.list_of_students(1)[0]
+        print("New student: ")
+        print(test_student, end = "\n")
+        test_group.add_student(test_student)
+        test_group.get_members()
+        print("Group size is:")
+        print(test_group.get_group_size())
+        test_group.get_group_results()
+        print()
+        
+        test_group.remove_student(test_student)
+        test_group.get_members()
+        print("Group size is:")
+        print(test_group.get_group_size())
+        test_group.get_group_results()
+        print()
