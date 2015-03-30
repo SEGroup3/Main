@@ -2,7 +2,7 @@
 Module with functions for automated testing.
 '''
 from students import *
-from groups import *
+import groups
 import random
 
 raw_names = '''Jada Naquin
@@ -87,7 +87,7 @@ def list_of_groups(group_no, size = random.randint(8,15)):
 
     while i <= group_no:
         student_list = list_of_students(size)
-        a_group = Group(i)
+        a_group = groups.Group(i)
 
         for item in student_list:
             a_group.add_student(item)

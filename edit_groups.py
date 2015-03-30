@@ -282,10 +282,10 @@ if __name__ == "__main__":
     # Create auto generated test groups if no groups are saved
     
     if not os.path.isfile("group_dict.pkl"):
-        groups = auto_test.list_of_groups(8)
+        test_groups = auto_test.list_of_groups(8)
         groups_dict = {}
 
-        for item in groups:
+        for item in test_groups:
             groups_dict[item.number] = item
 
         with open("group_dict.pkl", "wb") as pickle_file:
