@@ -46,9 +46,10 @@ class Main_Menu (Frame):
         self.stu_but.grid(row = 8, column = 2)
 
     def launch_student (self):
-        new_window = Tk()
-        Questionnaire.Questionnaire(new_window)
-        self.master.destroy()
+        self.grid_forget()
+        self.destroy()
+        Questionnaire.Questionnaire(self.master)
+        
  
 
 if __name__ == '__main__':

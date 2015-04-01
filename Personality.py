@@ -6,7 +6,7 @@ from students import *
 class Personality (Frame):
 
     def __init__ (self, master):
-
+        master.title("Personality Questions")
         super(Personality, self).__init__(master)
         self.master = master
         self.grid()
@@ -399,6 +399,6 @@ def highest_val(personality):
 
 if __name__ == '__main__':
     root = Tk()
-    root.title("Personality Questions")
+    
     app = Personality(root)
     root.mainloop()

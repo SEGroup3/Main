@@ -4,7 +4,7 @@ from tkinter import *
 import tkinter.messagebox as tk
 import shelve
 
-class java_responses:
+class Java_Responses:
     def __init__(self, respNo="", q1 = 0, q2 = 0, q3 = 0, q4 = 0, q5 = 0):
         self.respNo = respNo
         self.q1 = q1
@@ -13,11 +13,12 @@ class java_responses:
         self.q4 = q4
         self.q5 = q5
 
-class java_questions(Frame):
+class Java_Questions(Frame):
 
     def __init__(self,master):
 
         Frame.__init__(self,master)
+        master.title("Java Programming Questions")
         self.grid()
         self.header()
         self.q_header()
@@ -133,7 +134,7 @@ class java_questions(Frame):
         
         photo = PhotoImage(file="q3.gif")
         w = Label(self, image=photo)
-        w.image = photo #binding widget to tkinter object
+        w.photo = photo #binding widget to tkinter object
         w.grid(row = 15, column = 0, columnspan = 4, sticky = W)
 
         self.varQ3 = IntVar()
@@ -235,7 +236,7 @@ class java_questions(Frame):
         #store the response using shelving
         db = shelve.open('javaresponsedb')
         responseCount = len(db)
-        Ans = java_responses(str(responseCount+1),
+        Ans = Java_Responses(str(responseCount+1),
                        self.varQ1.get(), self.varQ2.get(), self.varQ3.get(),self.varQ4.get(),
                        #self.varQ5.get()
                        )
@@ -260,6 +261,6 @@ class java_questions(Frame):
 #Main
 if __name__ == '__main__':
     root = Tk()
-    root.title("Java Programming Questions")
-    app = java_questions(root)
+    
+    app = Java_Questions(root)
     root.mainloop()
