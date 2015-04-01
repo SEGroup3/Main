@@ -2,7 +2,8 @@
 
 from tkinter import *
 import tkinter.messagebox as tk
-import shelve
+import pickle
+import students
 from Response import Response
 
 class results_viewer(Frame):
@@ -39,9 +40,9 @@ class results_viewer(Frame):
         butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
 
 
-class prog_questions (Frame):
+class Python_Questions (Frame):
 
-    def __init__(self,master):
+    def __init__(self,master,student_No):
 
         Frame.__init__(self,master)
         self.grid()
@@ -51,7 +52,8 @@ class prog_questions (Frame):
         self.q2()
         self.q3()
         self.q4()
-        self.q5()
+        self.student_No = student_No
+        #self.q5()
         self.submit_Button()
         self.clear_Button()
         self.view_Button()
@@ -83,12 +85,9 @@ class prog_questions (Frame):
         q1body3 = Label(self,text = ">>> blist", font = ('MS', 8))
         q1body3.grid(row = 9, column = 0, sticky = W)
 
-        self.q1answer = Text(self, height=3, width = 40)
-        scroll = Scrollbar(self, command = self.q1answer.yview)
-        self.q1answer.configure(yscrollcommand=scroll.set)
+        self.q1answer = Entry(self, width = 30)
 
         self.q1answer.grid(row = 10, column = 0, columnspan = 3, sticky = E)
-        scroll.grid(row =10, column = 3, sticky = W)
 
     def q2(self):
 
@@ -101,12 +100,9 @@ class prog_questions (Frame):
         q2body3 = Label(self, text = ">>> re.findall(r'(\w+), grow, (\w+)', words)", font = ('MS', 8))
         q2body3.grid(row = 14, column = 0, sticky = W)
 
-        self.q2answer = Text(self, height=3, width = 40)
-        scroll = Scrollbar(self, command = self.q2answer.yview)
-        self.q2answer.configure(yscrollcommand=scroll.set)
+        self.q2answer = Entry(self, width = 30)
 
         self.q2answer.grid(row = 15, column = 0, columnspan = 3, sticky = E)
-        scroll.grid(row = 15, column = 3, sticky = W)
 
     def q3(self):
         
@@ -125,13 +121,9 @@ class prog_questions (Frame):
         q3body6 = Label(self, text = ">>>print(a)", font = ('MS', 8))
         q3body6.grid(row = 22, column = 0, sticky = W)
 
-
-        self.q3answer = Text(self, height=3, width = 40)
-        scroll = Scrollbar(self, command = self.q3answer.yview)
-        self.q3answer.configure(yscrollcommand=scroll.set)
+        self.q3answer = Entry(self, width = 30)
 
         self.q3answer.grid(row = 23, column = 0, columnspan = 3, sticky = E)
-        scroll.grid(row = 23, column = 3, sticky = W)
 
     def q4(self):
 
@@ -148,13 +140,11 @@ class prog_questions (Frame):
         q4body5 = Label(self, text = "        print ('a is None')", font = ('MS', 8))
         q4body5.grid(row = 29, column = 0, sticky = W)
 
-
-        self.q4answer = Text(self, height=3, width = 40)
-        scroll = Scrollbar(self, command = self.q4answer.yview)
-        self.q4answer.configure(yscrollcommand=scroll.set)
+        self.q4answer = Entry(self, width = 30)
 
         self.q4answer.grid(row = 30, column = 0, columnspan = 3, sticky = E)
-        scroll.grid(row = 30, column = 3, sticky = W)
+        buffer = Label(self, text = "", font = ('MS', 8))
+        buffer.grid(row =98, column = 0)
 
     def q5(self):
 
@@ -162,22 +152,19 @@ class prog_questions (Frame):
         q5header.grid(row = 31, column = 0, sticky = W)
         q5body1 = Label(self,text = ">>>for i in range(10,25,5):", font = ('MS', 8))
         q5body1.grid(row = 32, column = 0, sticky = W)
-        q5body2 = Label(self,text = "            print i, ': ',", font = ('MS', 8))
+        q5body2 = Label(self,text = "            print (i, ': ')", font = ('MS', 8))
         q5body2.grid(row = 33, column = 0, sticky = W)
         q5body3 = Label(self, text = "           for j in range (i/5):", font = ('MS', 8))
         q5body3.grid(row = 34, column = 0, sticky = W)
-        q5body4 = Label(self, text = "                   print i/5,", font = ('MS', 8))
+        q5body4 = Label(self, text = "                   print (i/5)", font = ('MS', 8))
         q5body4.grid(row = 35, column = 0, sticky = W)
-        q5body5 = Label(self, text = "           print", font = ('MS', 8))
+        q5body5 = Label(self, text = "           print("")", font = ('MS', 8))
         q5body5.grid(row = 36, column = 0, sticky = W)
 
 
-        self.q5answer = Text(self, height=3, width = 40)
-        scroll = Scrollbar(self, command = self.q5answer.yview)
-        self.q5answer.configure(yscrollcommand=scroll.set)
+        self.q5answer = Entry(self, width = 30)
 
         self.q5answer.grid(row = 37, column = 0, columnspan = 3, sticky = E)
-        scroll.grid(row = 37, column = 3, sticky = W)
 
         buffer = Label(self, text = "", font = ('MS',8))
         buffer.grid(row = 38, column = 0, sticky = W)
@@ -186,7 +173,7 @@ class prog_questions (Frame):
     def submit_Button(self):
         #a button to allow the user to submit answers
         butSubmit = Button(self, text = 'Submit', font = ('MS', 8, 'bold'))
-        butSubmit['command']=self.store_Response
+        butSubmit['command']=self.assess_Results
         butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
 
     def clear_Button(self):
@@ -207,36 +194,58 @@ class prog_questions (Frame):
             self.q2answer.delete(1.0,END)
             self.q3answer.delete(1.0,END)
             self.q4answer.delete(1.0,END)
-            self.q5answer.delete(1.0,END)
+            #self.q5answer.delete(1.0,END)
             tk.showinfo("Programming Questions", "All answers cleared.")
         else:
             return
-        
-    def store_Response(self):
-        #store the response using shelving
-        db = shelve.open('responsedb')
-        responseCount = len(db)
-        Ans = Response(str(responseCount+1),self.q1answer.get(1.0, END),self.q2answer.get(1.0,END),
-                           self.q3answer.get(1.0, END), self.q4answer.get(1.0,END),self.q5answer.get(1.0,END)
-                           )
-        db[Ans.respNo] = Ans
-        db.close
-        tk.showinfo("Programming Questions", "Your answers have been saved.")
+
+    def assess_Results(self):
+        countAll = 0
+
+        if (self.q1answer.get().strip(" ") == "[0,12,24,36]") or (self.q1answer.get().strip(" ") == "0,12,24,36"):
+            countAll += 1
+        if self.q2answer.get().strip(" ") == "tower,glow" or self.q2answer.get().strip(" ") == "[(tower,glow)]":
+            countAll += 1
+        if self.q3answer.get().strip(" ") == "20":
+            countAll += 1
+        if self.q4answer.get() == "a is not None":
+            countAll += 1
+
+        if countAll == 0:
+            tk.showinfo("Programming Questions", "You scored 0/4(0%).")
+        if countAll == 1:
+            tk.showinfo("Programming Questions", "You scored 1/4(25%).")
+        if countAll == 2:
+            tk.showinfo("Programming Questions", "You scored 2/4(50%).")
+        if countAll == 3:
+            tk.showinfo("Programming Questions", "You scored 3/4(75%).")
+        if countAll == 4:
+            tk.showinfo("Programming Questions", "You scored 4/4(100%).")
+
+        with open ("stu_dict.pkl", "rwb") as db:
+            stu_dict = pickle.load(db)
+            stu_dict[self.student_No]=target
+            target.add_competency(True) #or False dependent on score
+            pickle.dump(stu_dict, db)
+
         self.master.destroy()
-        #TODO//jump to next part of program here
 
     def print_data(self):
         window = Tk()
         window.title("Results Viewer")
         app = results_viewer(window)
         window.mainloop()
-
+        with open ("stu_dict.pkl", "rwb") as db:
+            stu_dict = pickle.load(db)
+            for line in db:
+                print (line)
+            
 
 #Main
 if __name__ == '__main__':
     root = Tk()
     root.title("Python Programming Questions")
-    app = prog_questions(root)
+    app = Python_Questions(root,99)
     root.mainloop()
 
 
