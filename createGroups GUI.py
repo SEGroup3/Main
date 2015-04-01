@@ -5,6 +5,8 @@
 
 from tkinter import *
 import tkinter.messagebox
+import os, sys
+import pickle
 
 class createGroups(Frame):
 
@@ -39,7 +41,7 @@ class createGroups(Frame):
         self.listGroup.configure(yscrollcommand=scroll.set)
 
         self.listGroup.grid(row = 5, column = 1, columnspan = 1, sticky = W)
-        scroll.grid(row = 5, column = 1, sticky = NE)
+        scroll.grid(row = 5, column = 1, sticky = "NSE")
 
         for item in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]:
             self.listGroup.insert(END, item)
@@ -56,7 +58,7 @@ class createGroups(Frame):
         self.listSize.configure(yscrollcommand=scroll.set)
 
         self.listSize.grid(row = 5, column = 4, columnspan = 1, sticky = W)
-        scroll.grid(row = 5, column = 4, sticky = NE)
+        scroll.grid(row = 5, column = 4, sticky ="NSE")
 
         lblBlank = Label (self, text = "", font = ('MS', 8))
         lblBlank.grid(row = 3, column =0, columnspan = 4, sticky = W)
@@ -72,7 +74,7 @@ class createGroups(Frame):
     def calculate(self):
         #a button to allow the user to create groups with the selected parameters
         butSubmit = Button(self, text = 'Calculate Groups', font = ('MS', 8, 'bold'))
-        butSubmit['command']=self.calculateGroups
+        butSubmit['command']=self.calculate_groups
         butSubmit.grid(row = 8, column = 1, columnspan = 2, sticky = N)
 
     def clear(self):
@@ -93,18 +95,33 @@ class createGroups(Frame):
         self.listGroup.selection_set(END)
         self.listSize.selection_set(END)
 
-    def calculateGroups(self):
-        #eventually this will throw to the method for caluclating the groups but for now it
-        #simply pops a dialog window
-        tkinter.messagebox.showinfo("Group Calculator", "Calculating... ")
-        self.clearSelection()
-        #//TODO: throw to group calculator
-
     def goBack(self):
         tkinter.messagebox.askquestion("Group Calculator", "Are you sure you wish to return to the previous " +
                                        "screen? All changes will be lost.")
         #//TODO: connect back to the previous screen
 
+    def calculate_groups(self):
+        pass
+        """tkinter.messagebox.showinfo("Group Calculator", "Calculating...")
+        self.clearSelection()
+        data = {}
+        with open("stu_dict.pkl", "rb") as f:
+            try:
+                while True:
+                    event = pickle.load(f)
+                    data.append(line)
+            except (EOFError):
+                pass
+
+        print (data)
+            
+        if self.listSize.get() is not None:
+            print(self.listSize.get())
+        elif self.listGroup.get() is not None:
+            print(self.listGroup.get())
+        else:
+            tkinter.messagebox.showwarning("Group Calculator", "You must select from one of the options available")
+            print ("Error")"""
 #Main
 root = Tk()
 root.title("Group Calculator")
