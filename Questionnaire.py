@@ -10,7 +10,7 @@ class Questionnaire (Frame):
     def __init__(self, master):
         # Initialise Questionnaire Class
 
-        
+        master.title("Teamwork Questionnaire")
         super(Questionnaire, self).__init__(master)
         self.master = master
         self.grid()
@@ -77,7 +77,7 @@ class Questionnaire (Frame):
     def get_team_exp_quest (self):
         # Create widgets to ask Team Expereince Questions
         qu1 = '1. Do you feel you have prior\n computing experience?'
-        ExpHead = Label(self, text= 'Prior Computing Expereince:', font=('MS', 8, 'bold'))
+        ExpHead = Label(self, text= 'Prior Computing Experience:', font=('MS', 8, 'bold'))
         ExpHead.grid(row= 7, column= 1, rowspan= 1, sticky = NE)
 
         lblStrAgr = Label(self, text = 'Yes', font = ('MS', 8, 'bold'))
@@ -148,6 +148,6 @@ class Questionnaire (Frame):
 #main
 if __name__ == '__main__':
     root = Tk()
-    root.title("Teamwork Questionnaire")
+    
     app = Questionnaire(root)
     root.mainloop()
