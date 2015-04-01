@@ -106,10 +106,8 @@ class Group_Viewer(Frame):
 				
 		# This code is supposed to create a centred Header frame.
                 
-                header_frame = Frame(self.master)
-                header = Label(header_frame, text = "Group Viewer", font = ('MS', 20, 'bold'), justify = "right", anchor = CENTER)
-                header_frame.grid(row = 0, column = 0, sticky = "NSWE")
-                header.grid(sticky = "NSWE")
+                header = Label(self.master, text = "Group Viewer", font = ('MS', 20, 'bold'), anchor = CENTER)
+                header.grid(row = 0, column = 0,sticky = "NSWE")
 
         def create_more_info(self, group):
                 
