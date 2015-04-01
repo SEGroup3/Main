@@ -53,9 +53,7 @@ class Group_Editor():
 				
 	# This code is supposed to create a centred Header frame.
                 
-##        header_frame = Frame(self.window)
         header = Label(self.window, text = "Group Editor", font = ('MS', 20, 'bold'), anchor = CENTER)
-##        header_frame.grid(row = 0, column = 0, columnspan = 3, sticky = "NSWE")
         header.grid(row = 0, column = 0, columnspan = 3, sticky = "NSWE")
 
     def open_groups(self):

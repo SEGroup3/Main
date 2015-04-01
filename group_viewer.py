@@ -76,6 +76,7 @@ class Group_Viewer(Frame):
 
         def __init__(self, master, group_list):
 
+                self.detail = IntVar() # "Export detailed info" checkbox variable
                 Frame.__init__(self, master)
                 self.master = master
                 self.group_list = group_list
@@ -98,9 +99,15 @@ class Group_Viewer(Frame):
 
         def save_button(self):
 
-                save_button = Button(self.master, text = "Save Groups", command = self.save_groups)
-                save_button.grid(row = 2, column = 0, sticky = "W")
-                
+                save_frame = Frame(self.master)
+
+                save_button = Button(save_frame, text = "Export to CSV", command = self.save_groups)
+                save_button.grid(sticky = "W")
+
+                detail_check = Checkbutton(save_frame, text = "Export detailed information", variable = self.detail, onvalue = True, offvalue = False)
+                detail_check.grid(row = 0, column = 1)
+
+                save_frame.grid(row = 2)
 
         def header(self):
 				
@@ -139,9 +146,13 @@ class Group_Viewer(Frame):
         def save_groups(self):
 
                 try:
-                        filename = filedialog.asksaveasfile(defaultextension = ".csv", filetypes = [("CSV", ".csv")])
-                
-                        output = convert_to_CSV(self.group_list)
+                        if self.detail.get() == 0:
+                                detail = False
+                        elif self.detail.get() == 1:
+                                detail = True
+
+                        filename = filedialog.asksaveasfile(mode = "w", defaultextension = ".csv", filetypes = [("CSV", ".csv")])
+                        output = convert_to_CSV(self.group_list, more = detail)
                         with filename as csvfile:
                                 csvfile.write(output)
 
@@ -149,7 +160,7 @@ class Group_Viewer(Frame):
 
                         #If no file name is provided, return
                         
-                        return
+                       return
 
                 confirm_window = Tk()
                 confirm_window.title("Success!")
