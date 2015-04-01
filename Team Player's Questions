@@ -1,0 +1,550 @@
+from tkinter import *
+import tkinter.messagebox
+#import operator
+#from students import *
+
+class TeamPlayer (Frame):
+
+    def __init__ (self, master):
+
+        super(TeamPlayer, self).__init__(master)
+        self.master = master
+        self.grid()
+        
+        self.subper_button ()
+        self.get_TeamPlayer()
+        
+    def spacer (self):
+        self.space1 = Label(self, text = '    ', font=('MS', 8, 'bold'))
+    def get_TeamPlayer(self):
+        self.str_msg= ""
+        # Provide Instructions
+        self.pack(pady= 30, padx = 30)
+        self.inst = Label(self, text = 'Instructions:', font=('MS', 8, 'bold'))
+        self.inst.grid(row= 2, column = 0, sticky = W)
+        self.inst_info = Label (self, text = 'Please read the following question. Within each Question, you have to allocate points to the statements based on how you feel they apply to you; the sum total of points for the section must be 10. \n For example, if you think that one statement applies strongly and two others apply just a little, you might distribute the points as 6 for "strongly applies" and 2 each for the other two statements. \n Or if two statements apply equally strongly you might allocate 5 points to each. Alternatively you could give all 10 points to one statement, or allocate one point to each of the 10 statements. \n Please use each value only once and select your instinctive behaviour, not what you perceive to be the best answer. ', font=('MS', 8))
+        self.inst_info.grid(row = 2, column = 1, columnspan = 6, rowspan = 3, sticky = E)
+        self.space = Label(self, text = '     ', font=('MS', 8, 'bold'))
+        self.space.grid(row= 6, rowspan =2, column = 0, sticky = W)
+
+
+        # Ask questions
+        #Question 1
+        self.space1 = Label(self, text = 'Part 1. I believe I can make positive contributions to a team because:', font=('MS', 8, 'bold'))
+        self.space1.grid(row= 8, column = 0, sticky = W)
+
+        self.r1q1 = Label (self, text = 'I think I can quickly see and take advantage of new opportunities.', font=('MS', 7, 'bold'))
+        self.r1q1.grid (row = 9, column = 0,sticky = W)
+        self.r1q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q1_opt.grid (row= 9, column = 1)
+        
+        self.r1q2 = Label (self, text = 'I am seen as a natural team player.', font=('MS', 7, 'bold'))
+        self.r1q2.grid (row = 10, column = 0 ,sticky = W)
+        self.r1q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q2_opt.grid (row= 10, column = 1)
+
+        self.r1q3 = Label (self, text = 'I am happy to take on varied work as and when the team requires.', font=('MS', 7, 'bold'))
+        self.r1q3.grid (row = 11, column = 0,sticky = W)
+        self.r1q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q3_opt.grid (row= 11, column = 1, columnspan = 1)
+
+        self.r1q4 = Label (self, text = 'I can think laterally to solve problems.', font=('MS', 7, 'bold'))
+        self.r1q4.grid (row = 12, column = 0,sticky = W)
+        self.r1q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q4_opt.grid (row= 12, column = 1, columnspan = 1)
+
+        self.r1q5 = Label (self, text = 'I am good at identifying and using the potential in fellow team members.', font=('MS', 7, 'bold'))
+        self.r1q5.grid (row = 13, column = 0,sticky = W)
+        self.r1q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q5_opt.grid (row= 13, column = 1, columnspan = 1)
+
+        self.r1q6 = Label (self, text = 'I am keen to improve things by focusing on the details.', font=('MS', 7, 'bold'))
+        self.r1q6.grid (row = 14, column = 0,sticky = W)
+        self.r1q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q6_opt.grid (row= 14, column = 1, columnspan = 1)
+
+        self.r1q7 = Label (self, text = 'I am enthusiastic about applying my training and expertise.', font=('MS', 7, 'bold'))
+        self.r1q7.grid (row = 15, column = 0,sticky = W)
+        self.r1q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q7_opt.grid (row= 15, column = 1, columnspan = 1)
+
+        self.r1q8 = Label (self, text = 'I am ready to speak out in the interests of making the right things happen.', font=('MS', 7, 'bold'))
+        self.r1q8.grid (row = 16, column = 0,sticky = W)
+        self.r1q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q8_opt.grid (row= 16, column = 1, columnspan = 1)
+
+        self.r1q9 = Label (self, text = 'I ensure that my work is delivered on time.', font=('MS', 7, 'bold'))
+        self.r1q9.grid (row = 17, column = 0,sticky = W)
+        self.r1q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q9_opt.grid (row= 17, column = 1, columnspan = 1)
+
+        self.r1q10 = Label (self, text = 'I can offer reasoned and balanced judgments of different courses of action.', font=('MS', 7, 'bold'))
+        self.r1q10.grid (row = 18, column = 0,sticky = W)
+        self.r1q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r1q10_opt.grid (row= 18, column = 1, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 19, column = 0, sticky = W)
+
+        #Question 2
+        self.space2 = Label(self, text = 'Part 2. I sometimes encounter difficulties in teamwork because: ', font=('MS', 8, 'bold'))
+        self.space2.grid(row= 8, column = 4, sticky = W)
+
+        self.r2q1 = Label (self, text = 'I can be reluctant for others to change things around, once work is underway.', font=('MS', 7, 'bold'))
+        self.r2q1.grid (row = 9, column = 4,sticky = W)
+        self.r2q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q1_opt.grid (row= 9, column = 5)
+        
+        self.r2q2 = Label (self, text = 'I like to influence others, which can cause resentment.', font=('MS', 7, 'bold'))
+        self.r2q2.grid (row = 10, column = 4 ,sticky = W)
+        self.r2q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q2_opt.grid (row= 10, column = 5)
+
+        self.r2q3 = Label (self, text = 'I can become frustrated if my knowledge of a particular subject is not recognised.', font=('MS', 7, 'bold'))
+        self.r2q3.grid (row = 11, column = 4,sticky = W)
+        self.r2q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q3_opt.grid (row= 11, column = 5, columnspan = 1)
+
+        self.r2q4 = Label (self, text = 'I tend to lose momentum rapidly once my initial enthusiasm has passed.', font=('MS', 7, 'bold'))
+        self.r2q4.grid (row = 12, column = 4,sticky = W)
+        self.r2q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q4_opt.grid (row= 12, column = 5, columnspan = 1)
+
+        self.r2q5 = Label (self, text = 'I am inclined to underestimate the importance of my own contributions.', font=('MS', 7, 'bold'))
+        self.r2q5.grid (row = 13, column = 4,sticky = W)
+        self.r2q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q5_opt.grid (row= 13, column = 5, columnspan = 1)
+
+        self.r2q6 = Label (self, text = 'I tend to be skeptical, which can dampen enthusiasm in the team.', font=('MS', 7, 'bold'))
+        self.r2q6.grid (row = 14, column = 4,sticky = W)
+        self.r2q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q6_opt.grid (row= 14, column = 5, columnspan = 1)
+
+        self.r2q7 = Label (self, text = 'I tend to lose my patience, which can create a tense atmosphere.', font=('MS', 7, 'bold'))
+        self.r2q7.grid (row = 15, column = 4,sticky = W)
+        self.r2q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q7_opt.grid (row= 15, column = 5, columnspan = 1)
+
+        self.r2q8 = Label (self, text = 'I am inclined to avoid discussions which may lead to conflict.', font=('MS', 7, 'bold'))
+        self.r2q8.grid (row = 16, column = 4,sticky = W)
+        self.r2q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q8_opt.grid (row= 16, column = 5, columnspan = 1)
+
+        self.r2q9 = Label (self, text = 'I can become distracted by my thoughts at the expense of the business in hand.', font=('MS', 7, 'bold'))
+        self.r2q9.grid (row = 17, column = 4,sticky = W)
+        self.r2q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q9_opt.grid (row= 17, column = 5, columnspan = 1)
+
+        self.r2q10 = Label (self, text = 'I am concerned to make sure things are done correctly, which can introduce delays.', font=('MS', 7, 'bold'))
+        self.r2q10.grid (row = 18, column = 4,sticky = W)
+        self.r2q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r2q10_opt.grid (row= 18, column = 5, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 19, column = 0, sticky = W)
+
+        #Question 3
+        self.space3 = Label(self, text = 'Part 3. When involved in work with other people: ', font=('MS', 8, 'bold'))
+        self.space3.grid(row= 21, column = 0, sticky = W)
+
+        self.r3q1 = Label (self, text = 'I like to take responsibility for bringing the team to a consensus.', font=('MS', 7, 'bold'))
+        self.r3q1.grid (row = 22, column = 0,sticky = W)
+        self.r3q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q1_opt.grid (row= 22, column = 1)
+        
+        self.r3q2 = Label (self, text = 'I verify all the details carefully to ensure that no damaging errors are made.', font=('MS', 7, 'bold'))
+        self.r3q2.grid (row = 23, column = 0 ,sticky = W)
+        self.r3q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q2_opt.grid (row= 23, column = 1)
+
+        self.r3q3 = Label (self, text = 'I will press for action and drive the team towards its objectives.', font=('MS', 7, 'bold'))
+        self.r3q3.grid (row = 24, column = 0,sticky = W)
+        self.r3q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q3_opt.grid (row= 24, column = 1, columnspan = 1)
+
+        self.r3q4 = Label (self, text = 'I come up with unexplored ideas for the team to develop.', font=('MS', 7, 'bold'))
+        self.r3q4.grid (row = 25, column = 0,sticky = W)
+        self.r3q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q4_opt.grid (row= 25, column = 1, columnspan = 1)
+
+        self.r3q5 = Label (self, text = 'I am able to offer support and understanding where it is most needed.', font=('MS', 7, 'bold'))
+        self.r3q5.grid (row = 26, column = 0,sticky = W)
+        self.r3q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q5_opt.grid (row= 26, column = 1, columnspan = 1)
+
+        self.r3q6 = Label (self, text = 'I look for chances to gain personal fulfillment from the work', font=('MS', 7, 'bold'))
+        self.r3q6.grid (row = 27, column = 0,sticky = W)
+        self.r3q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q6_opt.grid (row= 27, column = 1, columnspan = 1)
+
+        self.r3q7 = Label (self, text = 'I am quick to take on and develop the ideas of others.', font=('MS', 7, 'bold'))
+        self.r3q7.grid (row = 28, column = 0,sticky = W)
+        self.r3q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q7_opt.grid (row= 28, column = 1, columnspan = 1)
+
+        self.r3q8 = Label (self, text = 'I am keen to learn as much as I can and apply what I have learned.', font=('MS', 7, 'bold'))
+        self.r3q8.grid (row = 29, column = 0,sticky = W)
+        self.r3q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q8_opt.grid (row= 29, column = 1, columnspan = 1)
+
+        self.r3q9 = Label (self, text = 'I ensure that I remain objective and unbiased.', font=('MS', 7, 'bold'))
+        self.r3q9.grid (row = 30, column = 0,sticky = W)
+        self.r3q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q9_opt.grid (row= 30, column = 1, columnspan = 1)
+
+        self.r3q10 = Label (self, text = 'I will use structure and organisation to achieve productivity.', font=('MS', 7, 'bold'))
+        self.r3q10.grid (row = 31, column = 0,sticky = W)
+        self.r3q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r3q10_opt.grid (row= 31, column = 1, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 32, column = 0, sticky = W)
+
+        #Question 4
+        self.space3 = Label(self, text = 'Part 4. When involved in work with other people: ', font=('MS', 8, 'bold'))
+        self.space3.grid(row= 21, column = 4, sticky = W)
+
+        self.r4q1 = Label (self, text = 'I am the first to notice and help when people are having problems within the team.', font=('MS', 7, 'bold'))
+        self.r4q1.grid (row = 22, column = 4,sticky = W)
+        self.r4q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q1_opt.grid (row= 22, column = 5)
+        
+        self.r4q2 = Label (self, text = 'I can use what I have learned to help the team.', font=('MS', 7, 'bold'))
+        self.r4q2.grid (row = 23, column = 4 ,sticky = W)
+        self.r4q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q2_opt.grid (row= 23, column = 5)
+
+        self.r4q3 = Label (self, text = 'I have no fear in challenging the views of others.', font=('MS', 7, 'bold'))
+        self.r4q3.grid (row = 24, column = 4,sticky = W)
+        self.r4q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q3_opt.grid (row= 24, column = 5, columnspan = 1)
+
+        self.r4q4 = Label (self, text = 'I examine ideas from every angle to ensure that they are viable.', font=('MS', 7, 'bold'))
+        self.r4q4.grid (row = 25, column = 4,sticky = W)
+        self.r4q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q4_opt.grid (row= 25, column = 5, columnspan = 1)
+
+        self.r4q5 = Label (self, text = 'I focus on finding the best method for working effectively.', font=('MS', 7, 'bold'))
+        self.r4q5.grid (row = 26, column = 4,sticky = W)
+        self.r4q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q5_opt.grid (row= 26, column = 5, columnspan = 1)
+
+        self.r4q6 = Label (self, text = 'I think of imaginative solutions which haven’t occurred to others', font=('MS', 7, 'bold'))
+        self.r4q6.grid (row = 27, column = 4,sticky = W)
+        self.r4q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q6_opt.grid (row= 27, column = 5, columnspan = 1)
+
+        self.r4q7 = Label (self, text = 'I bring a touch of perfectionism to any work I undertake.', font=('MS', 7, 'bold'))
+        self.r4q7.grid (row = 28, column = 4,sticky = W)
+        self.r4q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q7_opt.grid (row= 28, column = 5, columnspan = 1)
+
+        self.r4q8 = Label (self, text = 'I am keen to establish contacts that will be useful to the team.', font=('MS', 7, 'bold'))
+        self.r4q8.grid (row = 29, column = 4,sticky = W)
+        self.r4q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q8_opt.grid (row= 29, column = 5, columnspan = 1)
+
+        self.r4q9 = Label (self, text = 'I maintain myself belief, regardless of what others are doing.', font=('MS', 7, 'bold'))
+        self.r4q9.grid (row = 30, column = 4,sticky = W)
+        self.r4q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q9_opt.grid (row= 30, column = 5, columnspan = 1)
+
+        self.r4q10 = Label (self, text = 'I ensure the team progresses by facilitating the decision‐making process.', font=('MS', 7, 'bold'))
+        self.r4q10.grid (row = 31, column = 4,sticky = W)
+        self.r4q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r4q10_opt.grid (row= 31, column = 5, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 32, column = 0, sticky = W)
+
+        #Question 5
+        self.space5 = Label(self, text = 'Part 5. When involved in work with other people: ', font=('MS', 8, 'bold'))
+        self.space5.grid(row= 33, column = 0, sticky = W)
+
+        self.r5q1 = Label (self, text = 'I think logically and tend not to get carried away.', font=('MS', 7, 'bold'))
+        self.r5q1.grid (row = 34, column = 0,sticky = W)
+        self.r5q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q1_opt.grid (row= 34, column = 1)
+        
+        self.r5q2 = Label (self, text = 'I work to get things done as efficiently as possible.', font=('MS', 7, 'bold'))
+        self.r5q2.grid (row = 35, column = 0 ,sticky = W)
+        self.r5q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q2_opt.grid (row= 35, column = 1)
+
+        self.r5q3 = Label (self, text = 'I am discreet and sensitive when handling difficult situation ', font=('MS', 7, 'bold'))
+        self.r5q3.grid (row = 36, column = 0,sticky = W)
+        self.r5q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q3_opt.grid (row= 36, column = 1, columnspan = 1)
+
+        self.r5q4 = Label (self, text = 'I thrive on working under pressure.', font=('MS', 7, 'bold'))
+        self.r5q4.grid (row = 37, column = 0,sticky = W)
+        self.r5q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q4_opt.grid (row= 37, column = 1, columnspan = 1)
+
+        self.r5q5 = Label (self, text = 'I am most interested when encountering new people and possibilities.', font=('MS', 7, 'bold'))
+        self.r5q5.grid (row = 38, column = 0,sticky = W)
+        self.r5q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q5_opt.grid (row= 38, column = 1, columnspan = 1)
+
+        self.r5q6 = Label (self, text = 'I make projects more manageable by working to clarify priorities.', font=('MS', 7, 'bold'))
+        self.r5q6.grid (row = 39, column = 0,sticky = W)
+        self.r5q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q6_opt.grid (row= 39, column = 1, columnspan = 1)
+
+        self.r5q7 = Label (self, text = 'I strive to achieve the highest possible standards when producing work.', font=('MS', 7, 'bold'))
+        self.r5q7.grid (row = 40, column = 0,sticky = W)
+        self.r5q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q7_opt.grid (row= 40, column = 1, columnspan = 1)
+
+        self.r5q8 = Label (self, text = 'I relish the opportunity to take an unconventional approach to problems.', font=('MS', 7, 'bold'))
+        self.r5q8.grid (row = 41, column = 0,sticky = W)
+        self.r5q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q8_opt.grid (row= 41, column = 1, columnspan = 1)
+
+        self.r5q9 = Label (self, text = 'I can see what I need to do and can set work for myself.', font=('MS', 7, 'bold'))
+        self.r5q9.grid (row = 42, column = 0,sticky = W)
+        self.r5q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q9_opt.grid (row= 42, column = 1, columnspan = 1)
+
+        self.r5q10 = Label (self, text = 'I believe there should be room for having a good time at work.', font=('MS', 7, 'bold'))
+        self.r5q10.grid (row = 43, column = 0,sticky = W)
+        self.r5q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r5q10_opt.grid (row= 43, column = 1, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 44, column = 0, sticky = W)
+
+        #Question 6
+        self.space6 = Label(self, text = 'Part 6. When engaged in work with others: ', font=('MS', 8, 'bold'))
+        self.space6.grid(row= 33, column = 4, sticky = W)
+
+        self.r6q1 = Label (self, text = 'I feel that other team members value what I have to say.', font=('MS', 7, 'bold'))
+        self.r6q1.grid (row = 34, column = 4,sticky = W)
+        self.r6q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q1_opt.grid (row= 34, column = 5)
+        
+        self.r6q2 = Label (self, text = 'I am good at finding my own areas of work, independent of other team members.', font=('MS', 7, 'bold'))
+        self.r6q2.grid (row = 35, column = 4 ,sticky = W)
+        self.r6q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q2_opt.grid (row= 35, column = 5)
+
+        self.r6q3 = Label (self, text = 'I can start with a blank page and make something out of nothing.', font=('MS', 7, 'bold'))
+        self.r6q3.grid (row = 36, column = 4,sticky = W)
+        self.r6q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q3_opt.grid (row= 36, column = 5, columnspan = 1)
+
+        self.r6q4 = Label (self, text = 'I am willing to get on with a wide range of people and tasks.', font=('MS', 7, 'bold'))
+        self.r6q4.grid (row = 37, column = 4,sticky = W)
+        self.r6q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q4_opt.grid (row= 37, column = 5, columnspan = 1)
+
+        self.r6q5 = Label (self, text = 'I can identify and promote talent within the team.', font=('MS', 7, 'bold'))
+        self.r6q5.grid (row = 38, column = 4,sticky = W)
+        self.r6q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q5_opt.grid (row= 38, column = 5, columnspan = 1)
+
+        self.r6q6 = Label (self, text = 'I am good at checking things thoroughly, to avoid mistakes or omissions.', font=('MS', 7, 'bold'))
+        self.r6q6.grid (row = 39, column = 4,sticky = W)
+        self.r6q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q6_opt.grid (row= 39, column = 5, columnspan = 1)
+
+        self.r6q7 = Label (self, text = 'I ensure that the team uses facts and logic as a basis for decision‐making.', font=('MS', 7, 'bold'))
+        self.r6q7.grid (row = 40, column = 4,sticky = W)
+        self.r6q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q7_opt.grid (row= 40, column = 5, columnspan = 1)
+
+        self.r6q8 = Label (self, text = 'I am prompt at getting on with whatever needs to be done.', font=('MS', 7, 'bold'))
+        self.r6q8.grid (row = 41, column = 4,sticky = W)
+        self.r6q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q8_opt.grid (row= 41, column = 5, columnspan = 1)
+
+        self.r6q9 = Label (self, text = 'I will spur the team on and drive it forward.', font=('MS', 7, 'bold'))
+        self.r6q9.grid (row = 42, column = 4,sticky = W)
+        self.r6q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q9_opt.grid (row= 42, column = 5, columnspan = 1)
+
+        self.r6q10 = Label (self, text = 'I explore and make the most of possibilities outside the team.', font=('MS', 7, 'bold'))
+        self.r6q10.grid (row = 43, column = 4,sticky = W)
+        self.r6q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r6q10_opt.grid (row= 43, column = 5, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 44, column = 0, sticky = W)
+
+        #Question 7
+        self.space7 = Label(self, text = 'Part 7. When involved in work with other people: ', font=('MS', 8, 'bold'))
+        self.space7.grid(row= 45, column = 0, sticky = W)
+
+        self.r7q1 = Label (self, text = 'I can sometimes upset people when dealing with important issues.', font=('MS', 7, 'bold'))
+        self.r7q1.grid (row = 46, column = 0,sticky = W)
+        self.r7q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q1_opt.grid (row= 46, column = 1)
+        
+        self.r7q2 = Label (self, text = 'I can be critical of others’ ideas and solutions without suggesting alternatives.', font=('MS', 7, 'bold'))
+        self.r7q2.grid (row = 47, column = 0 ,sticky = W)
+        self.r7q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q2_opt.grid (row= 47, column = 1)
+
+        self.r7q3 = Label (self, text = 'I am so concerned to get things right that I can struggle to meet deadlines.', font=('MS', 7, 'bold'))
+        self.r7q3.grid (row = 48, column = 0,sticky = W)
+        self.r7q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q3_opt.grid (row= 48, column = 1, columnspan = 1)
+
+        self.r7q4 = Label (self, text = 'I can sometimes neglect to follow things up if a new project has caught my interest.', font=('MS', 7, 'bold'))
+        self.r7q4.grid (row = 48, column = 0,sticky = W)
+        self.r7q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q4_opt.grid (row= 48, column = 1, columnspan = 1)
+
+        self.r7q5 = Label (self, text = 'I am inclined to resist changes which upset the way things work.', font=('MS', 7, 'bold'))
+        self.r7q5.grid (row = 49, column = 0,sticky = W)
+        self.r7q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q5_opt.grid (row= 49, column = 1, columnspan = 1)
+
+        self.r7q6 = Label (self, text = 'I can get caught up in new ideas instead of considering what the team requires.', font=('MS', 7, 'bold'))
+        self.r7q6.grid (row = 50, column = 0,sticky = W)
+        self.r7q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q6_opt.grid (row= 50, column = 1, columnspan = 1)
+
+        self.r7q7 = Label (self, text = 'I tend to take a generalist view and can overlook important details.', font=('MS', 7, 'bold'))
+        self.r7q7.grid (row = 51, column = 0,sticky = W)
+        self.r7q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q7_opt.grid (row= 51, column = 1, columnspan = 1)
+
+        self.r7q8 = Label (self, text = 'I feel that others often fail to appreciate what I do for the team.', font=('MS', 7, 'bold'))
+        self.r7q8.grid (row = 52, column = 0,sticky = W)
+        self.r7q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q8_opt.grid (row= 52, column = 1, columnspan = 1)
+
+        self.r7q9 = Label (self, text = 'I find it frustrating when others are dismissive of my expertise.', font=('MS', 7, 'bold'))
+        self.r7q9.grid (row = 53, column = 0,sticky = W)
+        self.r7q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q9_opt.grid (row= 53, column = 1, columnspan = 1)
+
+        self.r7q10 = Label (self, text = 'I tend to avoid decision‐making in case it causes arguments.', font=('MS', 7, 'bold'))
+        self.r7q10.grid (row = 54, column = 0,sticky = W)
+        self.r7q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r7q10_opt.grid (row= 54, column = 1, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 55, column = 0, sticky = W)
+
+        #Question 8
+        self.space8 = Label(self, text = 'Part 8. When involved in work with other people: ', font=('MS', 8, 'bold'))
+        self.space8.grid(row= 45, column = 4, sticky = W)
+
+        self.r8q1 = Label (self, text = 'I place importance on attaining the highest levels of accuracy in my work.', font=('MS', 7, 'bold'))
+        self.r8q1.grid (row = 46, column = 4,sticky = W)
+        self.r8q1_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q1_opt.grid (row= 46, column = 5)
+        
+        self.r8q2 = Label (self, text = 'I am at my best when working to a tight deadline.', font=('MS', 7, 'bold'))
+        self.r8q2.grid (row = 47, column = 4 ,sticky = W)
+        self.r8q2_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q2_opt.grid (row= 47, column = 5)
+
+        self.r8q3 = Label (self, text = 'I will always be true to myself, no matter what the situation.', font=('MS', 7, 'bold'))
+        self.r8q3.grid (row = 48, column = 4,sticky = W)
+        self.r8q3_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q3_opt.grid (row= 48, column = 5, columnspan = 1)
+
+        self.r8q4 = Label (self, text = 'I ensure that the team understands and agrees upon priorities.', font=('MS', 7, 'bold'))
+        self.r8q4.grid (row = 48, column = 4,sticky = W)
+        self.r8q4_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q4_opt.grid (row= 48, column = 5, columnspan = 1)
+
+        self.r8q5 = Label (self, text = 'I analyse the situation to ensure the team has considered all possible implications.', font=('MS', 7, 'bold'))
+        self.r8q5.grid (row = 49, column = 4,sticky = W)
+        self.r8q5_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q5_opt.grid (row= 49, column = 5, columnspan = 1)
+
+        self.r8q6 = Label (self, text = 'I smooth over problems using discretion and understanding.', font=('MS', 7, 'bold'))
+        self.r8q6.grid (row = 50, column = 4,sticky = W)
+        self.r8q6_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q6_opt.grid (row= 50, column = 5, columnspan = 1)
+
+        self.r8q7 = Label (self, text = 'I do what is required rather than the work I would prefer to do.', font=('MS', 7, 'bold'))
+        self.r8q7.grid (row = 51, column = 4,sticky = W)
+        self.r8q7_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q7_opt.grid (row= 51, column = 5, columnspan = 1)
+
+        self.r8q8 = Label (self, text = 'I can provide information relating to my experience and expertise.', font=('MS', 7, 'bold'))
+        self.r8q8.grid (row = 52, column = 4,sticky = W)
+        self.r8q8_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q8_opt.grid (row= 52, column = 5, columnspan = 1)
+
+        self.r8q9 = Label (self, text = 'I can think laterally and move beyond obvious conclusions.', font=('MS', 7, 'bold'))
+        self.r8q9.grid (row = 53, column = 4,sticky = W)
+        self.r8q9_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q9_opt.grid (row= 53, column = 5, columnspan = 1)
+
+        self.r8q10 = Label (self, text = 'I can take the best of other people’s ideas and exploit them.', font=('MS', 7, 'bold'))
+        self.r8q10.grid (row = 54, column = 4,sticky = W)
+        self.r8q10_opt = Spinbox(self, from_=0, to= 10, width = 3)
+        self.r8q10_opt.grid (row= 54, column = 5, columnspan = 1)
+
+        self.spacer()
+        self.space1.grid(row= 55, column = 0, sticky = W)
+
+
+    def subper_button (self,):
+        self.submit_bttn = Button(self, text= 'Submit', command = self.store_resp, font=('MS', 8, 'bold')).grid(row = 56, column = 3, sticky = S)
+
+    def store_resp (self):
+        self.str_msg = ""
+        self.r1_total = int(self.r1q1_opt.get())+ int(self.r1q2_opt.get())+ int(self.r1q3_opt.get()) + int(self.r1q4_opt.get()) + int(self.r1q5_opt.get()) + int(self.r1q6_opt.get()) + int(self.r1q7_opt.get()) + int(self.r1q8_opt.get()) + int(self.r1q9_opt.get()) + int(self.r1q10_opt.get())
+        if self.r1_total != 10:
+            self.str_msg = "Please make sure the total number in Part 1 is 10 \n"
+        self.r2_total = int(self.r2q1_opt.get())+ int(self.r2q2_opt.get())+ int(self.r2q3_opt.get())+ int(self.r2q4_opt.get()) + int(self.r2q5_opt.get()) + int(self.r2q6_opt.get()) + int(self.r2q7_opt.get()) + int(self.r2q8_opt.get()) + int(self.r2q9_opt.get()) + int(self.r2q10_opt.get())
+        if self.r2_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 2 is 10 \n"
+        self.r3_total = int(self.r3q1_opt.get())+ int(self.r3q2_opt.get())+ int(self.r3q3_opt.get())+ int(self.r3q4_opt.get()) + int(self.r3q5_opt.get()) + int(self.r3q6_opt.get()) + int(self.r3q7_opt.get()) + int(self.r3q8_opt.get()) + int(self.r3q9_opt.get()) + int(self.r3q10_opt.get())
+        if self.r3_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 3 is 10 \n"
+        self.r4_total = int(self.r4q1_opt.get())+ int(self.r4q2_opt.get())+ int(self.r4q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r4q5_opt.get()) + int(self.r4q6_opt.get()) + int(self.r4q7_opt.get()) + int(self.r4q8_opt.get()) + int(self.r4q9_opt.get()) + int(self.r4q10_opt.get())    
+        if self.r4_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 4 is 10 \n"
+        self.r5_total = int(self.r5q1_opt.get())+ int(self.r5q2_opt.get())+ int(self.r6q5_opt.get())+ int(self.r5q4_opt.get()) + int(self.r5q5_opt.get()) + int(self.r5q6_opt.get()) + int(self.r5q7_opt.get()) + int(self.r5q8_opt.get()) + int(self.r5q9_opt.get()) + int(self.r5q10_opt.get())
+        if self.r5_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 5 is 10 \n"
+        self.r6_total = int(self.r6q1_opt.get())+ int(self.r6q2_opt.get())+ int(self.r7q6_opt.get())+ int(self.r6q4_opt.get()) + int(self.r6q5_opt.get()) + int(self.r6q6_opt.get()) + int(self.r6q7_opt.get()) + int(self.r6q8_opt.get()) + int(self.r6q9_opt.get()) + int(self.r6q10_opt.get())
+        if self.r6_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 6 is 10 \n"
+        self.r7_total = int(self.r7q1_opt.get())+ int(self.r7q2_opt.get())+ int(self.r8q7_opt.get())+ int(self.r7q4_opt.get()) + int(self.r7q5_opt.get()) + int(self.r7q6_opt.get()) + int(self.r7q7_opt.get()) + int(self.r7q8_opt.get()) + int(self.r7q9_opt.get()) + int(self.r7q10_opt.get())
+        if self.r7_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 7 is 10 \n"
+        self.r8_total = int(self.r8q1_opt.get())+ int(self.r7q2_opt.get())+ int(self.r8q3_opt.get())+ int(self.r8q4_opt.get()) + int(self.r8q5_opt.get()) + int(self.r8q6_opt.get()) + int(self.r8q7_opt.get()) + int(self.r8q8_opt.get()) + int(self.r8q9_opt.get()) + int(self.r8q10_opt.get())
+        if self.r8_total != 10:
+            self.str_msg = self.str_msg + "Please make sure the total number in Part 8 is 10 \n"
+        if self.str_msg == "":
+           
+           person = {"Action_score": 0, "People_score":0,"Thought_score":0}
+           person ["Action Oriented"] = int(self.r1q1_opt.get()) + int(self.r2q1_opt.get())+ int(self.r3q1_opt.get())+ int(self.r4q1_opt.get()) + int(self.r5q1_opt.get()) + int(self.r6q1_opt.get()) + int(self.r7q1_opt.get()) + int(self.r8q1_opt.get()) + int(self.r9q1_opt.get()) + int(self.r10q1_opt.get()) + int(self.r11q1_opt.get()) + int(self.r12q1_opt.get())
+           print ( person ["Action Oriented"])
+           person ["People Oriented"] =  int(self.r1q2_opt.get()) + int(self.r2q2_opt.get())+ int(self.r3q2_opt.get())+ int(self.r4q2_opt.get()) + int(self.r5q2_opt.get()) + int(self.r6q2_opt.get()) + int(self.r7q2_opt.get()) + int(self.r8q2_opt.get()) + int(self.r9q2_opt.get()) + int(self.r10q2_opt.get()) + int(self.r11q2_opt.get()) + int(self.r12q2_opt.get())
+           print ( person ["People Oriented"])
+           person ["Thought Oriented"]= int(self.r1q3_opt.get()) + int(self.r2q3_opt.get())+ int(self.r3q3_opt.get())+ int(self.r4q3_opt.get()) + int(self.r5q3_opt.get()) + int(self.r6q3_opt.get()) + int(self.r7q3_opt.get()) + int(self.r8q3_opt.get()) + int(self.r9q3_opt.get()) + int(self.r10q3_opt.get()) + int(self.r11q3_opt.get()) + int(self.r12q3_opt.get())
+           print ( person ["Thought Oriented"])
+
+           tkinter.messagebox.showinfo("Team Player Questionnaire", "Your are a  " + highest_val(person)+ " type of team player. Team Player Questionnaire Submitted. ")
+           self.master.destroy()    
+            #self.clear_response
+        else:
+            tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
+            self.str_msg == ""
+            
+
+def highest_val(TeamPlayer):
+     """ a) create a list of the dict's keys and values; 
+         b) return the key with the max value"""  
+     values=list(TeamPlayer.values())
+     keys=list(TeamPlayer.keys())
+     return keys[values.index(max(values))]
+
+
+
+if __name__ == '__main__':
+    root = Tk()
+    root.title("Team-Player Questions")
+    app = TeamPlayer(root)
+    root.mainloop()
+
