@@ -128,7 +128,7 @@ class Questionnaire (Frame):
                 java_window = Java_questions.Java_Questions(self.master, number)
                 self.destroy()
             elif (self.varQ1.get() ==3):
-                python_window = Python_questions.Python_Questions(self.master, number)
+                Python_questions.Python_Questions(self.master, number)
                 self.destroy()    
             elif (self.varQ1.get() ==2):
                 Personality.Personality(self.master, number)

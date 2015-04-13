@@ -13,7 +13,6 @@ class Java_Questions(Frame):
     def __init__(self,master,number):
 
         Frame.__init__(self,master)
-        master.title("Java Programming Questions")
         self.grid()
         self.header()
         self.q_header()
@@ -258,7 +257,6 @@ class Java_Questions(Frame):
             self.competent()
 
     def incompetent(self):
-        self.master.destroy()
         self.next_Screen()
 
     def competent(self):
@@ -267,15 +265,7 @@ class Java_Questions(Frame):
         stu_dict[self.number].changeCompetency(True)
         with open ("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
-        #self.master.destroy()
         self.next_Screen()
-    
-        
-##        print (self.number)
-##        with open ("stu_dict.pkl", "rb") as db:
-##           stu_dict = pickle.load(db)
-##        print (stu_dict[self.number])
-
         
     def clear_All(self):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
@@ -290,14 +280,18 @@ class Java_Questions(Frame):
             return
         
     def next_Screen(self):
-        
         personality_window = Personality.Personality(self.master, self.number )
         self.destroy()
 
 
 #Main
 if __name__ == '__main__':
-##TESTING
+    root = Tk()
+    root.title("Java Programming Questions")
+    app = Java_Questions(root, number)
+    root.mainloop()
+
+##::TESTING::
 ##    s_dict = {}
 ##    student_list = auto_test.list_of_students(15)
 ##    for item in student_list:
@@ -305,6 +299,8 @@ if __name__ == '__main__':
 ##        number_arg = item.number
 ##    with open ("stu_dict.pkl", "wb+") as db:
 ##            pickle.dump(s_dict, db)
-    root = Tk()
-    app = Java_Questions(root, number)
-    root.mainloop()
+##
+##        print (self.number)
+##        with open ("stu_dict.pkl", "rb") as db:
+##           stu_dict = pickle.load(db)
+##        print (stu_dict[self.number])

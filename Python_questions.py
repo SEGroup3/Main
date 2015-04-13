@@ -6,39 +6,7 @@ import pickle
 import students
 from students import Student
 import auto_test
-
-class results_viewer(Frame):
-    def __init__(self,master):        
-        Frame.__init__(self,master)
-        self.grid()
-        self.header()
-        self.exit_button()
-        self.print_button()
-
-    def header(self):
-        self.pack(pady = 20, padx = 20)
-        lblHeader = Label(self, text = "Table of Results", font=('MS', 10, 'bold'))
-        lblHeader.grid(row =0, column = 0, columnspan = 2, sticky = NW)
-
-    def print_button(self):
-        butPrint = Button(self, text = "Print", font = ('MS', 8, 'bold'))
-        butPrint['command']=self.print_results
-        butPrint.grid(row=99, column = 0, columnspan= 1, sticky = N)
-
-    def print_results(self):
-        db = shelve.open('responsedb')
-        for line in db:
-            print (line, end = ",")
-        db.close        
-
-    def close_window(self):
-        self.master.destroy()
-        
-    def exit_button(self):
-        #a button to quit the results viewer
-        butSubmit = Button(self, text = 'Quit', font = ('MS', 8, 'bold'))
-        butSubmit['command']=self.close_window
-        butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
+import Personality
 
 class Python_Questions (Frame):
 
@@ -56,7 +24,6 @@ class Python_Questions (Frame):
         #self.q5()
         self.submit_Button()
         self.clear_Button()
-        self.view_Button()
         self.master = master
 
     def header(self):
@@ -168,7 +135,6 @@ class Python_Questions (Frame):
 
         buffer = Label(self, text = "", font = ('MS',8))
         buffer.grid(row = 38, column = 0, sticky = W)
-                       
 
     def submit_Button(self):
         #a button to allow the user to submit answers
@@ -181,11 +147,6 @@ class Python_Questions (Frame):
         butClear = Button(self, text = 'Clear All', font = ('MS',8, 'bold'))
         butClear['command']=self.clear_All
         butClear.grid(row = 99, column = 0, columnspan = 21, sticky = N)
-
-    def view_Button(self):
-        butView = Button(self, text = 'Show Data (Test)', font = ('MS', 8, 'bold'))
-        butView['command']=self.print_data
-        butView.grid(row = 99, column = 2, columnspan = 1, sticky = N)
 
     def clear_All(self):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
@@ -233,19 +194,23 @@ class Python_Questions (Frame):
         stu_dict[self.number].changeCompetency(True)
         with open("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
-        self.master.destroy()
-##        print (self.number)
-##        with open ("stu_dict.pkl", "rb") as db:
-##           stu_dict = pickle.load(db)
-##        print (stu_dict[self.number])
-
+        self.next_Screen()
 
     def python_Incompetent(self):
-        self.master.destroy()
+        self.next_Screen()
+
+    def next_Screen(self):
+        personality_window = Personality.Personality(self.master, self.number )
+        self.destroy()
 
 #Main
 if __name__ == '__main__':
-##TESTING
+    root = Tk()
+    root.title("Python Programming Questions")
+    app = Python_Questions(root, number)
+    root.mainloop()
+
+##::TESTING::
 ##    s_dict = {}
 ##    student_list = auto_test.list_of_students(15)
 ##    for item in student_list:
@@ -253,10 +218,11 @@ if __name__ == '__main__':
 ##        number_arg = item.number
 ##    with open ("stu_dict.pkl", "wb+") as db:
 ##            pickle.dump(s_dict, db)
-    root = Tk()
-    root.title("Python Programming Questions")
-    app = Python_Questions(root, number)
-    root.mainloop()
+##
+##        print (self.number)
+##        with open ("stu_dict.pkl", "rb") as db:
+##           stu_dict = pickle.load(db)
+##        print (stu_dict[self.number])
 
 
 
