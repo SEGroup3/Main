@@ -4,11 +4,12 @@
 #//TODO: throw to group calculator using user inputs
 
 from tkinter import *
-import tkinter.messagebox
+import tkinter.messagebox as tk
 import os, sys
 import pickle
 import sort_alg
 import group_viewer
+import Lecturer_Menu
 
 class createGroups(Frame):
 
@@ -87,19 +88,19 @@ class createGroups(Frame):
         #a button to allow the user to create groups with the selected parameters
         butSubmit = Button(self, text = 'Calculate Groups', font = ('MS', 8, 'bold'))
         butSubmit['command']=self.calculate_groups
-        butSubmit.grid(row = 8, column = 1, columnspan = 2, sticky = N)
+        butSubmit.grid(row = 8, column = 2, columnspan = 2, sticky = N)
 
     def clear(self):
         #a button to clear selections
         butClear = Button(self, text = "Clear", font = ('MS', 8, 'bold'))
         butClear['command'] = self.clearSelection
-        butClear.grid(row = 8, column = 0, columnspan = 1, sticky = N)
+        butClear.grid(row = 8, column = 1, columnspan = 1, sticky = N)
 
     def back(self):
         #a button to go back to the last screen
         butBack = Button(self, text = "Back", font = ('MS', 8, 'bold'))
         butBack['command'] = self.goBack
-        butBack.grid(row = 8, column = 3, columnspan = 1, sticky = N)
+        butBack.grid(row = 8, column = 4, columnspan = 1, sticky = N)
 
     def clearSelection(self):
         self.listGroup.selection_clear(0,END)
@@ -108,9 +109,14 @@ class createGroups(Frame):
         self.listSize.selection_set(END)
 
     def goBack(self):
-        tkinter.messagebox.askquestion("Group Calculator", "Are you sure you wish to return to the previous " +
+        response = tk.askquestion("Group Calculator", "Are you sure you wish to return to the previous " +
                                        "screen? All changes will be lost.")
-        #//TODO: connect back to the previous screen
+        if response == 'yes':
+            self.destroy()
+            Lecturer_Menu.Lecturer_Menu(self.master)
+        else:
+            return
+        
 
     def calculate_groups(self):
 
