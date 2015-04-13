@@ -5,6 +5,7 @@ import tkinter.messagebox as tk
 import pickle
 import students
 from Response import Response
+import auto_test
 
 class results_viewer(Frame):
     def __init__(self,master):        
@@ -56,8 +57,6 @@ class Python_Questions (Frame):
         self.submit_Button()
         self.clear_Button()
         self.view_Button()
-        self.python_competent()
-        self.python_incompetent()
         self.master = master
 
     def header(self):
@@ -200,22 +199,6 @@ class Python_Questions (Frame):
         else:
             return
 
-    def python_Competent(self):
-        with open ("stu_dict.pkl", "rb") as db:
-            stu_dict = pickle.load(db)
-            stu_dict[self.student_No]=target
-            target.add_competency(True)
-            pickle.dump(stu_dict, db)
-            self.master.destroy()
-
-    def python_Incompetent(self):
-        with open ("stu_dict.pkl", "rb") as db:
-            stu_dict = pickle.load(db)
-            stu_dict[self.student_No]=target
-            target.add_competency(False)
-            pickle.dump(stu_dict, db)
-            self.master.destroy()
-
     def assess_Results(self):
         countAll = 0
 
@@ -230,19 +213,19 @@ class Python_Questions (Frame):
 
         if countAll == 0:
             tk.showinfo("Programming Questions", "You scored 0/4(0%).")
-            self.python_incompetent()
+            self.python_Incompetent()
         if countAll == 1:
             tk.showinfo("Programming Questions", "You scored 1/4(25%).")
-            self.python_incompetent()
+            self.python_Incompetent()
         if countAll == 2:
             tk.showinfo("Programming Questions", "You scored 2/4(50%).")
-            self.python_compentent()
+            self.python_Competent()
         if countAll == 3:
             tk.showinfo("Programming Questions", "You scored 3/4(75%).")
-            self.python_competent()
+            self.python_Competent()
         if countAll == 4:
             tk.showinfo("Programming Questions", "You scored 4/4(100%).")
-            self.python_competent()
+            self.python_Competent()
 
     def print_data(self):
         window = Tk()
@@ -253,13 +236,35 @@ class Python_Questions (Frame):
             stu_dict = pickle.load(db)
             for line in db:
                 print (line)
-      
+                
+    def python_Competent(self):
+        with open ("stu_dict.pkl", "rb") as db:
+            stu_dict = pickle.load(db)
+        stu_dict[self.student_No].changeCompetency(True)
+        with open("stu_dict.pkl", "wb") as db:
+            pickle.dump(stu_dict, db)
+        self.master.destroy()
+##        print (self.student_No)
+##        with open ("stu_dict.pkl", "rb") as db:
+##           stu_dict = pickle.load(db)
+##        print (stu_dict[self.student_No])
+
+
+    def python_Incompetent(self):
+        self.master.destroy()
 
 #Main
 if __name__ == '__main__':
+    s_dict = {}
+    student_list = auto_test.list_of_students(15)
+    for item in student_list:
+        s_dict[item.number] = item
+        number_arg = item.number
+    with open ("stu_dict.pkl", "wb+") as db:
+            pickle.dump(s_dict, db)
     root = Tk()
     root.title("Python Programming Questions")
-    app = Python_Questions(root,99)
+    app = Python_Questions(root, number_arg)
     root.mainloop()
 
 
