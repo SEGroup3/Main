@@ -275,7 +275,7 @@ class Java_Questions(Frame):
         stu_dict[self.student_No].changeCompetency(True)
         with open ("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
-        self.master.destroy()
+        #self.master.destroy()
         self.next_Screen()
     
         
@@ -298,7 +298,8 @@ class Java_Questions(Frame):
             return
         
     def next_Screen(self):
-        Personality.Personality(self.master, student_No = number)
+        Personality.Personality(self.master, number =student_No )
+        self.master.destroy()
 
 
 #Main
