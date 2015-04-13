@@ -3,6 +3,7 @@ import students
 import groups
 from export_csv import convert_to_CSV
 from auto_test import *
+import Lecturer_Menu
 
 class More_Information():
 		
@@ -77,7 +78,7 @@ class Group_Viewer(Frame):
         def __init__(self, master, group_list):
 
                 self.detail = IntVar() # "Export detailed info" checkbox variable
-                Frame.__init__(self, master)
+                super(Group_Viewer, self).__init__(master)
                 self.master = master
                 self.group_list = group_list
                 self.grid()
@@ -99,21 +100,24 @@ class Group_Viewer(Frame):
 
         def save_button(self):
 
-                save_frame = Frame(self.master)
+                self.save_frame = Frame(self.master)
 
-                save_button = Button(save_frame, text = "Export to CSV", command = self.save_groups)
+                save_button = Button(self.save_frame, text = "Export to CSV", command = self.save_groups)
                 save_button.grid(sticky = "W")
 
-                detail_check = Checkbutton(save_frame, text = "Export detailed information", variable = self.detail, onvalue = True, offvalue = False)
+                detail_check = Checkbutton(self.save_frame, text = "Export detailed information", variable = self.detail, onvalue = True, offvalue = False)
                 detail_check.grid(row = 0, column = 1)
 
-                save_frame.grid(row = 2)
+                back_button = Button(self.save_frame, text = "Back", anchor = W, command = self.back_to_main)
+                back_button.grid(row = 1, columnspan = 2)
+
+                self.save_frame.grid(row = 2)
 
         def header(self):
 				
 		# This code is supposed to create a centred Header frame.
                 
-                header = Label(self.master, text = "Group Viewer", font = ('MS', 20, 'bold'), anchor = CENTER)
+                header = Label(self, text = "Group Viewer", font = ('MS', 20, 'bold'), anchor = CENTER)
                 header.grid(row = 0, column = 0,sticky = "NSWE")
 
         def create_more_info(self, group):
@@ -139,6 +143,7 @@ class Group_Viewer(Frame):
                 listbox.grid(row = 0, column = 0)
                 listbox.config(yscrollcommand=scrollbar.set)
                 scrollbar.config(command=listbox.yview)
+
 
                 more_info = Button(list_frame, text = "More Info >>", command = lambda: self.create_more_info(group))
                 more_info.grid(row=2, column = 0)
@@ -175,12 +180,19 @@ class Group_Viewer(Frame):
                 ok_confirm.grid(row = 1, column = 0)
 
                 confirm_window.mainloop()
-              
+        def self_destruct(self):
+                self.save_frame.destroy()
+                self.group_frame.destroy()
+                self.grid_forget()
+                self.destroy()
+        def back_to_main(self):
+                self.self_destruct()
+                Lecturer_Menu.Lecturer_Menu(self.master)
                     
 
 if __name__ == "__main__":
         root = Tk()
-        root.title("Group Viewer")
+        #root.title("Group Viewer")
         
         test_groups = list_of_groups(5)
         window = Group_Viewer(root, test_groups)

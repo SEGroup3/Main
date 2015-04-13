@@ -65,14 +65,6 @@ class Lecturer_Credentials(Frame):
         with open("credentials.pkl", mode = "wb") as file:
             pickle.dump(credentials, file)
 
-        # Debug code, delete before release
-        with open("credentials.pkl", mode = "rb") as file:
-            credentials = pickle.load(file)
-
-        print(credentials)
-        # Debug ends
-
-
         self.grid_forget()
         self.destroy()
         Main_Menu.Main_Menu(self.master)
