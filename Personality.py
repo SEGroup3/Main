@@ -416,13 +416,13 @@ def highest_val(personality):
 
 if __name__ == '__main__':
 
-    test_list = auto_test.list_of_students(15)
-    test_dict = {}
-    with open("stu_dict.pkl", "wb") as f:
-        for item in test_list:
-            test_dict[item.number] = item
-            test_no = item.number
-        pickle.dump(test_dict, f)
+    #test_list = auto_test.list_of_students(15)
+    #test_dict = {}
+    #with open("stu_dict.pkl", "wb") as f:
+    #    for item in test_list:
+    #        test_dict[item.number] = item
+     #       test_no = item.number
+    #    pickle.dump(test_dict, f)
 
     root = Tk()
     

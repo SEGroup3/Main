@@ -290,8 +290,9 @@ class Java_Questions(Frame):
             return
         
     def next_Screen(self):
-        Personality.Personality(self.master, number =number )
-        self.master.destroy()
+        
+        personality_window = Personality.Personality(self.master, self.number )
+        self.destroy()
 
 
 #Main
