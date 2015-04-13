@@ -31,11 +31,13 @@ class createGroups(Frame):
                                            "the maximum number of groups.", font = ('MS', 8, 'italic'))
         lblHeader2.grid(row = 2, column = 0, columnspan = 4, sticky = W)
 
+        lblBuffer = Label(self, text = "", font = ('MS', 8))
+        lblBuffer.grid(row = 98, column = 0)
         with open ("stu_dict.pkl", "rb") as db:
             stu_dict = pickle.load(db)
-            student_no = len(db)
-          
-        lblFooter = Label(self, text = "There are currently " + student_no + " unallocated students.",
+            no_students = len(stu_dict)
+        
+        lblFooter = Label(self, text = "There are currently " + str(no_students) + " unallocated students.",
                           font = ('MS', 8))
         lblFooter.grid(row = 99, column = 0, columnspan = 4, sticky = W)
 
