@@ -7,6 +7,8 @@ from tkinter import *
 import tkinter.messagebox
 import os, sys
 import pickle
+import sort_alg
+import group_viewer
 
 class createGroups(Frame):
 
@@ -27,8 +29,8 @@ class createGroups(Frame):
         lblHeader = Label(self, text = "Select Parameters: ", font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
 
-        lblHeader2 = Label(self, text = "Please select the desired number of students in a group OR " +
-                                           "the maximum number of groups.", font = ('MS', 8, 'italic'))
+        lblHeader2 = Label(self, text = "Please select the desired number of students in a group AND " +
+                                           "the number of groups.", font = ('MS', 8, 'italic'))
         lblHeader2.grid(row = 2, column = 0, columnspan = 4, sticky = W)
 
         lblBuffer = Label(self, text = "", font = ('MS', 8))
@@ -46,8 +48,8 @@ class createGroups(Frame):
         lblGroup = Label (self, text = "Select Number of Groups: ", font = ('MS', 8))
         lblGroup.grid(row = 5, column = 0, columnspan= 1, sticky= W)
 
-        self.listGroup = Listbox (self, height = 3)
-        scroll = Scrollbar(self, command = self.listGroup.yview)
+        self.listGroup = Listbox (self,exportselection = 0, height = 3)
+        scroll = Scrollbar(self,   command = self.listGroup.yview)
         self.listGroup.configure(yscrollcommand=scroll.set)
 
         self.listGroup.grid(row = 5, column = 1, columnspan = 1, sticky = W)
@@ -63,8 +65,8 @@ class createGroups(Frame):
         lblSize = Label (self, text = "Select Students per Group: ", font = ('MS', 8))
         lblSize.grid(row = 5, column = 3, columnspan= 1, sticky= W)
 
-        self.listSize = Listbox (self, height = 3)
-        scroll = Scrollbar(self, command = self.listSize.yview)
+        self.listSize = Listbox (self,exportselection = 0, height = 3)
+        scroll = Scrollbar(self,  command = self.listSize.yview)
         self.listSize.configure(yscrollcommand=scroll.set)
 
         self.listSize.grid(row = 5, column = 4, columnspan = 1, sticky = W)
@@ -111,7 +113,41 @@ class createGroups(Frame):
         #//TODO: connect back to the previous screen
 
     def calculate_groups(self):
-        pass
+
+        desired_number = int(self.listGroup.curselection()[0]) + 1
+        desired_size = int(self.listSize.curselection()[0]) + 1
+
+        warning = "Do you want to create groups?"
+
+        with open ("stu_dict.pkl", "rb") as db:
+            stu_dict = pickle.load(db)
+            no_students = len(stu_dict)
+
+        if desired_number * desired_size < no_students:
+            warning += "\n\nWarning! Not enough space for all students"
+
+        if desired_number * desired_size > no_students:
+            warning += "\n\nWarning! Not enough students to fill all groups"
+
+        if no_students % desired_number != 0:
+            warning += "\n\nWarning! Groups will not be of equal size"
+
+        create = tkinter.messagebox.askquestion("Create Groups", warning)
+
+        if create == 'yes':
+            student_groups = sort_alg.sort_students(stu_dict, desired_number, desired_size)
+            grp_dict = {}
+            for item in student_groups:
+                grp_dict[item.number] = item
+
+            with open ("group_dict.pkl", "wb") as db:
+                pickle.dump(grp_dict, db)
+
+            viewer_window = group_viewer.Group_Viewer(self.master, student_groups)
+            self.destroy()
+            
+        else:
+            return
         """tkinter.messagebox.showinfo("Group Calculator", "Calculating...")
         self.clearSelection()
         data = {}
