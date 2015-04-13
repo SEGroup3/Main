@@ -14,36 +14,42 @@ class Main_Menu (Frame):
 
         self.master = master
         self.grid()
-
+        self.hat()
         self.student_start()
         self.lecturer_start()
+
+    def hat(self):
+        photo = PhotoImage(file="hat.gif")
+        w = Label(self, image = photo)
+        w.photo = photo
+        w.grid(row = 1, column = 0, sticky = NSEW)
 
 
     def student_start (self):
     #Create student access buttons'''
-        self.pack(pady = 150, padx = 120)
-        self.students = Label (self, text = 'Students Section', font = ('MS',12, 'bold'))
-        self.students.grid (row =1, column = 2, pady= 10)
+        self.pack(pady = 30, padx = 30)
+        self.students = Label (self, text = 'Student Section', font = ('MS',12, 'bold'))
+        self.students.grid (row =2, column = 0, pady= 10)
         self.stu_but = Button (self, text = "Click Here to Start", command = self.launch_student)
-        self.stu_but.grid(row = 2, column = 2)
+        self.stu_but.grid(row = 3, column = 0)
         self.space1 = Label(self, text = '    ', font=('MS', 8, 'bold'))
-        self.space1.grid(row= 3, column = 0, sticky = W)
+        self.space1.grid(row= 4, column = 0, sticky = W)
 
     def lecturer_start (self):
         
         self.lecturer = Label (self, text = 'Lecturer Section', font = ('MS',12, 'bold'))
-        self.lecturer.grid (row =5, column = 2, pady= 10)
+        self.lecturer.grid (row =6, column = 0, pady= 10)
         self.login_label = Label(self, text = 'Username', font = ('ms', 8,))
-        self.login_label.grid (row = 6, column =1)
+        self.login_label.grid (row = 7, column =0)
         self.login = Entry (self, width = 30)
-        self.login.grid (row= 6, column = 2)
+        self.login.grid (row= 8, column = 0)
         self.passw_label = Label(self, text = 'Password', font = ('ms', 8,))
-        self.passw_label.grid( row =7, column = 1)
+        self.passw_label.grid( row =9, column = 0)
         self.password = Entry(self, width = 30, show = "*")
-        self.password.grid( row = 7, column = 2)
+        self.password.grid( row = 10, column = 0)
 
         self.stu_but = Button (self, text = "Login")
-        self.stu_but.grid(row = 8, column = 2)
+        self.stu_but.grid(row = 11, column = 0)
 
     def launch_student (self):
         self.grid_forget()
