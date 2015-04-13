@@ -426,5 +426,5 @@ if __name__ == '__main__':
 
     root = Tk()
     
-    app = Personality(root, test_no)
+    app = Personality(root, number)
     root.mainloop()
