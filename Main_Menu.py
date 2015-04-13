@@ -5,6 +5,7 @@ import pickle # to save
 import glob #allow you to find the text files and import them 
 import os,sys # allow you to use the os directory to find files
 import Questionnaire
+import Lecturer_Menu
 
 class Main_Menu (Frame):
 
@@ -48,14 +49,39 @@ class Main_Menu (Frame):
         self.password = Entry(self, width = 30, show = "*")
         self.password.grid( row = 10, column = 0)
 
-        self.stu_but = Button (self, text = "Login")
+        self.stu_but = Button (self, text = "Login", command = self.launch_lecturer)
         self.stu_but.grid(row = 11, column = 0)
 
     def launch_student (self):
         self.grid_forget()
         self.destroy()
         Questionnaire.Questionnaire(self.master)
+
         
+    def launch_lecturer (self):
+        with open("credentials.pkl", "rb") as user_pass:
+            credentials = pickle.load(user_pass)
+
+        if self.login.get() in credentials:
+            if credentials[self.login.get()] == self.password.get():
+                self.success()
+
+            else:
+                self.failure(cause = "Inccorrect password")
+
+        else:
+            self.failure(cause = "Incorrect username")
+
+
+    def failure (self, cause):
+        tkinter.messagebox.showinfo("Error", cause)
+           
+        
+    def success (self):
+        
+        self.grid_forget()
+        self.destroy()
+        Lecturer_window = Lecturer_Menu.Lecturer_Menu(self.master)
  
 
 if __name__ == '__main__':
