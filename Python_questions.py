@@ -39,7 +39,6 @@ class results_viewer(Frame):
         butSubmit['command']=self.close_window
         butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
 
-
 class Python_Questions (Frame):
 
     def __init__(self,master,student_No):
@@ -57,6 +56,8 @@ class Python_Questions (Frame):
         self.submit_Button()
         self.clear_Button()
         self.view_Button()
+        self.python_competent()
+        self.python_incompetent()
         self.master = master
 
     def header(self):
@@ -199,6 +200,22 @@ class Python_Questions (Frame):
         else:
             return
 
+    def python_Competent(self):
+        with open ("stu_dict.pkl", "rb") as db:
+            stu_dict = pickle.load(db)
+            stu_dict[self.student_No]=target
+            target.add_competency(True)
+            pickle.dump(stu_dict, db)
+            self.master.destroy()
+
+    def python_Incompetent(self):
+        with open ("stu_dict.pkl", "rb") as db:
+            stu_dict = pickle.load(db)
+            stu_dict[self.student_No]=target
+            target.add_competency(False)
+            pickle.dump(stu_dict, db)
+            self.master.destroy()
+
     def assess_Results(self):
         countAll = 0
 
@@ -213,22 +230,19 @@ class Python_Questions (Frame):
 
         if countAll == 0:
             tk.showinfo("Programming Questions", "You scored 0/4(0%).")
+            self.python_incompetent()
         if countAll == 1:
             tk.showinfo("Programming Questions", "You scored 1/4(25%).")
+            self.python_incompetent()
         if countAll == 2:
             tk.showinfo("Programming Questions", "You scored 2/4(50%).")
+            self.python_compentent()
         if countAll == 3:
             tk.showinfo("Programming Questions", "You scored 3/4(75%).")
+            self.python_competent()
         if countAll == 4:
             tk.showinfo("Programming Questions", "You scored 4/4(100%).")
-
-        with open ("stu_dict.pkl", "rwb") as db:
-            stu_dict = pickle.load(db)
-            stu_dict[self.student_No]=target
-            target.add_competency(True) #or False dependent on score
-            pickle.dump(stu_dict, db)
-
-        self.master.destroy()
+            self.python_competent()
 
     def print_data(self):
         window = Tk()
@@ -239,7 +253,7 @@ class Python_Questions (Frame):
             stu_dict = pickle.load(db)
             for line in db:
                 print (line)
-            
+      
 
 #Main
 if __name__ == '__main__':
