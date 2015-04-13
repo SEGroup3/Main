@@ -125,13 +125,13 @@ class Questionnaire (Frame):
             for item in self.stu_dict:
                 print (self.stu_dict[item])
             if (self.varQ1.get() ==4):
-                Java_questions.Java_Questions(self.master)
+                Java_questions.Java_Questions(self.master, number)
                 self.destroy()
             elif (self.varQ1.get() ==3):
-                Python_questions.prog_questions(self.master)
+                python_window = Python_questions.Python_Questions(master = self.master, student_No = number)
                 self.destroy()    
             elif (self.varQ1.get() ==2):
-                Personality.Personality(self.master)
+                Personality.Personality(self.master, number)
                 self.destroy()   
                 
 

@@ -34,6 +34,7 @@ class Lecturer_Credentials(Frame):
         self.password_label = Label(entry, text = 'Password')
         self.password = Entry(entry, width = 30, show = "*")
 
+
         self.password_label.grid(row = 1, column = 0, pady = 10, padx = 5)
         self.password.grid(row = 1, column = 1)
 
@@ -57,6 +58,7 @@ class Lecturer_Credentials(Frame):
 
         user = self.login.get()
         password = self.password.get()
+
 
         credentials = { user : password }
 
