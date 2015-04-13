@@ -15,6 +15,17 @@ class Group():
                 self.contents = []
                 return
 
+        def __str__(self):
+                self_as_string = "Group Number: {}\nContents: ".format(self.number)
+                if len(self.contents) == 0:
+                        self_as_string += "empty."
+                else:
+                        for item in self.contents:
+                                self_as_string += "\n{}".format(item)
+                return self_as_string
+                        
+                        
+
         def get_group_size(self):
 
                 return len(self.contents)
