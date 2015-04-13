@@ -2,15 +2,17 @@ from tkinter import *
 import tkinter.messagebox
 import operator
 from students import *
+import auto_test
+import pickle
 
 class Personality (Frame):
 
-    def __init__ (self, master):
+    def __init__ (self, master, number):
         master.title("Personality Questions")
         super(Personality, self).__init__(master)
         self.master = master
         self.grid()
-        
+        self.number = number
         self.subper_button ()
         self.get_personality()
         
@@ -382,12 +384,27 @@ class Personality (Frame):
            person ["finisher"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
            print ( person ["finisher"])
 
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + highest_val(person)+ " type. Personality Questionnaire Submitted. ")
+           personality_type = highest_val(person)
+           with open("stu_dict.pkl", "rb") as f:
+               
+               try:
+                   stu_dict = pickle.load(f) #load
+
+               except EOFError:
+                   stu_dict = {}
+
+           stu_dict[self.number].addRole(personality_type)
+
+           with open("stu_dict.pkl", "wb") as f:
+               pickle.dump(stu_dict, f)
+                    
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Personality Questionnaire Submitted. ")
            self.master.destroy()    
-            #self.clear_response
+           self.clear_response
         else:
-            tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
-            self.str_msg == ""
+          tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
+          self.str_msg == ""
+
 def highest_val(personality):
      """ a) create a list of the dict's keys and values; 
          b) return the key with the max value"""  
@@ -398,7 +415,16 @@ def highest_val(personality):
 
 
 if __name__ == '__main__':
+
+    test_list = auto_test.list_of_students(15)
+    test_dict = {}
+    with open("stu_dict.pkl", "wb") as f:
+        for item in test_list:
+            test_dict[item.number] = item
+            test_no = item.number
+        pickle.dump(test_dict, f)
+
     root = Tk()
     
-    app = Personality(root)
+    app = Personality(root, test_no)
     root.mainloop()
