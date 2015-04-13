@@ -131,7 +131,8 @@ class createGroups(Frame):
             tkinter.messagebox.showwarning("Group Calculator", "You must select from one of the options available")
             print ("Error")"""
 #Main
-root = Tk()
-root.title("Group Calculator")
-app = createGroups(root)
-root.mainloop()
+if __name__ =='__main__':
+    root = Tk()
+    root.title("Group Calculator")
+    app = createGroups(root)
+    root.mainloop()
