@@ -1,4 +1,5 @@
 #the GUI to ask Java questions
+#'number' not 'Student_No because I lost rock paper scissors
 
 from tkinter import *
 import tkinter.messagebox as tk
@@ -7,18 +8,9 @@ import students
 import auto_test
 import Personality
 
-class Java_Responses:
-    def __init__(self, respNo="", q1 = 0, q2 = 0, q3 = 0, q4 = 0, q5 = 0):
-        self.respNo = respNo
-        self.q1 = q1
-        self.q2 = q2
-        self.q3 = q3
-        self.q4 = q4
-        self.q5 = q5
-
 class Java_Questions(Frame):
 
-    def __init__(self,master,student_No):
+    def __init__(self,master,number):
 
         Frame.__init__(self,master)
         master.title("Java Programming Questions")
@@ -30,7 +22,7 @@ class Java_Questions(Frame):
         self.q3()
         self.q4()
         #self.q5()
-        self.student_No = student_No
+        self.number = number
         self.submit_Button()
         self.clear_Button()
 
@@ -272,17 +264,17 @@ class Java_Questions(Frame):
     def competent(self):
         with open("stu_dict.pkl", "rb") as db:
             stu_dict=pickle.load(db)
-        stu_dict[self.student_No].changeCompetency(True)
+        stu_dict[self.number].changeCompetency(True)
         with open ("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
         #self.master.destroy()
         self.next_Screen()
     
         
-##        print (self.student_No)
+##        print (self.number)
 ##        with open ("stu_dict.pkl", "rb") as db:
 ##           stu_dict = pickle.load(db)
-##        print (stu_dict[self.student_No])
+##        print (stu_dict[self.number])
 
         
     def clear_All(self):
@@ -298,7 +290,7 @@ class Java_Questions(Frame):
             return
         
     def next_Screen(self):
-        Personality.Personality(self.master, number =student_No )
+        Personality.Personality(self.master, number =number )
         self.master.destroy()
 
 
@@ -313,5 +305,5 @@ if __name__ == '__main__':
 ##    with open ("stu_dict.pkl", "wb+") as db:
 ##            pickle.dump(s_dict, db)
     root = Tk()
-    app = Java_Questions(root, student_No)
+    app = Java_Questions(root, number)
     root.mainloop()

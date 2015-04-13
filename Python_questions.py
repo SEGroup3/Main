@@ -42,7 +42,7 @@ class results_viewer(Frame):
 
 class Python_Questions (Frame):
 
-    def __init__(self,master,student_No):
+    def __init__(self,master,number):
 
         Frame.__init__(self,master)
         self.grid()
@@ -52,7 +52,7 @@ class Python_Questions (Frame):
         self.q2()
         self.q3()
         self.q4()
-        self.student_No = student_No
+        self.number = number
         #self.q5()
         self.submit_Button()
         self.clear_Button()
@@ -230,14 +230,14 @@ class Python_Questions (Frame):
     def python_Competent(self):
         with open ("stu_dict.pkl", "rb") as db:
             stu_dict = pickle.load(db)
-        stu_dict[self.student_No].changeCompetency(True)
+        stu_dict[self.number].changeCompetency(True)
         with open("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
         self.master.destroy()
-##        print (self.student_No)
+##        print (self.number)
 ##        with open ("stu_dict.pkl", "rb") as db:
 ##           stu_dict = pickle.load(db)
-##        print (stu_dict[self.student_No])
+##        print (stu_dict[self.number])
 
 
     def python_Incompetent(self):
@@ -255,7 +255,7 @@ if __name__ == '__main__':
 ##            pickle.dump(s_dict, db)
     root = Tk()
     root.title("Python Programming Questions")
-    app = Python_Questions(root, student_No)
+    app = Python_Questions(root, number)
     root.mainloop()
 
 
