@@ -3,6 +3,8 @@
 from tkinter import *
 import tkinter.messagebox as tk
 import shelve
+import students
+import auto_test
 
 class Java_Responses:
     def __init__(self, respNo="", q1 = 0, q2 = 0, q3 = 0, q4 = 0, q5 = 0):
@@ -15,7 +17,7 @@ class Java_Responses:
 
 class Java_Questions(Frame):
 
-    def __init__(self,master):
+    def __init__(self,master,student_No):
 
         Frame.__init__(self,master)
         master.title("Java Programming Questions")
@@ -27,6 +29,7 @@ class Java_Questions(Frame):
         self.q3()
         self.q4()
         #self.q5()
+        self.student_No = student_No
         self.submit_Button()
         self.clear_Button()
 
@@ -50,7 +53,7 @@ class Java_Questions(Frame):
     def submit_Button(self):
         #a button to allow the user to submit answers
         butSubmit = Button(self, text = 'Submit', font = ('MS', 8, 'bold'))
-        butSubmit['command']=self.store_Response
+        butSubmit['command']=self.assess_Results
         butSubmit.grid(row = 99, column = 1, columnspan = 1, sticky = N)
     
     def clear_Button(self):
@@ -232,19 +235,51 @@ class Java_Questions(Frame):
         buffer = Label(self, text = "", font = ('MS', 8))
         buffer.grid(row = 28, column = 0)
 
-    def store_Response(self):
-        #store the response using shelving
-        db = shelve.open('javaresponsedb')
-        responseCount = len(db)
-        Ans = Java_Responses(str(responseCount+1),
-                       self.varQ1.get(), self.varQ2.get(), self.varQ3.get(),self.varQ4.get(),
-                       #self.varQ5.get()
-                       )
-        db[Ans.respNo] = Ans
-        db.close
-        tk.showinfo("Programming Questions", "Your answers have been saved.")
+    def assess_Results(self):
+        countAll = 0
+        if self.varQ1.get() == 4:
+            countAll += 1
+        if self.varQ2.get() == 4:
+            countAll += 1
+        if self.varQ3.get() == 4:
+            countAll += 1
+        if self.varQ4.get() == 4:
+            countAll +=1
+##        if self.varQ5.get() == 4:
+##            countAll +=1 
+
+        print(countAll)
+        if countAll == 0:
+            tk.showinfo("Programming Questions", "You scored 0/4(0%).")
+            self.incompetent()
+        if countAll == 1:
+            tk.showinfo("Programming Questions", "You scored 1/4(25%).")
+            self.incompetent()
+        if countAll == 2:
+            tk.showinfo("Programming Questions", "You scored 2/4(50%).")
+            self.competent()
+        if countAll == 3:
+            tk.showinfo("Programming Questions", "You scored 3/4(75%).")
+            self.competent()
+        if countAll == 4:
+            tk.showinfo("Programming Questions", "You scored 4/4(100%).")
+            self.competent()
+
+    def incompetent(self):
         self.master.destroy()
-        #TODO//jump to next part of program here
+
+    def competent(self):
+        with open("stu_dict.pkl", "rb") as db:
+            stu_dict=pickle.load(db)
+        stu_dict[self.student_No].changeCompetency(True)
+        with open ("stu_dict.pkl", "wb") as db:
+            pickle.dump(stu_dict, db)
+        self.master.destroy()
+        print (self.student_No)
+        with open ("stu_dict.pkl", "rb") as db:
+           stu_dict = pickle.load(db)
+        print (stu_dict[self.student_No])
+
         
     def clear_All(self):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
@@ -260,7 +295,14 @@ class Java_Questions(Frame):
 
 #Main
 if __name__ == '__main__':
+##TESTING
+##    s_dict = {}
+##    student_list = auto_test.list_of_students(15)
+##    for item in student_list:
+##        s_dict[item.number] = item
+##        number_arg = item.number
+##    with open ("stu_dict.pkl", "wb+") as db:
+##            pickle.dump(s_dict, db)
     root = Tk()
-    
-    app = Java_Questions(root)
+    app = Java_Questions(root, number_arg)
     root.mainloop()

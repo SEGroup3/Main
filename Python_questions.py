@@ -4,7 +4,6 @@ from tkinter import *
 import tkinter.messagebox as tk
 import pickle
 import students
-from Response import Response
 import auto_test
 
 class results_viewer(Frame):
@@ -255,13 +254,14 @@ class Python_Questions (Frame):
 
 #Main
 if __name__ == '__main__':
-    s_dict = {}
-    student_list = auto_test.list_of_students(15)
-    for item in student_list:
-        s_dict[item.number] = item
-        number_arg = item.number
-    with open ("stu_dict.pkl", "wb+") as db:
-            pickle.dump(s_dict, db)
+##TESTING
+##    s_dict = {}
+##    student_list = auto_test.list_of_students(15)
+##    for item in student_list:
+##        s_dict[item.number] = item
+##        number_arg = item.number
+##    with open ("stu_dict.pkl", "wb+") as db:
+##            pickle.dump(s_dict, db)
     root = Tk()
     root.title("Python Programming Questions")
     app = Python_Questions(root, number_arg)
