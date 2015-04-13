@@ -4,6 +4,7 @@ from tkinter import *
 import tkinter.messagebox as tk
 import pickle
 import students
+from students import Student
 import auto_test
 
 class results_viewer(Frame):
@@ -225,16 +226,6 @@ class Python_Questions (Frame):
         if countAll == 4:
             tk.showinfo("Programming Questions", "You scored 4/4(100%).")
             self.python_Competent()
-
-    def print_data(self):
-        window = Tk()
-        window.title("Results Viewer")
-        app = results_viewer(window)
-        window.mainloop()
-        with open ("stu_dict.pkl", "rwb") as db:
-            stu_dict = pickle.load(db)
-            for line in db:
-                print (line)
                 
     def python_Competent(self):
         with open ("stu_dict.pkl", "rb") as db:
@@ -264,7 +255,7 @@ if __name__ == '__main__':
 ##            pickle.dump(s_dict, db)
     root = Tk()
     root.title("Python Programming Questions")
-    app = Python_Questions(root, number_arg)
+    app = Python_Questions(root, student_No)
     root.mainloop()
 
 

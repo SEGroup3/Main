@@ -2,9 +2,10 @@
 
 from tkinter import *
 import tkinter.messagebox as tk
-import shelve
+import pickle
 import students
 import auto_test
+import Personality
 
 class Java_Responses:
     def __init__(self, respNo="", q1 = 0, q2 = 0, q3 = 0, q4 = 0, q5 = 0):
@@ -248,7 +249,6 @@ class Java_Questions(Frame):
 ##        if self.varQ5.get() == 4:
 ##            countAll +=1 
 
-        print(countAll)
         if countAll == 0:
             tk.showinfo("Programming Questions", "You scored 0/4(0%).")
             self.incompetent()
@@ -267,6 +267,7 @@ class Java_Questions(Frame):
 
     def incompetent(self):
         self.master.destroy()
+        self.next_Screen()
 
     def competent(self):
         with open("stu_dict.pkl", "rb") as db:
@@ -275,10 +276,13 @@ class Java_Questions(Frame):
         with open ("stu_dict.pkl", "wb") as db:
             pickle.dump(stu_dict, db)
         self.master.destroy()
-        print (self.student_No)
-        with open ("stu_dict.pkl", "rb") as db:
-           stu_dict = pickle.load(db)
-        print (stu_dict[self.student_No])
+        self.next_Screen()
+    
+        
+##        print (self.student_No)
+##        with open ("stu_dict.pkl", "rb") as db:
+##           stu_dict = pickle.load(db)
+##        print (stu_dict[self.student_No])
 
         
     def clear_All(self):
@@ -292,6 +296,10 @@ class Java_Questions(Frame):
             tk.showinfo("Programming Questions", "All answers cleared.")
         else:
             return
+        
+    def next_Screen(self):
+        Personality.Personality(self.master, student_No = number)
+
 
 #Main
 if __name__ == '__main__':
@@ -304,5 +312,5 @@ if __name__ == '__main__':
 ##    with open ("stu_dict.pkl", "wb+") as db:
 ##            pickle.dump(s_dict, db)
     root = Tk()
-    app = Java_Questions(root, number_arg)
+    app = Java_Questions(root, student_No)
     root.mainloop()
