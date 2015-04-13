@@ -1,14 +1,13 @@
 from tkinter import *
-import Questionnaire
-import Python_questions
+import lecturer_credentials
+import Main_Menu
+import os.path
 
 root = Tk()
-root.title("Define Student")
-intro = Questionnaire.Questionnaire(root)
-intro.mainloop()
-
-root = Tk()
-root.title("Programming Questions")
-questions = Python_questions.prog_questions(root)
-questions.mainloop()
+root.title("Welcome")
+if not os.path.isfile("credentials.pkl"):
+	first_time_window = lecturer_credentials.Lecturer_Credentials(root)
+else:
+	main = Main_Menu.Main_Menu(root)
+	
 
