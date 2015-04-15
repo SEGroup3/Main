@@ -21,7 +21,7 @@ class Personality (Frame):
     def get_personality(self):
         self.str_msg= ""
         # Provide Instructions
-        self.pack(pady= 30, padx = 30)
+        #self.pack(pady= 30, padx = 30)
         self.inst = Label(self, text = 'Instructions:\n\n', font=('MS', 8, 'bold'))
         self.inst.grid(row= 2, column = 0, sticky = W)
         self.inst_info = Label (self, text = 'Please read the following words and rank them from 4 to 1 with 4 being the word that best describes you \n and 1 being the least like you. Please use each value only once and select your instinctive behaviour, \n not what you perceive to be the best answer. ', font=('MS', 8))
