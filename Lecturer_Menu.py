@@ -5,6 +5,7 @@ import group_viewer
 import edit_groups
 import createGroupsGUI
 import os.path
+import pickle
 
 class Lecturer_Menu (Frame):
 
@@ -19,7 +20,7 @@ class Lecturer_Menu (Frame):
 
         def view_groups (self):
           
-            self.pack(pady = 150, padx = 120)
+            self.grid(pady = 150, padx = 120)
             self.setup_group = Label (self, text = 'Set up Groups', font = ('MS',12, 'bold'))
             self.setup_group.grid (row =1, column =2, pady= 10)
             self.setup_button = Button (self, text = 'Set Group Size', command = self.launch_group_setup)
@@ -41,11 +42,11 @@ class Lecturer_Menu (Frame):
             try:
 
                     with open("group_dict.pkl", "rb") as db:
-                            group_dict = db
+                            group_dict = pickle.load(db)
 
                     group_list = []
-                    for item in group_dict:
-                            group_list.append(item)
+                    for item in group_dict.keys():
+                            group_list.append(group_dict[item])
 
                     self.grid_forget()
                     self.destroy()        
@@ -61,13 +62,14 @@ class Lecturer_Menu (Frame):
             try:
                     with open("group_dict.pkl", "rb") as db:
                             biggest = 0
-                            for item in db:
-                                    if item.get_group_size() > biggest:
-                                            biggest = item.get_group_size()
+                            group_dict = pickle.load(db)
+                            for item in group_dict.keys():
+                                    if group_dict[item].get_group_size() > biggest:
+                                            biggest = group_dict[item].get_group_size()
 
                     self.grid_forget()
                     self.destroy()
-                    edit_groups.Group_Editor(self.master, biggest)
+                    edit_groups.Group_Editor(master = self.master, group_size = biggest)
 
             except:
                     messagebox.showerror("Error", "Could not open the groups, or they were not saved to disk.")

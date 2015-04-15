@@ -76,7 +76,7 @@ class Group():
 
                 stu_grade_dict = {}
                 for item in self.contents:
-                        stu_grade_dict[item.fistname + item.surname] = item.grades
+                        stu_grade_dict[item.firstname + item.surname] = item.grades
 
                 return stu_grade_dict
 

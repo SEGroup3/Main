@@ -18,6 +18,7 @@ class Group_Editor(Frame):
         # The group editor must be initialised with the desired group size as decided by the lecturer
         super(Group_Editor, self).__init__(master)
         self.master = master
+        self.grid()
         self.group_size = group_size # Will check that groups match the correct size at the end
         self.master.title("Group Editor")
         self.header()
@@ -55,7 +56,7 @@ class Group_Editor(Frame):
 				
 	# This code is supposed to create a centred Header frame.
                 
-        header = Label(self.master, text = "Group Editor", font = ('MS', 20, 'bold'), anchor = CENTER)
+        header = Label(self, text = "Group Editor", font = ('MS', 20, 'bold'), anchor = CENTER)
         header.grid(row = 0, column = 0, columnspan = 3, sticky = "NSWE")
 
     def open_groups(self):
@@ -75,11 +76,9 @@ class Group_Editor(Frame):
 
     def back(self):
 
-        if messagebox.askquestion("Back to Main Menu","Are you sure you want to go back? All unsaved changes will be lost."):
-
-            self.grid_forget()
-            self.destroy()
-            Lecturer_Menu.Lecturer_Menu(self.master)
+        self.grid_forget()
+        self.destroy()
+        Lecturer_Menu.Lecturer_Menu(self.master)
         
 
     def group_selector(self):
@@ -95,8 +94,8 @@ class Group_Editor(Frame):
         self.op2 = StringVar(self.master)
         self.op2.set(list_of_group_names[1])
 
-        option1 = OptionMenu(self.master, self.op1, *list_of_group_names, command = self.listbox_1)
-        option2 = OptionMenu(self.master, self.op2, *list_of_group_names, command = self.listbox_2)
+        option1 = OptionMenu(self, self.op1, *list_of_group_names, command = self.listbox_1)
+        option2 = OptionMenu(self, self.op2, *list_of_group_names, command = self.listbox_2)
 
         option1.grid(row = 1, column = 0)
         option2.grid(row = 1, column = 2)
@@ -108,20 +107,20 @@ class Group_Editor(Frame):
 
         # Create movement buttons
 
-        move_right_btn = Button(self.master, text = "Move >>", command = self.move_right)
+        move_right_btn = Button(self, text = "Move >>", command = self.move_right)
         move_right_btn.grid(row = 2, column = 1)
 
-        move_left_btn = Button(self.master, text = "<< Move", command = self.move_left)
+        move_left_btn = Button(self, text = "<< Move", command = self.move_left)
         move_left_btn.grid(row = 3, column = 1)
 
         # Create a save button
 
-        save_btn = Button(self.master, text = "Save Groups", command = self.save_groups_confirm)
+        save_btn = Button(self, text = "Save Groups", command = self.save_groups_confirm)
         save_btn.grid(row = 4, column = 1)
 
         #Create a back button
 
-        back_btn = Button(self.master, text = "Back to Menu", command = self.handler)
+        back_btn = Button(self, text = "Back to Menu", command = self.handler)
         back_btn.grid(row = 5, column = 1)
         
     def save_groups_confirm(self):
@@ -215,7 +214,7 @@ class Group_Editor(Frame):
         Happens every time the user makes a change to group_dict.    
         '''
 
-        list_frame = Frame(self.master)
+        list_frame = Frame(self)
         list_frame.grid(row = 2, column = 0, rowspan = 2)
 
         self.left_listbox = Listbox(list_frame)
@@ -238,7 +237,7 @@ class Group_Editor(Frame):
         Happens every time the user makes a change to group_dict.    
         '''
 
-        list_frame = Frame(self.master)
+        list_frame = Frame(self)
         list_frame.grid(row = 2, column = 2, rowspan = 2)
 
         self.right_listbox = Listbox(list_frame)
