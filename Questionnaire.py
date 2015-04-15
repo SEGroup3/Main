@@ -37,7 +37,7 @@ class Questionnaire (Frame):
     def get_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
-        self.pack(pady = 40, padx = 40)
+        self.grid(pady = 40, padx = 40)
         #Get info
         self.ask_firstname = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
         self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
@@ -151,6 +151,6 @@ class Questionnaire (Frame):
      
 #main
 if __name__ == '__main__':
-    
-    app = Questionnaire()
+    root = Tk()
+    app = Questionnaire(root)
     
