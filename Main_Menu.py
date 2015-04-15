@@ -28,7 +28,6 @@ class Main_Menu (Frame):
 
     def student_start (self):
     #Create student access buttons'''
-        self.pack(pady = 30, padx = 30)
         self.students = Label (self, text = 'Student Section', font = ('MS',12, 'bold'))
         self.students.grid (row =2, column = 0, pady= 10)
         self.stu_but = Button (self, text = "Click Here to Start", command = self.launch_student)

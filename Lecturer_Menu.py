@@ -39,7 +39,15 @@ class Lecturer_Menu (Frame):
         def launch_group_info (self):
             self.grid_forget()
             self.destroy()
-            group_viewer.Group_Viewer(self.master)
+
+            with open("group_dict.pkl", "rb") as db:
+                    group_dict = db
+
+            group_list = []
+            for item in group_dict:
+                    group_list.append(item)
+                    
+            group_viewer.Group_Viewer(self.master, group_list)
 
         def launch_change_group (self):
             self.grid_forget()

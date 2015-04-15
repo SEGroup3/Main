@@ -167,25 +167,17 @@ class Group_Viewer(Frame):
                         
                        return
 
-                confirm_window = Tk()
-                confirm_window.title("Success!")
-
-                confirmation_frame = Frame(confirm_window)
-                confirmation_frame.grid()
-
-                success = Label(confirmation_frame, text = "Groups saved.", anchor = CENTER)
-                success.grid(row = 0, column = 0)
-
-                ok_confirm = Button(confirmation_frame, text = "OK", command = confirm_window.destroy, anchor = CENTER)
-                ok_confirm.grid(row = 1, column = 0)
-
-                confirm_window.mainloop()
+                messagebox.showinfo("Success!", "CSV File Saved.")
+                
         def self_destruct(self):
+                
                 self.save_frame.destroy()
                 self.group_frame.destroy()
                 self.grid_forget()
                 self.destroy()
+                
         def back_to_main(self):
+                
                 self.self_destruct()
                 Lecturer_Menu.Lecturer_Menu(self.master)
                     

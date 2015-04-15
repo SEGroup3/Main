@@ -23,7 +23,7 @@ def convert_to_CSV(list_of_groups, more = False):
                 # Also records the largest group size within the list of groups.
 
                 if more:
-                        output += 'Group {}, Belbin Role, Grades, , '.format(item.number)
+                        output += 'Group {}, Belbin Role, Grades, Average Grade, , '.format(item.number)
                 else:
                         output += 'Group {}, , '.format(item.number)
 
@@ -53,6 +53,11 @@ def convert_to_CSV(list_of_groups, more = False):
                                                 output += '{}, '.format(item.contents[row].grades)
                                         else:
                                                 output += ', '
+                                        if item.get_group_average():
+                                                output += '{}, '.format(item.get_group_average())
+                                        else:
+                                                output += ', '
+                                                
 
                                 output += ', '
 

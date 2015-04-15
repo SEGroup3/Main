@@ -21,7 +21,7 @@ class Personality (Frame):
     def get_personality(self):
         self.str_msg= ""
         # Provide Instructions
-        self.pack(pady= 30, padx = 30)
+        #self.pack(pady= 30, padx = 30)
         self.inst = Label(self, text = 'Instructions:\n\n', font=('MS', 8, 'bold'))
         self.inst.grid(row= 2, column = 0, sticky = W)
         self.inst_info = Label (self, text = 'Please read the following words and rank them from 4 to 1 with 4 being the word that best describes you \n and 1 being the least like you. Please use each value only once and select your instinctive behaviour, \n not what you perceive to be the best answer. ', font=('MS', 8))
@@ -376,13 +376,13 @@ class Personality (Frame):
            
            person = {"leader_score": 0, "teamws_score":0,"coordin_score":0,"finisher_score":0}
            person ["leader"] = int(self.r1q1_opt.get()) + int(self.r2q1_opt.get())+ int(self.r3q1_opt.get())+ int(self.r4q1_opt.get()) + int(self.r5q1_opt.get()) + int(self.r6q1_opt.get()) + int(self.r7q1_opt.get()) + int(self.r8q1_opt.get()) + int(self.r9q1_opt.get()) + int(self.r10q1_opt.get()) + int(self.r11q1_opt.get()) + int(self.r12q1_opt.get())
-           print ( person ["leader"])
+           #print ( person ["leader"])
            person ["teamworker"] =  int(self.r1q2_opt.get()) + int(self.r2q2_opt.get())+ int(self.r3q2_opt.get())+ int(self.r4q2_opt.get()) + int(self.r5q2_opt.get()) + int(self.r6q2_opt.get()) + int(self.r7q2_opt.get()) + int(self.r8q2_opt.get()) + int(self.r9q2_opt.get()) + int(self.r10q2_opt.get()) + int(self.r11q2_opt.get()) + int(self.r12q2_opt.get())
-           print ( person ["teamworker"])
+           #print ( person ["teamworker"])
            person ["coordinator"]= int(self.r1q3_opt.get()) + int(self.r2q3_opt.get())+ int(self.r3q3_opt.get())+ int(self.r4q3_opt.get()) + int(self.r5q3_opt.get()) + int(self.r6q3_opt.get()) + int(self.r7q3_opt.get()) + int(self.r8q3_opt.get()) + int(self.r9q3_opt.get()) + int(self.r10q3_opt.get()) + int(self.r11q3_opt.get()) + int(self.r12q3_opt.get())
-           print ( person ["coordinator"])
+           #print ( person ["coordinator"])
            person ["finisher"] = int(self.r1q4_opt.get()) + int(self.r2q4_opt.get())+ int(self.r3q4_opt.get())+ int(self.r4q4_opt.get()) + int(self.r5q4_opt.get()) + int(self.r6q4_opt.get()) + int(self.r7q4_opt.get()) + int(self.r8q4_opt.get()) + int(self.r9q4_opt.get()) + int(self.r10q4_opt.get()) + int(self.r11q4_opt.get()) + int(self.r12q4_opt.get())
-           print ( person ["finisher"])
+           #print ( person ["finisher"])
 
            personality_type = highest_val(person)
            with open("stu_dict.pkl", "rb") as f:
@@ -398,11 +398,11 @@ class Personality (Frame):
            with open("stu_dict.pkl", "wb") as f:
                pickle.dump(stu_dict, f)
                     
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Personality Questionnaire Submitted. ")
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Thanks for submitting your questionnaire!")
            self.master.destroy()    
-           self.clear_response
+           
         else:
-          tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
+          tkinter.messagebox.showinfo("Please fix the following errors:", self.str_msg)
           self.str_msg == ""
 
 def highest_val(personality):

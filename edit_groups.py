@@ -5,20 +5,21 @@ import re
 import students
 import groups
 import auto_test
+import Lecturer_Menu
+import tkinter.messagebox
 
 ''' This is an interface for directly manipulating the groups. '''        
         
 
-class Group_Editor():
+class Group_Editor(Frame):
 
-    def __init__(self, group_size):
+    def __init__(self, group_size, master):
 
         # The group editor must be initialised with the desired group size as decided by the lecturer
-        
+        super(Group_Editor, self).__init__(master)
+        self.master = master
         self.group_size = group_size # Will check that groups match the correct size at the end
-        self.window = Tk()
-        self.window.protocol("WM_DELETE_WINDOW", self.handler)
-        self.window.title("Group Editor")
+        self.master.title("Group Editor")
         self.header()
         self.group_dict = self.open_groups()
         self.group_selector()
@@ -47,13 +48,14 @@ class Group_Editor():
 
         # Quit
         if messagebox.askokcancel("Quit?", quit_msg):
-            self.window.destroy()
+            self.back()
+            
 
     def header(self):
 				
 	# This code is supposed to create a centred Header frame.
                 
-        header = Label(self.window, text = "Group Editor", font = ('MS', 20, 'bold'), anchor = CENTER)
+        header = Label(self.master, text = "Group Editor", font = ('MS', 20, 'bold'), anchor = CENTER)
         header.grid(row = 0, column = 0, columnspan = 3, sticky = "NSWE")
 
     def open_groups(self):
@@ -66,9 +68,19 @@ class Group_Editor():
             fileObject.close()
             return unpickled
 
-        # I created a whole Error Window class for this event... probably overkill
+
         except IOError:
-            err = Error_Window(self)
+            messagebox.showerror("File not Found", "Groups could not be found; returning to the menu.")
+            self.back()
+
+    def back(self):
+
+        if messagebox.askquestion("Back to Main Menu","Are you sure you want to go back? All unsaved changes will be lost."):
+
+            self.grid_forget()
+            self.destroy()
+            Lecturer_Menu.Lecturer_Menu(self.master)
+        
 
     def group_selector(self):
 
@@ -78,13 +90,13 @@ class Group_Editor():
 
         # Assign StringVars for the OptionMenus
         
-        self.op1 = StringVar(self.window)
+        self.op1 = StringVar(self.master)
         self.op1.set(list_of_group_names[0])
-        self.op2 = StringVar(self.window)
+        self.op2 = StringVar(self.master)
         self.op2.set(list_of_group_names[1])
 
-        option1 = OptionMenu(self.window, self.op1, *list_of_group_names, command = self.listbox_1)
-        option2 = OptionMenu(self.window, self.op2, *list_of_group_names, command = self.listbox_2)
+        option1 = OptionMenu(self.master, self.op1, *list_of_group_names, command = self.listbox_1)
+        option2 = OptionMenu(self.master, self.op2, *list_of_group_names, command = self.listbox_2)
 
         option1.grid(row = 1, column = 0)
         option2.grid(row = 1, column = 2)
@@ -96,33 +108,30 @@ class Group_Editor():
 
         # Create movement buttons
 
-        move_right_btn = Button(self.window, text = "Move >>", command = self.move_right)
+        move_right_btn = Button(self.master, text = "Move >>", command = self.move_right)
         move_right_btn.grid(row = 2, column = 1)
 
-        move_left_btn = Button(self.window, text = "<< Move", command = self.move_left)
+        move_left_btn = Button(self.master, text = "<< Move", command = self.move_left)
         move_left_btn.grid(row = 3, column = 1)
 
         # Create a save button
 
-        save_btn = Button(self.window, text = "Save Groups", command = self.save_groups_confirm)
+        save_btn = Button(self.master, text = "Save Groups", command = self.save_groups_confirm)
         save_btn.grid(row = 4, column = 1)
+
+        #Create a back button
+
+        back_btn = Button(self.master, text = "Back to Menu", command = self.handler)
+        back_btn.grid(row = 5, column = 1)
         
     def save_groups_confirm(self):
 
         ''' Save group dialog. '''
+        if messagebox.askokcancel("Are you sure?", "Are you sure you want to save the current groups? This will overwrite existing groups."):
+            self.save()
 
-        confirm = Tk()
-        confirm.title("Are you sure?")
-        confirm_text = Label(confirm, text = "Are you sure you want to save the current groups? This will overwrite existing groups.")
-        confirm_text.grid(columnspan = 2)
 
-        no_btn = Button(confirm, text = "No", command = lambda: self.close(confirm))
-        no_btn.grid(row = 1, column = 1)
-
-        yes_btn = Button(confirm, text = "Yes", command = lambda: self.save(confirm))
-        yes_btn.grid(row = 1, column = 0)
-
-    def save(self, window):
+    def save(self):
 
         ''' The code for saving groups to disk and closing the save group dialog. '''
         
@@ -130,16 +139,8 @@ class Group_Editor():
             pickle.dump(self.group_dict, pickle_file)
             self.has_changed = False
 
-        self.close(window)
-        success = Tk()
-        success_text = Label(success, text = "Success!")
-        success_text.grid()
 
-        success_btn = Button(success, text = "OK", command = lambda: self.close(success))
-        success_btn.grid(row = 1)
-
-    def close(self, window):
-        window.destroy()
+        messagebox.showinfo("Success", "Groups saved to disk.")
 
     def move_right(self):
 
@@ -214,7 +215,7 @@ class Group_Editor():
         Happens every time the user makes a change to group_dict.    
         '''
 
-        list_frame = Frame(self.window)
+        list_frame = Frame(self.master)
         list_frame.grid(row = 2, column = 0, rowspan = 2)
 
         self.left_listbox = Listbox(list_frame)
@@ -237,7 +238,7 @@ class Group_Editor():
         Happens every time the user makes a change to group_dict.    
         '''
 
-        list_frame = Frame(self.window)
+        list_frame = Frame(self.master)
         list_frame.grid(row = 2, column = 2, rowspan = 2)
 
         self.right_listbox = Listbox(list_frame)
@@ -253,31 +254,12 @@ class Group_Editor():
         self.right_listbox.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.right_listbox.yview)
 
-        
-
-class Error_Window():
-
-    def __init__(self, master):
-
-        self.master = master
-        self.window = Tk()
-        self.window.title("File not found")
-
-        err_msg = Label(self.window, text = "Unable to find saved groups. Click \"OK\" to return to the main menu.")
-        err_msg.grid()
-
-        err_btn = Button(self.window, text = "OK", command = self.shut_it_down)
-        err_btn.grid(row=1)
-
-        self.master.window.destroy()
-
-    def shut_it_down(self):
-        self.window.destroy()
-        
 
 if __name__ == "__main__":
 
     # Create auto generated test groups if no groups are saved
+    
+
     
     if not os.path.isfile("group_dict.pkl"):
         test_groups = auto_test.list_of_groups(8)
@@ -293,6 +275,6 @@ if __name__ == "__main__":
     
     with open("group_dict.pkl", "rb") as pickle_file:
             loaded_groups = pickle.load(pickle_file)
-            print(loaded_groups)
 
-    Group_Editor(loaded_groups[1].get_group_size())
+    root = Tk()
+    Group_Editor(loaded_groups[1].get_group_size(), root)

@@ -12,6 +12,7 @@ class Student ():
         self.role = role
         self.competency = competency
 
+
     def __str__(self):
         # Returns a one-line string containing a Student's attributes.
         # May be useful for debugging.

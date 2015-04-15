@@ -53,7 +53,7 @@ class Group():
                         print(item)
                 return
 
-        def get_group_results(self):
+        def get_group_average(self):
                 
                 total_grades = 0 # Total grades of group
                 ignore = 0 # Number of students with no grade saved
@@ -64,15 +64,21 @@ class Group():
                         else:
                                 ignore += 1
 
-                if total_grades == 0:
-                        print("No grade information for Group {}.".format(self.number))
-                        return False
+                if total_grades == 0: 
+                        return None
 
                 students_with_grades = self.get_group_size() - ignore
                 avg_grade = total_grades / students_with_grades
 
-                print("Average grade for Group {} is {}.".format(self.number, avg_grade))
                 return avg_grade
+
+        def get_group_results(self):
+
+                stu_grade_dict = {}
+                for item in self.contents:
+                        stu_grade_dict[item.fistname + item.surname] = item.grades
+
+                return stu_grade_dict
 
 if __name__ == "__main__":
         

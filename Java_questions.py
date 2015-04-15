@@ -27,7 +27,6 @@ class Java_Questions(Frame):
 
     def header(self):
         #a header to appear at the top of the window
-        self.pack(pady = 20, padx = 20)
         lblHeader = Label(self, text = "Java Programming Questions: ",
                           font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
