@@ -37,9 +37,9 @@ class Questionnaire (Frame):
     def get_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
-        self.pack(pady = 40, padx = 40)
+    
         #Get info
-        self.ask_firstname = Label(self, text='First Name:', font = ('MS', 8, 'bold'))
+        self.ask_firstname = Label(self, text='Forename:', font = ('MS', 8, 'bold'))
         self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
 
         self.get_firstname = Entry(self)
@@ -67,7 +67,7 @@ class Questionnaire (Frame):
 
     def get_team_exp_quest (self):
         # Create widgets to ask Team Expereince Questions
-        qu1 = '1. Do you feel you have prior\n computing experience?'
+        qu1 = 'Do you feel you have prior\n computing experience?'
         ExpHead = Label(self, text= 'Prior Computing Experience:', font=('MS', 8, 'bold'))
         ExpHead.grid(row= 7, column= 1, rowspan= 1, sticky = NE)
 
@@ -101,18 +101,18 @@ class Questionnaire (Frame):
         str_msg = ""
         if self.get_firstname.get().isalpha():
             firstname= self.get_firstname.get()
-        else: str_msg = "Please Add First Name \n"
+        else: str_msg = "Please add first name \n"
         if self.get_surname.get().isalpha():
             surname= self.get_surname.get()
-        else: str_msg = str_msg + "Please Add Surname \n"
+        else: str_msg = str_msg + "Please add surname \n"
         if self.get_numb.get().lower().strip('c').isdigit():
             number = self.get_numb.get()
-        else: str_msg = str_msg + "Please Add Number \n"
+        else: str_msg = str_msg + "Please add number \n"
         if self.get_email.get() != "":
             email = self.get_email.get()
-        else: str_msg = str_msg + "Please Add Email \n"
+        else: str_msg = str_msg + "Please add email \n"
         if (self.varQ1.get() ==0):
-            str_msg = str_msg + "Please Answer Experience Question \n"
+            str_msg = str_msg + "Please answer experience question \n"
           
         if str_msg == "":
             tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
@@ -135,7 +135,7 @@ class Questionnaire (Frame):
 
             #self.clear_response
         else:
-            tkinter.messagebox.showinfo("Please Fix the Following Errors", str_msg)
+            tkinter.messagebox.showinfo("Please fix the following errors", str_msg)
       
         
     def clear_response(self):
