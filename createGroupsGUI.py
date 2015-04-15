@@ -123,7 +123,7 @@ class createGroups(Frame):
         desired_number = int(self.listGroup.curselection()[0]) + 1
         desired_size = int(self.listSize.curselection()[0]) + 1
 
-        warning = "Do you want to create groups?"
+        warning = "Do you want to create groups using these parameters?"
 
         with open ("stu_dict.pkl", "rb") as db:
             stu_dict = pickle.load(db)
