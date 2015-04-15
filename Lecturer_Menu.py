@@ -37,22 +37,40 @@ class Lecturer_Menu (Frame):
 
 
         def launch_group_info (self):
-            self.grid_forget()
-            self.destroy()
 
-            with open("group_dict.pkl", "rb") as db:
-                    group_dict = db
+            try:
 
-            group_list = []
-            for item in group_dict:
-                    group_list.append(item)
-                    
-            group_viewer.Group_Viewer(self.master, group_list)
+                    with open("group_dict.pkl", "rb") as db:
+                            group_dict = db
+
+                    group_list = []
+                    for item in group_dict:
+                            group_list.append(item)
+
+                    self.grid_forget()
+                    self.destroy()        
+                    group_viewer.Group_Viewer(self.master, group_list)
+
+
+            except:
+                    messagebox.showerror("Error", "Could not open the groups, or they were not saved to disk.")
+
 
         def launch_change_group (self):
-            self.grid_forget()
-            self.destroy()
-            edit_groups.Group_Editor(self.master)
+
+            try:
+                    with open("group_dict.pkl", "rb") as db:
+                            biggest = 0
+                            for item in db:
+                                    if item.get_group_size() > biggest:
+                                            biggest = item.get_group_size()
+
+                    self.grid_forget()
+                    self.destroy()
+                    edit_groups.Group_Editor(self.master, biggest)
+
+            except:
+                    messagebox.showerror("Error", "Could not open the groups, or they were not saved to disk.")
 
         def launch_group_setup (self):
             if not os.path.isfile("stu_dict.pkl"):

@@ -37,11 +37,9 @@ class Questionnaire (Frame):
     def get_student_info(self):
         '''create button, text, and entry widgets'''
         #pack sides
-<<<<<<< HEAD
+
         self.grid(pady = 40, padx = 40)
-=======
-    
->>>>>>> f277fc59a492e13965028bfd3341bbb9da28b510
+
         #Get info
         self.ask_firstname = Label(self, text='Forename:', font = ('MS', 8, 'bold'))
         self.ask_firstname.grid(row=2, column = 1, columnspan=1, rowspan =2, sticky = NW)
