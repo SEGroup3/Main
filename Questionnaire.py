@@ -98,7 +98,6 @@ class Questionnaire (Frame):
         self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
 
     def store_response(self):
-        print(self.varQ1)
         str_msg = ""
         if self.get_firstname.get().isalpha():
             firstname= self.get_firstname.get()
@@ -118,12 +117,11 @@ class Questionnaire (Frame):
         if str_msg == "":
             tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
             student = Student(firstname, surname, number, email)
-            print(student)
+            
             self.stu_dict[number] = student
             with open("stu_dict.pkl","wb") as out:
                 pickle.dump(self.stu_dict, out) #save file     
-            for item in self.stu_dict:
-                print (self.stu_dict[item])
+
             if (self.varQ1.get() ==4):
                 java_window = Java_questions.Java_Questions(self.master, number)
                 self.destroy()
