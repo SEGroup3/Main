@@ -18,6 +18,16 @@ class More_Information():
                 window_frame.grid()
                 self.display_group_details(window_frame)
 
+                group_average = self.group.get_group_average()
+                shorter_avg = round(group_average, 3)
+                if group_average:
+                        average_text = "Average grade for this group is: {}".format(shorter_avg)
+                else:
+                        average_text = "No grade data for this group."
+
+                avg_label = Label(window_frame, text = average_text)
+                avg_label.grid(row = 2, column = 0)
+
         def combo_scroll(self, *args):
                 self.names.yview(*args)
                 self.belbin.yview(*args)

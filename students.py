@@ -31,7 +31,7 @@ class Student ():
         self.role = role
 
     def addGrade (self, grade):
-        self.grade = grade      
+        self.grades = grade      
 
     def changeCompetency (self, competency):
         self.competency = competency
