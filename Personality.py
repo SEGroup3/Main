@@ -398,11 +398,11 @@ class Personality (Frame):
            with open("stu_dict.pkl", "wb") as f:
                pickle.dump(stu_dict, f)
                     
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Personality Questionnaire Submitted. ")
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Thanks for submitting your questionnaire!")
            self.master.destroy()    
-           self.clear_response()
+           
         else:
-          tkinter.messagebox.showinfo("Please Fix the Following Errors:", self.str_msg)
+          tkinter.messagebox.showinfo("Please fix the following errors:", self.str_msg)
           self.str_msg == ""
 
 def highest_val(personality):

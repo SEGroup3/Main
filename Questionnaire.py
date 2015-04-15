@@ -115,7 +115,7 @@ class Questionnaire (Frame):
             str_msg = str_msg + "Please answer experience question \n"
           
         if str_msg == "":
-            tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
+           # tkinter.messagebox.showinfo("Questionnaire", "Questionnaire Submitted")
             student = Student(firstname, surname, number, email)
             
             self.stu_dict[number] = student
