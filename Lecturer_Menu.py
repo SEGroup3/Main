@@ -4,6 +4,7 @@ from students import *
 import group_viewer
 import edit_groups
 import createGroupsGUI
+import student_manager
 import os.path
 import pickle
 
@@ -29,17 +30,20 @@ class Lecturer_Menu (Frame):
                 self.group_info = Label (self, text = 'Group Information', font = ('MS',12, 'bold'))
                 self.group_info.grid (row =3, column =2, pady= 10)
                 self.info_button = Button (self, text = 'View Groups', command = self.launch_group_info)
-                self.info_button.grid (row = 4, column = 2)
+                self.info_button.grid (row = 4, column = 2, pady= 10)
                 self.change_groups = Button (self, text = 'Change Groups', command = self.launch_change_group)
-                self.change_groups.grid (row = 5, column = 2, pady =10)
+                self.change_groups.grid (row = 5, column = 2, pady= 10)
+                self.stu_manager = Button (self, text = 'Student Management', command = self.launch_group_manager)
+                self.stu_manager.grid (row = 6, column = 2, pady =10)
             else:
                 self.group_info = Label (self, text = '______________\n\nNo group options available yet, \nPlease set up groups first')
                 self.group_info.grid (row =3, column =2, pady= 10)
 
 
         def launch_group_info (self):
+                
 
-            try:
+                try:
 
                     with open("group_dict.pkl", "rb") as db:
                             group_dict = pickle.load(db)
@@ -53,7 +57,7 @@ class Lecturer_Menu (Frame):
                     group_viewer.Group_Viewer(self.master, group_list)
 
 
-            except:
+                except:
                     messagebox.showerror("Error", "Could not open the groups, or they were not saved to disk.")
 
 
@@ -82,6 +86,12 @@ class Lecturer_Menu (Frame):
                 self.grid_forget()
                 self.destroy()
                 createGroupsGUI.createGroups(self.master)
+
+        def launch_group_manager (self):
+                self.grid_forget()
+                self.destroy()
+                student_manager.Student_Manager(self.master)
+                
 
 
 if __name__ == '__main__':
