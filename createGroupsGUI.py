@@ -149,8 +149,9 @@ class createGroups(Frame):
             with open ("group_dict.pkl", "wb") as db:
                 pickle.dump(grp_dict, db)
 
-            viewer_window = group_viewer.Group_Viewer(self.master, student_groups)
             self.destroy()
+            viewer_window = group_viewer.Group_Viewer(self.master, student_groups)
+
             
         else:
             return
