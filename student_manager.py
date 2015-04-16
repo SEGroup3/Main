@@ -29,9 +29,9 @@ class Student_Manager(Frame):
     def header(self):
 				
 	# This code is supposed to create a centred Header frame.
-                
-        header = Label(self, text = "Student Management", font = ('MS', 20, 'bold'), anchor = CENTER)
-        header.grid(row = 0, column = 0, columnspan = 2, sticky = "NSWE")
+        self.grid(pady = 80, padx = 80)        
+        header = Label(self, text = "Student Management", font = ('MS', 10, 'bold'), anchor = CENTER)
+        header.grid(row = 0, column = 0, columnspan = 2, sticky = "NSWE", pady= 10)
 
     def create_listbox(self):
 
@@ -40,7 +40,7 @@ class Student_Manager(Frame):
         for item in self.stu_list:
             self.stu_listbox.insert(END, item.firstname + ' ' + item.surname)
 
-        self.stu_listbox.grid(row = 1, column = 0)
+        self.stu_listbox.grid(row = 1, column = 0, padx =20)
 
     def create_buttons(self):
 
@@ -48,22 +48,22 @@ class Student_Manager(Frame):
         btn_frame.grid(row = 1, column = 1)
 
         grade_label = Label(btn_frame, text = "Enter student grade:", anchor = W)
-        grade_label.grid(row = 0, column = 0)
+        grade_label.grid(row = 0, column = 0, pady=7)
 
         self.grade_entry = Entry(btn_frame, width=3)
         self.grade_entry.grid(row = 0, column = 1)
 
         grade_btn = Button(btn_frame, text = "Add or overwrite grades", command = self.new_grade)
-        grade_btn.grid(row = 1, column = 0)
+        grade_btn.grid(row = 1, column = 0, pady = 7)
 
         del_btn = Button(btn_frame, text = "Delete student", command = self.del_stu)
-        del_btn.grid(row = 2, column = 0)
+        del_btn.grid(row = 2, column = 0, pady = 7)
 
         save_btn = Button(btn_frame, text = "Save changes & exit", command = self.save_exit)
-        save_btn.grid(row = 3, column = 0)
+        save_btn.grid(row = 3, column = 0, pady = 7)
 
         back_btn = Button(btn_frame, text = "Exit without saving", command = self.go_back)
-        back_btn.grid(row = 4, column = 0)
+        back_btn.grid(row = 4, column = 0, pady = 7)
         
     def del_stu(self):
         
@@ -155,4 +155,5 @@ if __name__ == "__main__":
         pickle.dump(stu_dict, db)
     
     root = Tk()
+    root.title("Student Management")
     Student_Manager(root)
