@@ -135,7 +135,7 @@ class createGroups(Frame):
         if desired_number * desired_size > no_students:
             warning += "\n\nWarning! Not enough students to fill all groups"
 
-        if no_students % desired_number != 0:
+        if no_students % desired_size != 0:
             warning += "\n\nWarning! Groups will not be of equal size"
 
         create = tkinter.messagebox.askquestion("Create Groups", warning)

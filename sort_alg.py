@@ -49,7 +49,8 @@ def sort_students(stu_dict, group_count, group_size):
                     item.add_student(student_to_add)
 
                     if len(stu_list) == 0:
-                        return group_list
+                        # Remove empty groups
+                        return remove_empty_groups(group_list)
                     else:
                         break # move to next student
             else:
@@ -68,7 +69,21 @@ def sort_students(stu_dict, group_count, group_size):
                         a_group.add_student(student_to_add)
                         break
 
+        # Remove empty groups
+        return remove_empty_groups(group_list)
+
+def remove_empty_groups(group_list):
+
+        for each_group in list(group_list):
+            if each_group.get_group_size() == 0:
+                group_list = [item for item in group_list if item != each_group]
+
+        for each_group in group_list:
+            print(each_group)
+            print(each_group.get_group_size())
+        
         return group_list
+    
                     
 def test_group_sizes(group_list, group_size):
     '''Returns True if all group sizes in group_list match group_size, otherwise returns False.'''
