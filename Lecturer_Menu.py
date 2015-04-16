@@ -25,16 +25,18 @@ class Lecturer_Menu (Frame):
             self.setup_group = Label (self, text = 'Set up Groups', font = ('MS',12, 'bold'))
             self.setup_group.grid (row =1, column =2, pady= 10)
             self.setup_button = Button (self, text = 'Set Group Size', command = self.launch_group_setup)
-            self.setup_button.grid (row =2, column = 2)
+            self.setup_button.grid (row =2, column = 2, pady=10)
+            self.stu_manager = Button (self, text = 'Student Management', command = self.launch_group_manager)
+            self.stu_manager.grid (row = 3, column = 2, pady =10)
+
             if os.path.isfile("group_dict.pkl"):
                 self.group_info = Label (self, text = 'Group Information', font = ('MS',12, 'bold'))
-                self.group_info.grid (row =3, column =2, pady= 10)
+                self.group_info.grid (row =4, column =2, pady= 10)
                 self.info_button = Button (self, text = 'View Groups', command = self.launch_group_info)
-                self.info_button.grid (row = 4, column = 2, pady= 10)
+                self.info_button.grid (row = 5, column = 2, pady= 10)
                 self.change_groups = Button (self, text = 'Change Groups', command = self.launch_change_group)
-                self.change_groups.grid (row = 5, column = 2, pady= 10)
-                self.stu_manager = Button (self, text = 'Student Management', command = self.launch_group_manager)
-                self.stu_manager.grid (row = 6, column = 2, pady =10)
+                self.change_groups.grid (row = 6, column = 2, pady= 10)
+                
             else:
                 self.group_info = Label (self, text = '______________\n\nNo group options available yet, \nPlease set up groups first')
                 self.group_info.grid (row =3, column =2, pady= 10)
