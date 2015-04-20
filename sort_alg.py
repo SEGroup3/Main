@@ -77,10 +77,6 @@ def remove_empty_groups(group_list):
         for each_group in list(group_list):
             if each_group.get_group_size() == 0:
                 group_list = [item for item in group_list if item != each_group]
-
-        for each_group in group_list:
-            print(each_group)
-            print(each_group.get_group_size())
         
         return group_list
     

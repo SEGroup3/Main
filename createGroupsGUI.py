@@ -155,26 +155,7 @@ class createGroups(Frame):
             
         else:
             return
-        """tkinter.messagebox.showinfo("Group Calculator", "Calculating...")
-        self.clearSelection()
-        data = {}
-        with open("stu_dict.pkl", "rb") as f:
-            try:
-                while True:
-                    event = pickle.load(f)
-                    data.append(line)
-            except (EOFError):
-                pass
 
-        print (data)
-            
-        if self.listSize.get() is not None:
-            print(self.listSize.get())
-        elif self.listGroup.get() is not None:
-            print(self.listGroup.get())
-        else:
-            tkinter.messagebox.showwarning("Group Calculator", "You must select from one of the options available")
-            print ("Error")"""
 #Main
 if __name__ =='__main__':
     root = Tk()
