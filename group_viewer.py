@@ -141,8 +141,11 @@ class Group_Viewer(Frame):
                 list_frame = Frame(self.group_frame)
                 list_frame.grid(row = 1,column = self.position, padx = 3)
 
+                grp_label = Label(list_frame, text = "Group {}".format(group.number))
+                grp_label.grid(row = 0, column = 0, columnspan = 2)
+                
                 scrollbar = Scrollbar(list_frame) 
-                scrollbar.grid(row = 0, column = 1, sticky="NSWE")
+                scrollbar.grid(row = 1, column = 1, sticky="NSWE")
 
                 yscrollcommand=scrollbar.set
                 
@@ -150,7 +153,7 @@ class Group_Viewer(Frame):
                 for student in group.contents:
                         listbox.insert(END, student.firstname + ' ' + student.surname)
 
-                listbox.grid(row = 0, column = 0)
+                listbox.grid(row = 1, column = 0)
                 listbox.config(yscrollcommand=scrollbar.set)
                 scrollbar.config(command=listbox.yview)
 
