@@ -91,11 +91,17 @@ class Student_Manager(Frame):
 
     def new_grade(self):
 
+        '''Assigns a new grade to a student.'''
+
         try:
+
             grade = int(self.grade_entry.get())
+
             if grade < 0 or grade > 100:
                 messagebox.showerror("Invalid", "Please input a number between 0 and 100.")
+
                 return
+
             try:
                 student_to_amend = self.stu_list[self.stu_listbox.curselection()[0]]
                 student_to_amend.addGrade(grade)
