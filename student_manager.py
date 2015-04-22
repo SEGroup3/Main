@@ -75,12 +75,19 @@ class Student_Manager(Frame):
         
     def del_stu(self):
         
-        student_to_delete = self.stu_list.pop(self.stu_listbox.curselection()[0])
+        try:
+            if messagebox.askokcancel("Delete?", "Are you sure you want to delete this student? You can cancel changes by exiting without saving."):
+            
+                student_to_delete = self.stu_list.pop(self.stu_listbox.curselection()[0])
 
-        self.stu_dict = {stu_number: student_inst for stu_number, student_inst in self.stu_dict.items() if student_inst != student_to_delete}
-        
-        self.create_listbox()
-        
+                self.stu_dict = {stu_number: student_inst for stu_number, student_inst in self.stu_dict.items() if student_inst != student_to_delete}
+                
+                self.create_listbox()
+
+        except IndexError:
+
+            messagebox.showerror("Invalid", "Please select a student.")
+            return
 
     def new_grade(self):
 
