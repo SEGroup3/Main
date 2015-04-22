@@ -17,6 +17,7 @@ class Personality (Frame):
         self.get_personality()
         
     def spacer (self):
+        self.grid(pady = 20, padx = 20)
         self.space1 = Label(self, text = '    ', font=('MS', 8, 'bold'))
     def get_personality(self):
         self.str_msg= ""
@@ -24,7 +25,9 @@ class Personality (Frame):
         #self.pack(pady= 30, padx = 30)
         self.inst = Label(self, text = 'Instructions:\n\n', font=('MS', 8, 'bold'))
         self.inst.grid(row= 2, column = 0, sticky = W)
-        self.inst_info = Label (self, text = 'Please read the following words and rank them from 4 to 1 with 4 being the word that best describes you \n and 1 being the least like you. Please use each value only once and select your instinctive behaviour, \n not what you perceive to be the best answer. ', font=('MS', 8))
+        self.inst_info = Label (self, text = "Please read the following words and rank them from 4 to 1 with 4 being the word that best describes you \n"
+                                + "and 1 being the least like you. Please use each value only once per line and select your answer instinctively, \n"
+                                + "not what you perceive to be the 'best' answer. ", font=('MS', 8))
         self.inst_info.grid(row = 2, column = 1, columnspan = 6, rowspan = 3, sticky = W)
         self.space = Label(self, text = '     ', font=('MS', 8, 'bold'))
         self.space.grid(row= 6, rowspan =2, column = 0, sticky = W)
@@ -398,7 +401,7 @@ class Personality (Frame):
            with open("stu_dict.pkl", "wb") as f:
                pickle.dump(stu_dict, f)
                     
-           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Thanks for submitting your questionnaire!")
+           tkinter.messagebox.showinfo("Personality Questionnaire", "Your personality best fits the " + personality_type + " type. Thank you for submitting your questionnaire!")
            self.master.destroy()    
            
         else:

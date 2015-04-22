@@ -27,7 +27,7 @@ class Python_Questions (Frame):
         self.master = master
 
     def header(self):
-        
+        self.grid(pady = 20, padx = 20)
         lblHeader = Label(self, text = "Python Programming Questions: ", font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
 
