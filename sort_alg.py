@@ -62,12 +62,28 @@ def sort_students(stu_dict, group_count, group_size):
             # This loop will run until it runs out of students or group space.
             for a_student in stu_list:
                 stu_index = stu_list.index(a_student)
-
+                avg_competency = get_avg_competency(group_list)
+                
                 for a_group in group_list:
+
                     if a_group.get_group_size() < group_size:
-                        student_to_add = stu_list.pop(stu_index)
-                        a_group.add_student(student_to_add)
-                        break
+
+                        group_competency = 0
+                        for item in a_group.contents:
+                            if item.competency:
+                                group_competency += 1
+
+                        if group_competency < avg_competency:
+                            student_to_add = stu_list.pop(stu_index)
+                            a_group.add_student(student_to_add)
+                            break
+
+                else:
+                    for a_group in group_list:
+                        if a_group.get_group_size() < group_size:
+                            student_to_add = stu_list.pop(stu_index)
+                            a_group.add_student(student_to_add)
+                            break
 
         # Remove empty groups
         return remove_empty_groups(group_list)
@@ -89,8 +105,19 @@ def test_group_sizes(group_list, group_size):
             return False
     else:
         return True
-        
 
+def get_avg_competency(group_list):
+    '''Returns average number of experienced students in each member of group_list.'''
+    total_competency = 0
+    for item in group_list:
+        for entry in item.contents:
+            if entry.competency:
+                total_competency += 1
+
+    avg_comp = total_competency / len(group_list)
+
+    return avg_comp
+        
 
 
 if __name__ == "__main__":

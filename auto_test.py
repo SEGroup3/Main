@@ -71,6 +71,9 @@ def list_of_students(student_no):
         name = random.choice(list_of_names)
         first_name, last_name = name.split(" ")
         student = Student(first_name, last_name, random.randint(1,999999), "{}@cardiff.ac.uk".format(first_name), grades = random.randint(40,90), role = random.choice(roles))
+
+        student.changeCompetency(random.choice((True, False)))
+
         output_list.append(student)
 
         i += 1
