@@ -12,8 +12,8 @@ class Main_Menu (Frame):
     def __init__(self, master):
 
         super(Main_Menu, self).__init__(master)
-
         self.master = master
+        self.master.title("The Sorting Hat")
         self.grid()
         self.hat()
         self.student_start()
@@ -28,6 +28,7 @@ class Main_Menu (Frame):
 
     def student_start (self):
     #Create student access buttons'''
+        self.grid(pady = 40, padx = 40)
         self.students = Label (self, text = 'Student Section', font = ('MS',12, 'bold'))
         self.students.grid (row =2, column = 0, pady= 10)
         self.stu_but = Button (self, text = "Click Here to Start", command = self.launch_student)

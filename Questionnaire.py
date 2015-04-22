@@ -69,7 +69,7 @@ class Questionnaire (Frame):
 
     def get_team_exp_quest (self):
         # Create widgets to ask Team Expereince Questions
-        qu1 = 'Do you feel you have prior\n computing experience?'
+        qu1 = 'Do you have any prior computing \n experience in either the Python or \n Java languages?'
         ExpHead = Label(self, text= 'Prior Computing Experience:', font=('MS', 8, 'bold'))
         ExpHead.grid(row= 7, column= 1, rowspan= 1, sticky = NE)
 

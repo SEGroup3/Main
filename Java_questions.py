@@ -27,17 +27,18 @@ class Java_Questions(Frame):
 
     def header(self):
         #a header to appear at the top of the window
+        self.grid(pady = 10, padx = 20)
+
         lblHeader = Label(self, text = "Java Programming Questions: ",
                           font = ('MS', 10, 'bold'))
         lblHeader.grid(row = 0, column = 0, columnspan = 2, sticky = NW)
 
     def q_header(self):
         #the first line of questions
-        line1 = Label(self, text = "Review the following Java code and choose the correct answer from the options shown.",
+        line1 = Label(self, text = "Review the following Java code and choose the correct answer from the options shown."
+                      + "When you are finished, click Submit and your answers will be saved.",
                       font = ("MS", 8))
         line1.grid(row = 2, column = 0, sticky = W)
-        line2 = Label(self, text = "When you are finished, click Submit and your answers will be saved.", font = ('MS', 8))
-        line2.grid(row = 3, column = 0, sticky = W)
         line3 = Label(self, text= "", font = ('MS', 8))
         line3.grid(row = 4, column = 0, sticky = W)
 
@@ -223,8 +224,8 @@ class Java_Questions(Frame):
         R4Q4 = Radiobutton(self, variable = self.varQ5, value=1)
         R4Q4.grid(row= 27, column = 3)
 
-        buffer = Label(self, text = "", font = ('MS', 8))
-        buffer.grid(row = 28, column = 0)
+        #buffer = Label(self, text = "", font = ('MS', 8))
+        #buffer.grid(row = 28, column = 0)
 
     def assess_Results(self):
         countAll = 0
