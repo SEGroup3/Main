@@ -19,8 +19,9 @@ class More_Information():
                 self.display_group_details(window_frame)
 
                 group_average = self.group.get_group_average()
-                shorter_avg = round(group_average, 3)
+
                 if group_average:
+                        shorter_avg = round(group_average, 3)
                         average_text = "Average grade for this group is: {}".format(shorter_avg)
                 else:
                         average_text = "No grade data for this group."
