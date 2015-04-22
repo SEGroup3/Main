@@ -32,11 +32,13 @@ class More_Information():
                 self.names.yview(*args)
                 self.belbin.yview(*args)
                 self.grades.yview(*args)
+                self.experience.yview(*args)
 
         def mouse_wheel(self, event):
                 self.names.yview("scroll", event.delta,"units")
                 self.belbin.yview("scroll", event.delta,"units")
                 self.grades.yview("scroll", event.delta,"units")
+                self.experience.yview("scroll", event.delta,"units")
                 
         def display_group_details(self, window_frame):
 
@@ -45,6 +47,7 @@ class More_Information():
                 self.names = Listbox(display_frame)
                 self.belbin = Listbox(display_frame)
                 self.grades = Listbox(display_frame)
+                self.experience = Listbox(display_frame)
 
                 for student in self.group.contents:
                 	
@@ -59,28 +62,38 @@ class More_Information():
                     else:
                         self.grades.insert(END, ' ')
 
+                    if student.competency:
+                        self.experience.insert(END, "Yes")
+                    else:
+                        self.experience.insert(END, "No")
+
                 name_label = Label(display_frame, text = "Name")
                 belbin_label = Label(display_frame, text = "Belbin Role")
                 grades_label = Label(display_frame, text = "Grades")
+                experience_label = Label(display_frame, text = "Prior Experience")
 
                 name_label.grid(row = 0, column = 0)
                 belbin_label.grid(row = 0, column = 1)
                 grades_label.grid(row = 0, column = 2)
+                experience_label.grid(row = 0, column = 3)
 
                 self.names.grid(row = 1, column = 0)
                 self.belbin.grid(row = 1, column = 1)
                 self.grades.grid(row = 1, column = 2)
+                self.experience.grid(row = 1, column = 3)
 
                 scrollbar = Scrollbar(display_frame, command = self.combo_scroll) 
-                scrollbar.grid(row = 1, column = 3, sticky = "NSWE")
+                scrollbar.grid(row = 1, column = 4, sticky = "NSWE")
 
                 self.names.config(yscrollcommand=scrollbar.set)
                 self.belbin.config(yscrollcommand=scrollbar.set)
                 self.grades.config(yscrollcommand=scrollbar.set)
+                self.experience.config(yscrollcommand=scrollbar.set)
 
                 self.names.bind("<MouseWheel>", self.mouse_wheel)
                 self.belbin.bind("<MouseWheel>", self.mouse_wheel)
                 self.grades.bind("<MouseWheel>", self.mouse_wheel)
+                self.experience.bind("<MouseWheel>", self.mouse_wheel)
 
 
 class Group_Viewer(Frame):
