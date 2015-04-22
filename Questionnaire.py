@@ -94,8 +94,11 @@ class Questionnaire (Frame):
         self.R3Q1 = Radiobutton(self, variable=self.varQ1, value=2)
         self.R3Q1.grid(row=8, column=6)
 
+        lblAdvice = Label(self, text = 'If you have experience in both\n languages please select the one\n in which you are most confident.', font=('MS', 8))
+        lblAdvice.grid(row = 9, column = 1, columnspan = 4, sticky = W)
+
     def create_button (self,):   
-        self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 10, column = 4, sticky = S)
+        self.submit_bttn = Button(self, text= 'Submit', command = self.store_response, font=('MS', 8, 'bold')).grid(row = 99, column = 4, sticky = S)
 
     def store_response(self):
         str_msg = ""
