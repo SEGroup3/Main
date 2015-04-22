@@ -211,7 +211,6 @@ class Group_Viewer(Frame):
 
 if __name__ == "__main__":
         root = Tk()
-        #root.title("Group Viewer")
         
         test_groups = list_of_groups(5)
         window = Group_Viewer(root, test_groups)

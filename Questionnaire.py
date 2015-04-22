@@ -14,8 +14,6 @@ class Questionnaire (Frame):
         # Initialise Questionnaire Class
         super(Questionnaire, self).__init__(master)
         self.master= master
-
-        self.master.title("Teamwork Questionnaire")
         self.grid()
        
         self.get_student_info()

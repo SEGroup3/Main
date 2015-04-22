@@ -20,7 +20,6 @@ class Group_Editor(Frame):
         self.master = master
         self.grid()
         self.group_size = group_size # Will check that groups match the correct size at the end
-        self.master.title("Group Editor")
         self.header()
         self.group_dict = self.open_groups()
         self.group_selector()

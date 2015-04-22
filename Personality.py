@@ -8,7 +8,6 @@ import pickle
 class Personality (Frame):
 
     def __init__ (self, master, number):
-        master.title("Personality Questions")
         super(Personality, self).__init__(master)
         self.master = master
         self.grid()
