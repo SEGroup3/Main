@@ -136,7 +136,7 @@ class Student_Manager(Frame):
                 for stu in grp_dict[grp].contents:
                     if stu.number == item.number:
                         stu = item
-                        found = true
+                        found = True
                         break
                 if found:
                     break
