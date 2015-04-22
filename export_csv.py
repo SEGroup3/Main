@@ -1,9 +1,3 @@
-'''
-Contains code for exporting Group() objects from groups.py into CSV format.
-In my code I am manually constructing a csv file as a string, but I think that's
-probably an awful hack and the csv module would be a more elegant solution.
-'''
-
 import groups
 import students
 
@@ -18,98 +12,46 @@ def convert_to_CSV(list_of_groups, more = False):
         output = ''
         largest_group_size = 0
 
+        if more:
+                output += 'Name, Group, Belbin Role, Grades, Average Grade, Prior Experience, , \n'
+        else:
+                output += 'Name, Group, \n'
+
         for item in list_of_groups:
-                # Goes through each group object and creates headers for the csv file.
-                # Also records the largest group size within the list of groups.
-
-                if more:
-                        output += 'Group {}, Belbin Role, Grades, Average Grade, Prior Experience, , '.format(item.number)
-                else:
-                        output += 'Group {}, , '.format(item.number)
-
-                if item.get_group_size() > largest_group_size:
-                        largest_group_size = item.get_group_size()
 
         # Now we construct the data-containing csv rows.
-        row = 0
+        # Adds each row of the csv file one at a time.
 
-        while row <= largest_group_size - 1:
-                # Adds each row of the csv file one at a time.
+            for entry in item.contents:
 
-                output += '\n'
-                for item in list_of_groups:
-                        try:
-                                output += '{}, '.format(item.contents[row].firstname + ' ' + item.contents[row].surname)
-                                # Digs up the student.name attributes.
+                output += '{}, '.format(entry.firstname + ' ' + entry.surname)
+                # Digs up the student.name attributes.
 
-                                if more:
-                                        # Digs up the remaining attributes.
+                output += '{}, '.format(item.number)
+                # Group number
+                
+                if more:
+                        # Digs up the remaining attributes.
 
-                                        if item.contents[row].role:
-                                                output += '{}, '.format(item.contents[row].role)
-                                        else:
-                                                output += ', '
-                                        if item.contents[row].grades:
-                                                output += '{}, '.format(item.contents[row].grades)
-                                        else:
-                                                output += ', '
-                                        if item.get_group_average():
-                                                output += '{}, '.format(item.get_group_average())
-                                        else:
-                                                output += ', '
-
-                                        if item.contents[row].competency:
-                                                output += 'Yes, '
-                                        else:
-                                                output += 'No, '
-                                                
-
+                        if entry.role:
+                                output += '{}, '.format(entry.role)
+                        else:
+                                output += ', '
+                        if entry.grades:
+                                output += '{}, '.format(entry.grades)
+                        else:
+                                output += ', '
+                        if item.get_group_average():
+                                output += '{}, '.format(item.get_group_average())
+                        else:
                                 output += ', '
 
-                        except IndexError:
-                                # If this group object contains no student for this row,
-                                # create a blank row.
+                        if entry.competency:
+                                output += 'Yes, '
+                        else:
+                                output += 'No, '
+                                
 
-                                if more:
-                                        output += ', , , , '
-                                else:
-                                        output += ', , '
-                row += 1
+                output += '\n'
 
         return output
-
-if __name__ == "__main__":
-
-        student1 = students.Student("Liam", "H", 1, "email")
-        student2 = students.Student("Sam", "R", 2, "email", 75, "Co-ordinator")
-        student3 = students.Student("Vera", "Y", 3, "email", 70, "Plant")
-        student4 = students.Student("Callum", "X", 4, "email", 72)
-        student5 = students.Student("Andrew", "Y", 5, "email", 79)
-        student6 = students.Student("Random", "Z", 6, "email")
-
-        test_group = groups.Group(1)
-        test_group.add_student(student1)
-        test_group.add_student(student2)
-        test_group.add_student(student3)
-        test_group.add_student(student4)
-        test_group.add_student(student5)
-
-        test_group2 = groups.Group(2)
-        test_group2.add_student(student6)
-
-        group_list = [test_group, test_group2]
-
-        output = convert_to_CSV(group_list)
-        output_more = convert_to_CSV(group_list, more = True)
-
-        print(output)
-        print(output_more)
-        
-        with open('test.csv', 'w', newline='') as csvfile:
-                print(csvfile)
-                csvfile.write(output)
-
-        with open('test_more.csv', 'w', newline='') as csvfile:
-                csvfile.write(output_more)
-
-
