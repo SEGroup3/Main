@@ -150,10 +150,10 @@ class Python_Questions (Frame):
     def clear_All(self):
         response = tk.askquestion("Programming Questions", "Are you sure you wish to clear all of your answers?")
         if response == 'yes':
-            self.q1answer.delete(1.0,END)
-            self.q2answer.delete(1.0,END)
-            self.q3answer.delete(1.0,END)
-            self.q4answer.delete(1.0,END)
+            self.q1answer.delete(0,END)
+            self.q2answer.delete(0,END)
+            self.q3answer.delete(0,END)
+            self.q4answer.delete(0,END)
             #self.q5answer.delete(1.0,END)
             tk.showinfo("Programming Questions", "All answers cleared.")
         else:
